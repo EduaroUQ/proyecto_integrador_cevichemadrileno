@@ -1,0 +1,29 @@
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+ 
+
+.idea/
+*.iml
+*.iws
+out/
+ 
+### macOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+*.icloud
+ 
+# Maven
+log/
+target/
