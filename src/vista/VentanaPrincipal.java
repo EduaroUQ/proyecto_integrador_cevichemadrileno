@@ -35,7 +35,7 @@ public class VentanaPrincipal extends JFrame {
 		getContentPane().add(scrollPane);
 		
 		// TODO: cambiar por "login" para prueba funcional
-		controladorPrincipal.showPanel("dashboard");
+		controladorPrincipal.showPanel("login");
 	}
 	
 	public void hacerVisible() {
