@@ -28,17 +28,6 @@ CREATE TABLE ACTIVIDAD_DESCRIPCION (
     nroMaximoInscritos INT
 );
 
-CREATE TABLE ACTIVIDAD (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_monitor INT,
-    nombre VARCHAR(100),
-    id_sala INT,
-    fecha DATETIME DEFAULT (CURRENT_TIMESTAMP),
-    FOREIGN KEY (id_monitor) REFERENCES USUARIO(id),
-    FOREIGN KEY (nombre) REFERENCES ACTIVIDAD_DESCRIPCION(nombre),
-    FOREIGN KEY (id_sala) REFERENCES SALA(id)
-);
-
 CREATE TABLE SALA_ESPACIO (
     codigoSala VARCHAR(10) PRIMARY KEY,
     capacidad INT,
@@ -51,6 +40,17 @@ CREATE TABLE SALA (
     FOREIGN KEY (codigoSala) REFERENCES SALA_ESPACIO(codigoSala)
 );
 
+CREATE TABLE ACTIVIDAD (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_monitor INT,
+    nombre VARCHAR(100),
+    id_sala INT,
+    fecha DATETIME DEFAULT (CURRENT_TIMESTAMP),
+    FOREIGN KEY (id_monitor) REFERENCES USUARIO(id),
+    FOREIGN KEY (nombre) REFERENCES ACTIVIDAD_DESCRIPCION(nombre),
+    FOREIGN KEY (id_sala) REFERENCES SALA(id)
+);
+
 CREATE TABLE INSCRIPCION (
     id_usuario INT,
     id_actividad INT,
@@ -58,7 +58,6 @@ CREATE TABLE INSCRIPCION (
     FOREIGN KEY (id_usuario) REFERENCES USUARIO(id),
     FOREIGN KEY (id_actividad) REFERENCES ACTIVIDAD(id)
 );
-
 
 -- Inserción de datos
 INSERT INTO USUARIO_DESCRIPCION (matricula, nombreApellidos, ciclo) VALUES
