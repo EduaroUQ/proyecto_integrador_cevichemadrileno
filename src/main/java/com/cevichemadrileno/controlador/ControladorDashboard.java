@@ -1,13 +1,9 @@
-package controlador;
+package com.cevichemadrileno.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import vista.PanelActividades;
-import vista.PanelCrearActividad;
-import vista.PanelDashboard;
-import vista.PanelMiPerfil;
-import vista.PanelMisActividades;
+import com.cevichemadrileno.vista.*;
 
 /**
  * Controlador del panel del dashboard principal después de autenticarse

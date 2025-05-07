@@ -1,10 +1,10 @@
-package vista;
+package com.cevichemadrileno.vista;
 
 import javax.swing.*;
 
-import controlador.ControladorLogin;
-import controlador.ControladorPrincipal;
-import util.Constantes;
+import com.cevichemadrileno.controlador.ControladorLogin;
+import com.cevichemadrileno.controlador.ControladorPrincipal;
+import com.cevichemadrileno.util.Constantes;
 import java.awt.Color;
 import java.awt.Image;
 import java.nio.file.Path;
@@ -36,8 +36,8 @@ public class PanelLogin extends JPanel {
 	}
 
 	private void inicializarComponentes() {
-		setBackground(Constantes.MAIN_COLOR);
-		setSize(Constantes.APPLICATION_WIDTH, Constantes.APPLICATION_HEIGHT);
+		setBackground(Constantes.AZUL_OSCURO);
+		setSize(Constantes.ANCHURA_APLICACION, Constantes.ALTURA_APLICACION);
 		setLayout(null);
 		
 		controladorLogin = new ControladorLogin(this);
@@ -45,36 +45,36 @@ public class PanelLogin extends JPanel {
 		tituloLabel = new JLabel();
 		tituloLabel.setText("Inicio Sesión");
 		tituloLabel.setBounds(314,83,198,62);
-		tituloLabel.setFont(Constantes.TEXT_FONT_34);
-		tituloLabel.setForeground(Constantes.WHITE_COLOR);
+		tituloLabel.setFont(Constantes.SANS_SERIF_34);
+		tituloLabel.setForeground(Constantes.BLANCO);
 		add(tituloLabel);
 		
 		matriculaLabel = new JLabel();
 		matriculaLabel.setText("Matricula");
 		matriculaLabel.setBounds(247,162,74,40);
-		matriculaLabel.setFont(Constantes.TEXT_FONT_18);
-		matriculaLabel.setForeground(Constantes.WHITE_COLOR);
+		matriculaLabel.setFont(Constantes.SANS_SERIF_18);
+		matriculaLabel.setForeground(Constantes.BLANCO);
 		add(matriculaLabel);
 		
 		claveLabel = new JLabel();
 		claveLabel.setText("Contraseña");
 		claveLabel.setBounds(247,269,108,40);
-		claveLabel.setFont(Constantes.TEXT_FONT_18);
-		claveLabel.setForeground(Constantes.WHITE_COLOR);
+		claveLabel.setFont(Constantes.SANS_SERIF_18);
+		claveLabel.setForeground(Constantes.BLANCO);
 		add(claveLabel);
 		
 		registroInfoLabel = new JLabel();
 		registroInfoLabel.setText("¿No tienes una cuenta?");
 		registroInfoLabel.setBounds(247,364,198,40);
-		registroInfoLabel.setFont(Constantes.TEXT_FONT_18);
-		registroInfoLabel.setForeground(Constantes.WHITE_COLOR);
+		registroInfoLabel.setFont(Constantes.SANS_SERIF_18);
+		registroInfoLabel.setForeground(Constantes.BLANCO);
 		add(registroInfoLabel);
 		
 		registroLinkBtn = new JButton();
 		registroLinkBtn.setText("Registrate aquí");
 		registroLinkBtn.setBounds(431,364,158,40);
-		registroLinkBtn.setFont(Constantes.TEXT_FONT_18);
-		registroLinkBtn.setForeground(Constantes.TERTIARY_COLOR);
+		registroLinkBtn.setFont(Constantes.SANS_SERIF_18);
+		registroLinkBtn.setForeground(Constantes.CELESTE_OSCURO);
 		registroLinkBtn.setBackground(null);
 		registroLinkBtn.setContentAreaFilled(false);
 		registroLinkBtn.setBorderPainted(false);
@@ -85,18 +85,18 @@ public class PanelLogin extends JPanel {
 		
 		usuarioTextField = new JTextField();
 		usuarioTextField.setBounds(282, 205, 262, 25);
-		usuarioTextField.setBackground(Constantes.SECONDARY_COLOR);
-		usuarioTextField.setBorder(Constantes.LOGIN_INPUT_FIELD_BORDER);
-		usuarioTextField.setFont(Constantes.TEXT_FONT_16);
-		usuarioTextField.setForeground(Constantes.WHITE_COLOR);
+		usuarioTextField.setBackground(Constantes.AZUL_OSCURO_CLARO);
+		usuarioTextField.setBorder(Constantes.BORDER_INPUT_ESTILO_2);
+		usuarioTextField.setFont(Constantes.SANS_SERIF_16);
+		usuarioTextField.setForeground(Constantes.BLANCO);
 		add(usuarioTextField);
 	
 		claveTextField = new JPasswordField();
 		claveTextField.setBounds(282, 311, 262, 25);
-		claveTextField.setBackground(Constantes.SECONDARY_COLOR);
-		claveTextField.setBorder(Constantes.LOGIN_INPUT_FIELD_BORDER);
-		claveTextField.setFont(Constantes.TEXT_FONT_16);
-		claveTextField.setForeground(Constantes.WHITE_COLOR);
+		claveTextField.setBackground(Constantes.AZUL_OSCURO_CLARO);
+		claveTextField.setBorder(Constantes.BORDER_INPUT_ESTILO_2);
+		claveTextField.setFont(Constantes.SANS_SERIF_16);
+		claveTextField.setForeground(Constantes.BLANCO);
 		add(claveTextField);
 		
 		loginBtn = new JButton();
@@ -104,7 +104,7 @@ public class PanelLogin extends JPanel {
 		loginBtn.setBorderPainted(false);
 		loginBtn.setFocusPainted(false);
 		loginBtn.addActionListener(controladorLogin);
-		loginBtn.setFont(Constantes.TEXT_FONT_18);
+		loginBtn.setFont(Constantes.SANS_SERIF_18);
 		loginBtn.setText("Entrar");
 		loginBtn.setBounds(334,426,158,40);
 		add(loginBtn);

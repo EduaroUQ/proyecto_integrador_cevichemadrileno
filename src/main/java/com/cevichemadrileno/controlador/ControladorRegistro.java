@@ -1,9 +1,9 @@
-package controlador;
+package com.cevichemadrileno.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import vista.PanelRegistro;
+import com.cevichemadrileno.vista.PanelRegistro;
 
 /**
  * Controlador del panel de registro

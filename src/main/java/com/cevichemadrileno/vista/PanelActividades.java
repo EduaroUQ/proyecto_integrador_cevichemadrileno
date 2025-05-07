@@ -1,8 +1,8 @@
-package vista;
+package com.cevichemadrileno.vista;
 
 import javax.swing.*;
 
-import util.Constantes;
+import com.cevichemadrileno.util.Constantes;
 
 /**
  * Panel de actividades
@@ -20,15 +20,15 @@ public class PanelActividades extends JPanel {
 	}
 
 	private void inicializarComponentes() {
-		setBackground(Constantes.GRAY_COLOR);
-		setSize(Constantes.DASHBOARD_WIDTH, Constantes.APPLICATION_HEIGHT);
+		setBackground(Constantes.GRIS);
+		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
 		setLayout(null);
 		
 		tituloLabel = new JLabel();
 		tituloLabel.setText("Actividades disponibles");
 		tituloLabel.setBounds(173,41,374,62);
-		tituloLabel.setFont(Constantes.TEXT_FONT_34);
-		tituloLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+		tituloLabel.setFont(Constantes.SANS_SERIF_34);
+		tituloLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(tituloLabel);
 		
 		
@@ -37,6 +37,7 @@ public class PanelActividades extends JPanel {
 	/**
 	 * Getters
 	 */
+	
 	
 
 	

@@ -1,8 +1,8 @@
-package controlador;
+package com.cevichemadrileno.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import vista.*;
+import com.cevichemadrileno.vista.*;
 
 /**
  * Controlador de la vista principal

@@ -1,9 +1,9 @@
-	package vista;
+package com.cevichemadrileno.vista;
 
 import javax.swing.*;
 
-import controlador.ControladorDashboard;
-import util.Constantes;
+import com.cevichemadrileno.controlador.ControladorDashboard;
+import com.cevichemadrileno.util.Constantes;
 
 import java.awt.Image;
 import java.nio.file.Path;
@@ -31,14 +31,14 @@ public class PanelDashboard extends JPanel {
 	}
 
 	private void inicializarComponentes() {
-		setBackground(Constantes.GRAY_COLOR);
-		setSize(Constantes.APPLICATION_WIDTH, Constantes.APPLICATION_HEIGHT);
+		setBackground(Constantes.GRIS);
+		setSize(Constantes.ANCHURA_APLICACION, Constantes.ALTURA_APLICACION);
 		setLayout(null);
 		
 		controladorDashboard = new ControladorDashboard(this);
 		
 		sidebarPanelBackground = new JPanel();
-		sidebarPanelBackground.setBackground(Constantes.MAIN_COLOR);
+		sidebarPanelBackground.setBackground(Constantes.AZUL_OSCURO);
 		sidebarPanelBackground.setBounds(0, 0, 120, 620);
 		
 		String rootFolder = System.getProperty("user.dir");
@@ -52,8 +52,8 @@ public class PanelDashboard extends JPanel {
 		
 		miPerfilBtn = new JButton();
 		miPerfilBtn.setText("Mi perfil");
-		miPerfilBtn.setFont(Constantes.TEXT_FONT_12);
-		miPerfilBtn.setForeground(Constantes.WHITE_COLOR);
+		miPerfilBtn.setFont(Constantes.SANS_SERIF_12);
+		miPerfilBtn.setForeground(Constantes.BLANCO);
 		miPerfilBtn.setBackground(null);
 		miPerfilBtn.setContentAreaFilled(false);
 		miPerfilBtn.setBorderPainted(false);
@@ -67,8 +67,8 @@ public class PanelDashboard extends JPanel {
 
 		misActividadesBtn = new JButton();
 		misActividadesBtn.setText("Mis actividades");
-		misActividadesBtn.setFont(Constantes.TEXT_FONT_12);
-		misActividadesBtn.setForeground(Constantes.WHITE_COLOR);
+		misActividadesBtn.setFont(Constantes.SANS_SERIF_12);
+		misActividadesBtn.setForeground(Constantes.BLANCO);
 		misActividadesBtn.setBackground(null);
 		misActividadesBtn.setContentAreaFilled(false);
 		misActividadesBtn.setBorderPainted(false);
@@ -81,8 +81,8 @@ public class PanelDashboard extends JPanel {
 		
 		actividadesBtn = new JButton();
 		actividadesBtn.setText("Actividades");
-		actividadesBtn.setFont(Constantes.TEXT_FONT_12);
-		actividadesBtn.setForeground(Constantes.WHITE_COLOR);
+		actividadesBtn.setFont(Constantes.SANS_SERIF_12);
+		actividadesBtn.setForeground(Constantes.BLANCO);
 		actividadesBtn.setBackground(null);
 		actividadesBtn.setContentAreaFilled(false);
 		actividadesBtn.setBorderPainted(false);
@@ -95,8 +95,8 @@ public class PanelDashboard extends JPanel {
 		
 		crearActividadBtn = new JButton();
 		crearActividadBtn.setText("Crear actividad");
-		crearActividadBtn.setFont(Constantes.TEXT_FONT_12);
-		crearActividadBtn.setForeground(Constantes.WHITE_COLOR);
+		crearActividadBtn.setFont(Constantes.SANS_SERIF_12);
+		crearActividadBtn.setForeground(Constantes.BLANCO);
 		crearActividadBtn.setBackground(null);
 		crearActividadBtn.setContentAreaFilled(false);
 		crearActividadBtn.setBorderPainted(false);
@@ -108,7 +108,7 @@ public class PanelDashboard extends JPanel {
 		add(crearActividadBtn);
 		
 		mainContentScrollPanel = new JScrollPane();
-		mainContentScrollPanel.setBounds(119, 0, Constantes.DASHBOARD_WIDTH, Constantes.APPLICATION_HEIGHT);
+		mainContentScrollPanel.setBounds(119, 0, Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
         
 		add(mainContentScrollPanel);
 		add(sidebarPanelBackground);

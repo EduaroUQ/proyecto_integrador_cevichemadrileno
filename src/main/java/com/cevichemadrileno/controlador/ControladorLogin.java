@@ -1,8 +1,8 @@
-package controlador;
+package com.cevichemadrileno.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import vista.PanelLogin;
+import com.cevichemadrileno.vista.PanelLogin;
 
 /**
  * Controlador del panel de login

@@ -1,11 +1,11 @@
-package controlador;
+package com.cevichemadrileno.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import modelo.Inscripcion;
-import vista.PanelMisActividades;
+import com.cevichemadrileno.modelo.Inscripcion;
+import com.cevichemadrileno.vista.PanelMisActividades;
 
 /**
  * Controlador del panel de Mis Actividades

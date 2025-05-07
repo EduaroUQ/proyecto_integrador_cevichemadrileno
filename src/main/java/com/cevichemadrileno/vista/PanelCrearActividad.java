@@ -1,4 +1,4 @@
-package vista;
+package com.cevichemadrileno.vista;
 
 
 import java.util.ArrayList;
@@ -6,10 +6,10 @@ import java.util.Calendar;
 
 import javax.swing.*;
 
-import controlador.ControladorCrearActividad;
-import modelo.Sala;
-import modelo.SalaEspacio;
-import util.Constantes;
+import com.cevichemadrileno.controlador.ControladorCrearActividad;
+import com.cevichemadrileno.modelo.Sala;
+import com.cevichemadrileno.modelo.SalaEspacio;
+import com.cevichemadrileno.util.Constantes;
 
 /**
  * Panel de crear actividad
@@ -53,8 +53,8 @@ public class PanelCrearActividad extends JPanel {
 	}
 
 	private void inicializarComponentes() {
-		setBackground(Constantes.GRAY_COLOR);
-		setSize(Constantes.DASHBOARD_WIDTH, Constantes.APPLICATION_HEIGHT);
+		setBackground(Constantes.GRIS);
+		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
 		setLayout(null);
 		
 		controladorCrearActividad = new ControladorCrearActividad(this);
@@ -62,47 +62,47 @@ public class PanelCrearActividad extends JPanel {
 		tituloLabel = new JLabel();
 		tituloLabel.setText("Crear Actividad");
 		tituloLabel.setBounds(229,41,262,62);
-		tituloLabel.setFont(Constantes.TEXT_FONT_34);
-		tituloLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+		tituloLabel.setFont(Constantes.SANS_SERIF_34);
+		tituloLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(tituloLabel);
 		
 		nombreLabel = new JLabel();
 		nombreLabel.setText("Nombre");
 		nombreLabel.setBounds(152,105,71,40);
-		nombreLabel.setFont(Constantes.TEXT_FONT_18);
-		nombreLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+		nombreLabel.setFont(Constantes.SANS_SERIF_18);
+		nombreLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(nombreLabel);
 		
 		nombreTextField = new JTextField();
 		nombreTextField.setBounds(259, 119, 247, 32);
-		nombreTextField.setBackground(Constantes.GRAY_COLOR);
-		nombreTextField.setBorder(Constantes.INPUT_FIELD_DEFAULT_BORDER);
-		nombreTextField.setForeground(Constantes.MAIN_TEXT_COLOR);
-		nombreTextField.setFont(Constantes.TEXT_FONT_16);
+		nombreTextField.setBackground(Constantes.GRIS);
+		nombreTextField.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+		nombreTextField.setForeground(Constantes.NEGRO_CLARO);
+		nombreTextField.setFont(Constantes.SANS_SERIF_16);
 		add(nombreTextField);
 		
 		fechaLabel = new JLabel();
 		fechaLabel.setText("Fecha");
 		fechaLabel.setBounds(156,156,71,40);
-		fechaLabel.setFont(Constantes.TEXT_FONT_18);
-		fechaLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+		fechaLabel.setFont(Constantes.SANS_SERIF_18);
+		fechaLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(fechaLabel);
 		
 		horaLabel = new JLabel();
 		horaLabel.setText("Hora");
 		horaLabel.setBounds(172,208,50,40);
-		horaLabel.setFont(Constantes.TEXT_FONT_18);
-		horaLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+		horaLabel.setFont(Constantes.SANS_SERIF_18);
+		horaLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(horaLabel);
 		
 		Calendar now = Calendar.getInstance();
 
         dayCombo = new JComboBox<>();
         dayCombo.setBounds(259, 173, 69, 26);
-        dayCombo.setBackground(Constantes.GRAY_COLOR);
-        dayCombo.setBorder(Constantes.INPUT_FIELD_DEFAULT_BORDER);
-        dayCombo.setFont(Constantes.TEXT_FONT_14);
-        dayCombo.setForeground(Constantes.MAIN_TEXT_COLOR);
+        dayCombo.setBackground(Constantes.GRIS);
+        dayCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+        dayCombo.setFont(Constantes.SANS_SERIF_14);
+        dayCombo.setForeground(Constantes.NEGRO_CLARO);
         dayCombo.setOpaque(false);
         for (int i = 1; i <= 31; i++) {
             dayCombo.addItem(String.format("%02d", i));
@@ -111,10 +111,10 @@ public class PanelCrearActividad extends JPanel {
         
         monthCombo = new JComboBox<>();
         monthCombo.setBounds(338, 173, 69, 26);
-        monthCombo.setBackground(Constantes.GRAY_COLOR);
-        monthCombo.setBorder(Constantes.INPUT_FIELD_DEFAULT_BORDER);
-        monthCombo.setFont(Constantes.TEXT_FONT_14);
-        monthCombo.setForeground(Constantes.MAIN_TEXT_COLOR);
+        monthCombo.setBackground(Constantes.GRIS);
+        monthCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+        monthCombo.setFont(Constantes.SANS_SERIF_14);
+        monthCombo.setForeground(Constantes.NEGRO_CLARO);
         for (int i = 1; i <= 12; i++) {
             monthCombo.addItem(String.format("%02d", i));
         }
@@ -122,19 +122,19 @@ public class PanelCrearActividad extends JPanel {
         
         yearCombo = new JComboBox<>();
         yearCombo.setBounds(417, 173, 89, 26);
-        yearCombo.setBackground(Constantes.GRAY_COLOR);
-        yearCombo.setBorder(Constantes.INPUT_FIELD_DEFAULT_BORDER);
-        yearCombo.setFont(Constantes.TEXT_FONT_14);
-        yearCombo.setForeground(Constantes.MAIN_TEXT_COLOR);
+        yearCombo.setBackground(Constantes.GRIS);
+        yearCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+        yearCombo.setFont(Constantes.SANS_SERIF_14);
+        yearCombo.setForeground(Constantes.NEGRO_CLARO);
         for (int i = 2025; i <= 2026; i++) yearCombo.addItem(i);
         yearCombo.setSelectedItem(now.get(Calendar.YEAR));
 
         hourCombo = new JComboBox<>();
         hourCombo.setBounds(259, 216, 148, 26);
-        hourCombo.setBackground(Constantes.GRAY_COLOR);
-        hourCombo.setBorder(Constantes.INPUT_FIELD_DEFAULT_BORDER);
-        hourCombo.setFont(Constantes.TEXT_FONT_14);
-        hourCombo.setForeground(Constantes.MAIN_TEXT_COLOR);
+        hourCombo.setBackground(Constantes.GRIS);
+        hourCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+        hourCombo.setFont(Constantes.SANS_SERIF_14);
+        hourCombo.setForeground(Constantes.NEGRO_CLARO);
         for (int i = 9; i <= 20; i++) hourCombo.addItem(String.format("%02d", i) + ":00 - " + String.format("%02d", i+1) + ":00");
         hourCombo.setSelectedItem(now.get(Calendar.HOUR_OF_DAY));
 
@@ -148,16 +148,16 @@ public class PanelCrearActividad extends JPanel {
 		lugarLabel = new JLabel();
 		lugarLabel.setText("Lugar");
 		lugarLabel.setBounds(165,262,62,40);
-		lugarLabel.setFont(Constantes.TEXT_FONT_18);
-		lugarLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+		lugarLabel.setFont(Constantes.SANS_SERIF_18);
+		lugarLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(lugarLabel);
         
         lugarCombo = new JComboBox<>();
         lugarCombo.setBounds(259, 270, 247, 26);
-        lugarCombo.setBackground(Constantes.GRAY_COLOR);
-        lugarCombo.setBorder(Constantes.INPUT_FIELD_DEFAULT_BORDER);
-        lugarCombo.setFont(Constantes.TEXT_FONT_14);
-        lugarCombo.setForeground(Constantes.MAIN_TEXT_COLOR);
+        lugarCombo.setBackground(Constantes.GRIS);
+        lugarCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+        lugarCombo.setFont(Constantes.SANS_SERIF_14);
+        lugarCombo.setForeground(Constantes.NEGRO_CLARO);
         for (Sala sala : salas) {
             lugarCombo.addItem(sala.getCodigoSala());
 		}
@@ -168,16 +168,16 @@ public class PanelCrearActividad extends JPanel {
         nroMaximoInscritosLabel = new JLabel();
         nroMaximoInscritosLabel.setText("Máximo de inscritos");
         nroMaximoInscritosLabel.setBounds(62,312,161,40);
-        nroMaximoInscritosLabel.setFont(Constantes.TEXT_FONT_18);
-        nroMaximoInscritosLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+        nroMaximoInscritosLabel.setFont(Constantes.SANS_SERIF_18);
+        nroMaximoInscritosLabel.setForeground(Constantes.NEGRO_CLARO);
         add(nroMaximoInscritosLabel);
         
         nroMaximoInscritosCombo = new JComboBox<Integer>();
         nroMaximoInscritosCombo.setBounds(259, 320, 69, 26);
-        nroMaximoInscritosCombo.setBackground(Constantes.GRAY_COLOR);
-        nroMaximoInscritosCombo.setBorder(Constantes.INPUT_FIELD_DEFAULT_BORDER);
-        nroMaximoInscritosCombo.setFont(Constantes.TEXT_FONT_14);
-        nroMaximoInscritosCombo.setForeground(Constantes.MAIN_TEXT_COLOR);
+        nroMaximoInscritosCombo.setBackground(Constantes.GRIS);
+        nroMaximoInscritosCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+        nroMaximoInscritosCombo.setFont(Constantes.SANS_SERIF_14);
+        nroMaximoInscritosCombo.setForeground(Constantes.NEGRO_CLARO);
         for (int i = 1; i <= 10; i++) nroMaximoInscritosCombo.addItem(i);
         add(nroMaximoInscritosCombo);
 		
@@ -185,35 +185,35 @@ public class PanelCrearActividad extends JPanel {
         descripcionLabel = new JLabel();
         descripcionLabel.setText("Descripción");
         descripcionLabel.setBounds(122,358,106,40);
-        descripcionLabel.setFont(Constantes.TEXT_FONT_18);
-        descripcionLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+        descripcionLabel.setFont(Constantes.SANS_SERIF_18);
+        descripcionLabel.setForeground(Constantes.NEGRO_CLARO);
         add(descripcionLabel);
         
         descripcionTextArea = new JTextArea();
         descripcionTextArea.setBounds(129,402,403,76);
-        descripcionTextArea.setBackground(Constantes.GRAY_COLOR);
+        descripcionTextArea.setBackground(Constantes.GRIS);
         descripcionTextArea.setBorder(null);
-		descripcionTextArea.setForeground(Constantes.MAIN_TEXT_COLOR);
-		descripcionTextArea.setFont(Constantes.TEXT_FONT_16);
+		descripcionTextArea.setForeground(Constantes.NEGRO_CLARO);
+		descripcionTextArea.setFont(Constantes.SANS_SERIF_16);
 		descripcionTextArea.setWrapStyleWord(true);
 		descripcionTextArea.setLineWrap(true);
 
         descripcionScrollPane = new JScrollPane(descripcionTextArea);
         descripcionScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         descripcionScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        descripcionScrollPane.setBackground(Constantes.GRAY_COLOR);
-        descripcionScrollPane.setBorder(Constantes.INPUT_FIELD_DEFAULT_BORDER);
-        descripcionScrollPane.setForeground(Constantes.MAIN_TEXT_COLOR);
+        descripcionScrollPane.setBackground(Constantes.GRIS);
+        descripcionScrollPane.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+        descripcionScrollPane.setForeground(Constantes.NEGRO_CLARO);
         descripcionScrollPane.setBounds(129,402,403,76);
         add(descripcionScrollPane);
         
 		crearBtn = new JButton();
 		crearBtn.setBorderPainted(false);
 		crearBtn.setFocusPainted(false);
-		crearBtn.setBackground(Constantes.SECONDARY_COLOR);
-		crearBtn.setForeground(Constantes.WHITE_COLOR);
+		crearBtn.setBackground(Constantes.AZUL_OSCURO_CLARO);
+		crearBtn.setForeground(Constantes.BLANCO);
 		crearBtn.addActionListener(controladorCrearActividad);
-		crearBtn.setFont(Constantes.TEXT_FONT_18);
+		crearBtn.setFont(Constantes.SANS_SERIF_18);
 		crearBtn.setText("Crear");
 		crearBtn.setBounds(300,515,120,32);
 		add(crearBtn);

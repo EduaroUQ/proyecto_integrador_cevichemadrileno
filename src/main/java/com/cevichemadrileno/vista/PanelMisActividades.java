@@ -1,4 +1,4 @@
-package vista;
+package com.cevichemadrileno.vista;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,15 +8,9 @@ import java.util.Locale;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import controlador.ControladorMisActividades;
-import modelo.Actividad;
-import modelo.ActividadDescripcion;
-import modelo.Inscripcion;
-import modelo.Sala;
-import modelo.SalaEspacio;
-import modelo.Usuario;
-import modelo.UsuarioDescripcion;
-import util.Constantes;
+import com.cevichemadrileno.controlador.ControladorMisActividades;
+import com.cevichemadrileno.modelo.*;
+import com.cevichemadrileno.util.Constantes;
 
 /**
  * Panel de Mis actividades
@@ -47,8 +41,8 @@ public class PanelMisActividades extends JPanel {
 	}
 
 	private void inicializarComponentes() {
-		setBackground(Constantes.GRAY_COLOR);
-		setSize(Constantes.DASHBOARD_WIDTH, Constantes.APPLICATION_HEIGHT);
+		setBackground(Constantes.GRIS);
+		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
 		setLayout(null);
 		
 		controladorMisActividades = new ControladorMisActividades(this);
@@ -56,22 +50,22 @@ public class PanelMisActividades extends JPanel {
 		tituloLabel = new JLabel();
 		tituloLabel.setText("Mis actividades");
 		tituloLabel.setBounds(237,41,246,62);
-		tituloLabel.setFont(Constantes.TEXT_FONT_34);
-		tituloLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+		tituloLabel.setFont(Constantes.SANS_SERIF_34);
+		tituloLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(tituloLabel);
 		
 		actividadesInscritasLabel = new JLabel();
 		actividadesInscritasLabel.setText("Actividades inscritas");
 		actividadesInscritasLabel.setBounds(35,95,195,40);
-		actividadesInscritasLabel.setFont(Constantes.TEXT_FONT_16);
-		actividadesInscritasLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+		actividadesInscritasLabel.setFont(Constantes.SANS_SERIF_16);
+		actividadesInscritasLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(actividadesInscritasLabel);
 		
 		actividadesCreadasLabel = new JLabel();
 		actividadesCreadasLabel.setText("Actividades creadas");
 		actividadesCreadasLabel.setBounds(35,319,195,40);
-		actividadesCreadasLabel.setFont(Constantes.TEXT_FONT_16);
-		actividadesCreadasLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
+		actividadesCreadasLabel.setFont(Constantes.SANS_SERIF_16);
+		actividadesCreadasLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(actividadesCreadasLabel);
 		
 		actividadesInscritasTable = new JTable(null);
@@ -88,8 +82,8 @@ public class PanelMisActividades extends JPanel {
 		actividadesInscritasScrollPanel = new JScrollPane(table);
         actividadesInscritasScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         actividadesInscritasScrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        actividadesInscritasScrollPanel.setBackground(Constantes.GRAY_COLOR);
-        actividadesInscritasScrollPanel.setForeground(Constantes.GRAY_COLOR);
+        actividadesInscritasScrollPanel.setBackground(Constantes.GRIS);
+        actividadesInscritasScrollPanel.setForeground(Constantes.GRIS);
         actividadesInscritasScrollPanel.setBorder(null);
         actividadesInscritasScrollPanel.setBounds(45,145,620,160);
         

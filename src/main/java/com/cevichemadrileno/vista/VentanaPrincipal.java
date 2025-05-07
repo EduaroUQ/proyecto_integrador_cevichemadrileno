@@ -1,8 +1,8 @@
-package vista;
+package com.cevichemadrileno.vista;
 
 import javax.swing.*;
-import controlador.ControladorPrincipal;
-import util.Constantes;
+import com.cevichemadrileno.controlador.ControladorPrincipal;
+import com.cevichemadrileno.util.Constantes;
 
 /**
  * Vista principal
@@ -15,22 +15,23 @@ import util.Constantes;
 public class VentanaPrincipal extends JFrame {
 	private ControladorPrincipal controladorPrincipal;
 	private JScrollPane scrollPane;
+
 	
 	public VentanaPrincipal() {
-		super(Constantes.APPLICATION_TITLE);
+		super(Constantes.TITULO_APLICACION);
 		inicializarComponentes();
 	}
 
 	private void inicializarComponentes() {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setSize(Constantes.APPLICATION_WIDTH, Constantes.APPLICATION_HEIGHT);
+		setSize(Constantes.ANCHURA_APLICACION, Constantes.ALTURA_APLICACION);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		controladorPrincipal = new ControladorPrincipal(this);
 
 		scrollPane = new JScrollPane();
-        scrollPane.setBounds(-1, 0, Constantes.APPLICATION_WIDTH, Constantes.APPLICATION_HEIGHT);
+        scrollPane.setBounds(-1, 0, Constantes.ANCHURA_APLICACION, Constantes.ALTURA_APLICACION);
         
 		getContentPane().add(scrollPane);
 		

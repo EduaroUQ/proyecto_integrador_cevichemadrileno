@@ -1,9 +1,9 @@
 /**
  * @author 
  */
-package main;
+package com.cevichemadrileno.main;
 
-import vista.VentanaPrincipal;
+import com.cevichemadrileno.vista.VentanaPrincipal;
 
 /**
  * Clase principal que inicia la vista principal de la aplicación
