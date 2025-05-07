@@ -1,15 +1,11 @@
-package vista;
+	package vista;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import controlador.ControladorDashboard;
 import util.Constantes;
 
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -68,6 +64,7 @@ public class PanelDashboard extends JPanel {
 		miPerfilBtn.setBounds(0, 120, 120, 40);
 		add(miPerfilBtn);
 		
+
 		misActividadesBtn = new JButton();
 		misActividadesBtn.setText("Mis actividades");
 		misActividadesBtn.setFont(Constantes.TEXT_FONT_12);

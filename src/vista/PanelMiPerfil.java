@@ -1,5 +1,7 @@
 package vista;
 
+import java.io.DataOutputStream;
+
 import javax.swing.*;
 
 import modelo.Usuario;
@@ -70,7 +72,7 @@ public class PanelMiPerfil extends JPanel {
 		nombreApellidosValueLabel.setFont(Constantes.TEXT_FONT_16);
 		nombreApellidosValueLabel.setForeground(Constantes.MAIN_TEXT_COLOR);
 		add(nombreApellidosValueLabel);
-		
+	
 		matriculaValueLabel = new JLabel();
 		matriculaValueLabel.setText(usuario.getCodigoMatricula());
 		matriculaValueLabel.setBounds(86,255,128,40);
