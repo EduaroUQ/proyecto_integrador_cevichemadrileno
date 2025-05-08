@@ -79,3 +79,7 @@ INSERT INTO INSCRIPCION (id_usuario, id_actividad) VALUES
 -- selects
 -- select * from USUARIO_DESCRIPCION;
 -- select * from USUARIO;
+-- select * from SALA_ESPACIO;
+-- select * from SALA;
+-- select * from ACTIVIDAD;
+-- select * from INSCRIPCION;

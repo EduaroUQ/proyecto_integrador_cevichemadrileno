@@ -14,30 +14,22 @@ public class Actividad {
 	private Integer idMonitor;
 	private Integer idSala;
 	private String nombre;
+	private String descripcion;
+	private Integer nroMaximoInscritos;
 	private Date fecha;
-	
-	private ActividadDescripcion actividadDescripcion;
 
-	/**
-	 * 	 * Constructor de la clase
-	 * @param id
-	 * @param idMonitor
-	 * @param idSala
-	 * @param nombre
-	 * @param fecha
-	 * @param actividadDescripcion
-	 * @return instancia de Actividad
-	 */
-	public Actividad(Integer id, Integer idMonitor, Integer idSala, String nombre, Date fecha,
-			ActividadDescripcion actividadDescripcion) {
+	private Sala sala;
+
+	public Actividad(Integer id, Integer idMonitor, Integer idSala, String nombre, String descripcion, Integer nroMaximoInscritos, Date fecha) {
 		this.id = id;
 		this.idMonitor = idMonitor;
 		this.idSala = idSala;
 		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.nroMaximoInscritos = nroMaximoInscritos;
 		this.fecha = fecha;
-		this.actividadDescripcion = actividadDescripcion;
 	}
-	
+
 	/**
 	 * Constructor vacio de la clase
 	 */
@@ -50,43 +42,49 @@ public class Actividad {
 	public Integer getId() {
 		return id;
 	}
-	public Integer getIdMonitor() {
-		return idMonitor;
-	}
-	public Integer getIdSala() {
-		return idSala;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public Date getFecha() {
-		return fecha;
-	}
-	public ActividadDescripcion getActividadDescripcion() {
-		return actividadDescripcion;
-	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public Integer getIdMonitor() {
+		return idMonitor;
 	}
 	public void setIdMonitor(Integer idMonitor) {
 		this.idMonitor = idMonitor;
 	}
+	public Integer getIdSala() {
+		return idSala;
+	}
 	public void setIdSala(Integer idSala) {
 		this.idSala = idSala;
+	}
+	public String getNombre() {
+		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public Integer getNroMaximoInscritos() {
+		return nroMaximoInscritos;
+	}
+	public void setNroMaximoInscritos(Integer nroMaximoInscritos) {
+		this.nroMaximoInscritos = nroMaximoInscritos;
+	}
+	public Date getFecha() {
+		return fecha;
+	}
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public void setActividadDescripcion(ActividadDescripcion actividadDescripcion) {
-		this.actividadDescripcion = actividadDescripcion;
+	public Sala getSala() {
+		return sala;
 	}
-
-	
-
-	
-	
-	
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
 }
