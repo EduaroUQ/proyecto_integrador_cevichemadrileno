@@ -16,7 +16,7 @@ public class AccesoBD {
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String url ="jdbc:mysql://localhost:3306/ceviche_madrileno";
     private String usuarioSQL = "root";
-    private String passwordSQL = "123456";
+    private String passwordSQL = "root";
 
     /**
      * Comprueba si existe un usuario en la base de datos

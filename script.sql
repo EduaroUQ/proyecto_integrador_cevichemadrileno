@@ -12,39 +12,25 @@ USE ceviche_madrileno;
 DROP TABLE IF EXISTS INSCRIPCION;
 DROP TABLE IF EXISTS ACTIVIDAD;
 DROP TABLE IF EXISTS SALA;
-DROP TABLE IF EXISTS SALA_ESPACIO;
-DROP TABLE IF EXISTS ACTIVIDAD_DESCRIPCION;
-DROP TABLE IF EXISTS USUARIO_DESCRIPCION;
 DROP TABLE IF EXISTS USUARIO;
 
 -- Creación de las tablas
-CREATE TABLE USUARIO_DESCRIPCION (
-    matricula VARCHAR(8) PRIMARY KEY,
-    nombreApellidos VARCHAR(100),
-    ciclo VARCHAR(50)
-);
 
 CREATE TABLE USUARIO (
     id INT AUTO_INCREMENT PRIMARY KEY,
     matricula VARCHAR(8) UNIQUE,
     esMonitor BOOLEAN default FALSE,
     clave VARCHAR(100),
-    FOREIGN KEY (matricula) REFERENCES USUARIO_DESCRIPCION(matricula) ON DELETE CASCADE
-);
-
-
-CREATE TABLE SALA_ESPACIO (
-    codigoSala VARCHAR(10) PRIMARY KEY,
-    capacidad INT,
-    tipoSala VARCHAR(50)
+    nombreApellidos VARCHAR(100),
+    ciclo VARCHAR(50),
 );
 
 CREATE TABLE SALA (
     id INT AUTO_INCREMENT PRIMARY KEY,
     codigoSala VARCHAR(10),
-    FOREIGN KEY (codigoSala) REFERENCES SALA_ESPACIO(codigoSala) ON DELETE CASCADE
+    capacidad INT,
+    tipoSala VARCHAR(50)
 );
-
 
 CREATE TABLE ACTIVIDAD (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,33 +53,20 @@ CREATE TABLE INSCRIPCION (
 );
 
 -- Inserción de datos
-INSERT INTO USUARIO_DESCRIPCION (matricula, nombreApellidos, ciclo) VALUES
-('123', 'Hugo Rubio Crespo', 'DAW'),
-('2244193B', 'Eduardo Utrilla Quispe', 'DAW'),
-('22451182', 'Santi', 'DAW');
+INSERT INTO USUARIO (id,matricula, esMonitor, clave, nombreApellidos, ciclo) VALUES
+(1,'123', TRUE, '123', 'Hugo Rubio Crespo', 'DAW'),
+(2,'2244193B', FALSE, '123', 'Eduardo Utrilla Quispe', 'DAW'),
+(3,'22451182', FALSE, '123', 'Santi', 'DAW');
 
-INSERT INTO USUARIO (id,matricula, esMonitor, clave) VALUES
-(1,'123', TRUE, '123'),
-(2,'2244193B', FALSE, '123'),
-(3,'22451182', FALSE, '123');
-
-INSERT INTO SALA_ESPACIO (codigoSala, capacidad, tipoSala) VALUES
-('PPA1', 40, 'Pabellón 1'),
-('PPA2', 40, 'Pabellón 2'),
-('PPA3', 40, 'Pabellón 3'),
-('PPIS', 40, 'Piscina'),
-('PPB1', 10, 'Pista de baloncesto 1'),
-('PPB2', 10, 'Pista de baloncesto 2'),
-('PPE1', 40, 'Pista de atletismo 1'),
-('PPE2', 40, 'Pista de atletismo 2');
-
-INSERT INTO SALA (id, codigoSala) VALUES
-(1,'PPA1'),
-(2,'PPA2'),
-(3,'PPA3'),
-(4,'PPIS'),
-(5,'PPB1'),
-(6,'PPB2');
+INSERT INTO SALA (id, codigoSala, capacidad, tipoSala) VALUES
+(1,'PPA1', 40, 'Pabellón 1'),
+(2,'PPA2', 40, 'Pabellón 2'),
+(3,'PPA3', 40, 'Pabellón 3'),
+(4,'PPIS', 40, 'Piscina'),
+(5,'PPB1', 10, 'Pista de baloncesto 1'),
+(6,'PPB2', 10, 'Pista de baloncesto 2'),
+(7,'PPE1', 40, 'Pista de atletismo 1'),
+(8,'PPE2', 40, 'Pista de atletismo 2');
 
 INSERT INTO ACTIVIDAD (id, id_monitor, nombre, id_sala, descripcion, nroMaximoInscritos) VALUES
 (1,1,'Yoga',1, 'Estiramiento del cuerpo y poses',10);
