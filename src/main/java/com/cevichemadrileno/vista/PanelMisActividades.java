@@ -25,17 +25,20 @@ public class PanelMisActividades extends JPanel {
 	private JLabel actividadesInscritasLabel;
 	private JLabel actividadesCreadasLabel;
 	private JScrollPane actividadesInscritasScrollPanel;
+	private JScrollPane actividadesCreadasScrollPanel;
 	private JTable actividadesInscritasTable;
+	private JTable actividadesCreadasTable;
 	private ControladorMisActividades controladorMisActividades;
-	private ArrayList<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
-	
+	private ArrayList<Inscripcion> actividadesInscritas = new ArrayList<Inscripcion>();
+	private ArrayList<Actividad> actividadesCreadas = new ArrayList<Actividad>();
+
 	public PanelMisActividades() {
 		// datos de prueba
 		Usuario usuario = new Usuario(1, "ZZZZ", "123",true, new UsuarioDescripcion("ZZZZ", "Hugo",  "DAW"));
-		Actividad actividad = new Actividad(1, 1, 1, "Baile", new Date(), new ActividadDescripcion("Baile", "bailar", 10));
+		Actividad actividad = new Actividad(1, 1, 1, "Baile", "bailar", 10, new Date());
 		Sala sala = new Sala(1, "B312", new SalaEspacio("B312", 10, "Salon de clase"));
 		Inscripcion inscripcion = new Inscripcion(1, 1, usuario, actividad);
-		inscripciones.add(inscripcion);
+		actividadesInscritas.add(inscripcion);
 		
 		inicializarComponentes();
 	}
@@ -63,33 +66,55 @@ public class PanelMisActividades extends JPanel {
 		
 		actividadesCreadasLabel = new JLabel();
 		actividadesCreadasLabel.setText("Actividades creadas");
-		actividadesCreadasLabel.setBounds(35,319,195,40);
+		actividadesCreadasLabel.setBounds(35,322,195,40);
 		actividadesCreadasLabel.setFont(Constantes.SANS_SERIF_16);
 		actividadesCreadasLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(actividadesCreadasLabel);
 		
 		actividadesInscritasTable = new JTable(null);
 		String[] columnas = {"Nombre", "Curso", "Fecha"};
-        DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+        DefaultTableModel modeloTabla1 = new DefaultTableModel(columnas, 0);
 
-        for (Inscripcion ins : inscripciones) {
+        for (Inscripcion ins : actividadesInscritas) {
             Object[] row = {ins.getActividad().getNombre(), obtenerDiaSemana(ins.getActividad().getFecha()), obtenerHora(ins.getActividad().getFecha()) };
-            modeloTabla.addRow(row);
+			modeloTabla1.addRow(row);
         }
 
-        JTable table = new JTable(modeloTabla);
-        table.setTableHeader(null); 
-		actividadesInscritasScrollPanel = new JScrollPane(table);
+		actividadesInscritasTable = new JTable(modeloTabla1);
+		actividadesInscritasTable.setTableHeader(null);
+		actividadesInscritasScrollPanel = new JScrollPane(actividadesInscritasTable);
         actividadesInscritasScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         actividadesInscritasScrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         actividadesInscritasScrollPanel.setBackground(Constantes.GRIS);
         actividadesInscritasScrollPanel.setForeground(Constantes.GRIS);
         actividadesInscritasScrollPanel.setBorder(null);
-        actividadesInscritasScrollPanel.setBounds(45,145,620,160);
+        actividadesInscritasScrollPanel.setBounds(45,145,620,140);
         
         add(actividadesInscritasScrollPanel);
-        
-		
+
+
+
+		actividadesCreadasTable = new JTable(null);
+		String[] columnas2 = {"Nombre", "Dia", "Hora", "Estado", "Accion"};
+		DefaultTableModel modeloTabla2 = new DefaultTableModel(columnas2, 0);
+
+		for (Actividad actividad : actividadesCreadas) {
+			Object[] row = {actividad.getNombre(), obtenerDiaSemana(actividad.getFecha()), obtenerHora(actividad.getFecha()) };
+			modeloTabla2.addRow(row);
+		}
+
+		actividadesCreadasTable = new JTable(modeloTabla2);
+		actividadesCreadasTable.setTableHeader(null);
+		actividadesCreadasScrollPanel = new JScrollPane(actividadesCreadasTable);
+		actividadesCreadasScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		actividadesCreadasScrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		actividadesCreadasScrollPanel.setBackground(Constantes.GRIS);
+		actividadesCreadasScrollPanel.setForeground(Constantes.GRIS);
+		actividadesCreadasScrollPanel.setBorder(null);
+		actividadesCreadasScrollPanel.setBounds(45,366,620,140);
+
+		add(actividadesInscritasScrollPanel);
+		add(actividadesCreadasScrollPanel);
 		
 	}
 	
