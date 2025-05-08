@@ -89,7 +89,7 @@ public class AccesoBD {
      * @param usuario
      */
     public void registrarUsuario(Usuario usuario) {
-        String queryUsuario = "INSERT INTO usuario(matricula, clave, esMonitor, nombreApellidos, ciclo) VALUES(?, ?, ?)";
+        String queryUsuario = "INSERT INTO usuario(matricula, clave, esMonitor, nombreApellidos, ciclo) VALUES(?, ?, ?, ?, ?)";
 
         try (
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
