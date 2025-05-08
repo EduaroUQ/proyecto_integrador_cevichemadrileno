@@ -28,10 +28,7 @@ public class ControladorDashboard implements ActionListener {
 	 */
 	public ControladorDashboard(PanelDashboard vista) {
 		this.vista = vista;
-		panelMiPerfil = new PanelMiPerfil();
 		panelMisActividades = new PanelMisActividades();
-		panelActividades = new PanelActividades();
-		panelCrearActividad = new PanelCrearActividad();
 	}
 
 	/**
@@ -40,15 +37,18 @@ public class ControladorDashboard implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == vista.getMiPerfilBtn()) {
+			panelMiPerfil = new PanelMiPerfil();
 			showPanel("miPerfil");
 		}
 		if (e.getSource() == vista.getMisActividadesBtn()) {
 			showPanel("misActividades");
 		}
 		if (e.getSource() == vista.getActividadesBtn()) {
+			panelActividades = new PanelActividades();
 			showPanel("actividades");
 		}
 		if (e.getSource() == vista.getCrearActividadBtn()) {
+			panelCrearActividad = new PanelCrearActividad();
 			showPanel("crearActividad");
 		}
 		if (e.getSource() == vista.getCerrarSesionBtn()) {

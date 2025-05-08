@@ -1,5 +1,6 @@
 package com.cevichemadrileno.vista;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class PanelMisActividades extends JPanel {
 
 	public PanelMisActividades() {
 		// datos de prueba
-		Actividad actividad = new Actividad(1, 1, 1, "Baile", "bailar", 10, new Date());
+		Actividad actividad = new Actividad(1, 1, 1, "Actividad de prueba", "Descripcion de prueba", 10, new Timestamp(0), null);
 		Sala sala = new Sala(1, "B312", 10, "Salon de clase");
 		actividad.setSala(sala);
 		Inscripcion inscripcion = new Inscripcion(1, 1, Constantes.usuarioAutenticado, actividad);

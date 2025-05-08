@@ -93,7 +93,7 @@ public class PanelRegistro extends JPanel {
 
 		errorLabel = new JLabel();
 		errorLabel.setText("");
-		errorLabel.setBounds(245,370,395,40);
+		errorLabel.setBounds(245, 370, 395, 40);
 		errorLabel.setFont(Constantes.SANS_SERIF_18);
 		errorLabel.setForeground(Constantes.ROJO);
 		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);

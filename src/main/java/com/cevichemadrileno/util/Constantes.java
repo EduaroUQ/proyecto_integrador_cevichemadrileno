@@ -1,9 +1,11 @@
 package com.cevichemadrileno.util;
 
+import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.modelo.Usuario;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
@@ -43,6 +45,8 @@ public class Constantes {
 		    BorderFactory.createEmptyBorder(0, 10, 0, 10)
 		);
 	public static final String[] CICLOS = { "DAW", "DAM", "ASIR", "A3D","TAFD","EI","CI" };
+
 	public static Usuario usuarioAutenticado;
+	public static ArrayList<Sala> salas = new ArrayList<>();
 
 }

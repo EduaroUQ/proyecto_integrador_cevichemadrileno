@@ -1,5 +1,7 @@
 package com.cevichemadrileno.controlador;
 
+import com.cevichemadrileno.modelo.Actividad;
+import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.modelo.Usuario;
 import com.cevichemadrileno.util.Constantes;
 
@@ -12,7 +14,6 @@ import java.sql.*;
  * @author Hugo R.
  */
 public class AccesoBD {
-    private String driver = "com.mysql.cj.jdbc.Driver";
     private String url ="jdbc:mysql://localhost:3306/ceviche_madrileno";
     private String usuarioSQL = "root";
     private String passwordSQL = "123456";
@@ -49,7 +50,6 @@ public class AccesoBD {
      */
     public boolean login(String usuario, String clave) {
         String queryUsuario = "SELECT * FROM usuario WHERE matricula=? AND clave=?";
-        String queryDescripcion = "SELECT * FROM usuario_descripcion WHERE matricula=?";
 
         try (
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
@@ -111,5 +111,45 @@ public class AccesoBD {
     }
 
 
+    public void cargarSalas() {
+        String query = "SELECT * FROM sala";
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery()
+        ) {
+            while (rs.next()) {
+                Integer id = rs.getInt("id");
+                String codigoSala = rs.getString("codigoSala");
+                Integer capacidad = rs.getInt("capacidad");
+                String tipoSala = rs.getString("tipoSala");
+                Sala sala = new Sala(id, codigoSala, capacidad, tipoSala);
+                Constantes.salas.add(sala);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al cargar las salas");
+            e.printStackTrace();
+        }
+    }
+
+    public void registrarActividad(Actividad actividad) {
+        String query = "INSERT INTO actividad(id_monitor, id_sala, nombre, descripcion, nroMaximoInscritos, fecha) VALUES(?, ?, ?, ?, ?, ?)";
+
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setInt(1, actividad.getIdMonitor());
+            pstmt.setInt(2, actividad.getIdSala());
+            pstmt.setString(3, actividad.getNombre());
+            pstmt.setString(4, actividad.getDescripcion());
+            pstmt.setInt(5, actividad.getNroMaximoInscritos());
+            pstmt.setTimestamp(6, actividad.getFecha());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error al registrar la actividad");
+            e.printStackTrace();
+        }
+    }
 }
 

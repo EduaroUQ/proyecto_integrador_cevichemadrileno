@@ -1,6 +1,8 @@
 package com.cevichemadrileno.modelo;
 
-import java.util.Date;
+
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Entidad Actividad
@@ -16,11 +18,21 @@ public class Actividad {
 	private String nombre;
 	private String descripcion;
 	private Integer nroMaximoInscritos;
-	private Date fecha;
+	private Timestamp fecha;
 
 	private Sala sala;
 
-	public Actividad(Integer id, Integer idMonitor, Integer idSala, String nombre, String descripcion, Integer nroMaximoInscritos, Date fecha) {
+	/**
+	 * Constructor de la clase
+	 * @param id
+	 * @param idMonitor
+	 * @param idSala
+	 * @param nombre
+	 * @param descripcion
+	 * @param nroMaximoInscritos
+	 * @param fecha
+	 */
+	public Actividad(Integer id, Integer idMonitor, Integer idSala, String nombre, String descripcion, Integer nroMaximoInscritos, Timestamp fecha, Sala sala) {
 		this.id = id;
 		this.idMonitor = idMonitor;
 		this.idSala = idSala;
@@ -28,6 +40,7 @@ public class Actividad {
 		this.descripcion = descripcion;
 		this.nroMaximoInscritos = nroMaximoInscritos;
 		this.fecha = fecha;
+		this.sala = sala;
 	}
 
 	/**
@@ -75,10 +88,10 @@ public class Actividad {
 	public void setNroMaximoInscritos(Integer nroMaximoInscritos) {
 		this.nroMaximoInscritos = nroMaximoInscritos;
 	}
-	public Date getFecha() {
+	public Timestamp getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(Timestamp fecha) {
 		this.fecha = fecha;
 	}
 	public Sala getSala() {

@@ -27,6 +27,7 @@ public class PanelCrearActividad extends JPanel {
 	private JLabel lugarLabel;
 	private JLabel nroMaximoInscritosLabel;
 	private JLabel descripcionLabel;
+	private JLabel errorLabel;
 	
 	private JTextField nombreTextField;
 	private JComboBox<String> dayCombo;
@@ -39,15 +40,11 @@ public class PanelCrearActividad extends JPanel {
 	private JComboBox<Integer> nroMaximoInscritosCombo;
 	private JScrollPane descripcionScrollPane;
 	private JTextArea descripcionTextArea;
-	
-	private ArrayList<Sala> salas = new ArrayList<Sala>();
 
 	private JButton crearBtn;
 	private ControladorCrearActividad controladorCrearActividad;
 	
 	public PanelCrearActividad() {
-		salas.add(new Sala(1, "D101", 10, "sala de maquinas"));
-		salas.add(new Sala(2, "E302", 10, "sala de maquinas"));
 		inicializarComponentes();
 	}
 
@@ -93,6 +90,13 @@ public class PanelCrearActividad extends JPanel {
 		horaLabel.setFont(Constantes.SANS_SERIF_18);
 		horaLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(horaLabel);
+
+		errorLabel = new JLabel();
+		errorLabel.setText("");
+		errorLabel.setBounds(183,488,354,26);
+		errorLabel.setFont(Constantes.SANS_SERIF_16);
+		errorLabel.setForeground(Constantes.ROJO);
+		add(errorLabel);
 		
 		Calendar now = Calendar.getInstance();
 
@@ -107,7 +111,7 @@ public class PanelCrearActividad extends JPanel {
             dayCombo.addItem(String.format("%02d", i));
         }
         dayCombo.setSelectedItem(String.format("%02d", now.get(Calendar.DAY_OF_MONTH)));
-        
+
         monthCombo = new JComboBox<>();
         monthCombo.setBounds(338, 173, 69, 26);
         monthCombo.setBackground(Constantes.GRIS);
@@ -157,7 +161,7 @@ public class PanelCrearActividad extends JPanel {
         lugarCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
         lugarCombo.setFont(Constantes.SANS_SERIF_14);
         lugarCombo.setForeground(Constantes.NEGRO_CLARO);
-        for (Sala sala : salas) {
+        for (Sala sala : Constantes.salas) {
             lugarCombo.addItem(sala.getCodigoSala());
 		}
         lugarCombo.setSelectedIndex(0);
@@ -214,7 +218,7 @@ public class PanelCrearActividad extends JPanel {
 		crearBtn.addActionListener(controladorCrearActividad);
 		crearBtn.setFont(Constantes.SANS_SERIF_18);
 		crearBtn.setText("Crear");
-		crearBtn.setBounds(300,515,120,32);
+		crearBtn.setBounds(300,527,120,32);
 		add(crearBtn);
 	}
 
@@ -223,12 +227,83 @@ public class PanelCrearActividad extends JPanel {
 	/**
 	 * Getters
 	 */
+	public JLabel getTituloLabel() {
+		return tituloLabel;
+	}
+
+	public JLabel getNombreLabel() {
+		return nombreLabel;
+	}
+
+	public JLabel getFechaLabel() {
+		return fechaLabel;
+	}
+
+	public JLabel getHoraLabel() {
+		return horaLabel;
+	}
+
+	public JLabel getLugarLabel() {
+		return lugarLabel;
+	}
+
+	public JLabel getNroMaximoInscritosLabel() {
+		return nroMaximoInscritosLabel;
+	}
+
+	public JLabel getDescripcionLabel() {
+		return descripcionLabel;
+	}
+
+	public JLabel getErrorLabel() {
+		return errorLabel;
+	}
+
+	public JTextField getNombreTextField() {
+		return nombreTextField;
+	}
+
+	public JComboBox<String> getDayCombo() {
+		return dayCombo;
+	}
+
+	public JComboBox<String> getMonthCombo() {
+		return monthCombo;
+	}
+
+	public JComboBox<Integer> getYearCombo() {
+		return yearCombo;
+	}
+
+	public JComboBox<String> getHourCombo() {
+		return hourCombo;
+	}
+
+	public JComboBox<String> getMinuteCombo() {
+		return minuteCombo;
+	}
+
+	public JComboBox<String> getLugarCombo() {
+		return lugarCombo;
+	}
+
+	public JComboBox<Integer> getNroMaximoInscritosCombo() {
+		return nroMaximoInscritosCombo;
+	}
+
+	public JScrollPane getDescripcionScrollPane() {
+		return descripcionScrollPane;
+	}
+
+	public JTextArea getDescripcionTextArea() {
+		return descripcionTextArea;
+	}
+
 	public JButton getCrearBtn() {
 		return crearBtn;
 	}
-	
 
-	
-	
-	
+	public ControladorCrearActividad getControladorCrearActividad() {
+		return controladorCrearActividad;
+	}
 }
