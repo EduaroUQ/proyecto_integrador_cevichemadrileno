@@ -6,6 +6,7 @@ package com.cevichemadrileno.modelo;
 public class Usuario {
 	private Integer id;
 	private String codigoMatricula;
+	private String clave;
 	private Boolean esMonitor;
 	
 	private UsuarioDescripcion usuarioDescripcion;
@@ -18,9 +19,10 @@ public class Usuario {
 	 * @param usuarioDescripcion
 	 * @return instancia de Usuario
 	 */
-	public Usuario(Integer id, String codigoMatricula, Boolean esMonitor, UsuarioDescripcion usuarioDescripcion) {
+	public Usuario(Integer id, String codigoMatricula, String clave, Boolean esMonitor, UsuarioDescripcion usuarioDescripcion) {
 		this.id = id;
 		this.codigoMatricula = codigoMatricula;
+		this.clave = clave;
 		this.esMonitor = esMonitor;
 		this.usuarioDescripcion = usuarioDescripcion;
 	}
@@ -57,6 +59,12 @@ public class Usuario {
 	}
 	public void setUsuarioDescripcion(UsuarioDescripcion usuarioDescripcion) {
 		this.usuarioDescripcion = usuarioDescripcion;
+	}
+	public String getClave() {
+		return clave;
+	}
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 	
 	

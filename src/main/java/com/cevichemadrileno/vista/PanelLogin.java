@@ -5,8 +5,8 @@ import javax.swing.*;
 import com.cevichemadrileno.controlador.ControladorLogin;
 import com.cevichemadrileno.controlador.ControladorPrincipal;
 import com.cevichemadrileno.util.Constantes;
-import java.awt.Color;
-import java.awt.Image;
+
+import java.awt.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -23,6 +23,7 @@ public class PanelLogin extends JPanel {
 	private JLabel matriculaLabel;
 	private JLabel claveLabel;
 	private JLabel registroInfoLabel;
+	private JLabel errorLabel;
 	private JButton registroLinkBtn;
 	private JTextField usuarioTextField;
 	private JPasswordField claveTextField;
@@ -58,21 +59,29 @@ public class PanelLogin extends JPanel {
 		
 		claveLabel = new JLabel();
 		claveLabel.setText("Contraseña");
-		claveLabel.setBounds(247,269,108,40);
+		claveLabel.setBounds(247,253,108,40);
 		claveLabel.setFont(Constantes.SANS_SERIF_18);
 		claveLabel.setForeground(Constantes.BLANCO);
 		add(claveLabel);
 		
 		registroInfoLabel = new JLabel();
 		registroInfoLabel.setText("¿No tienes una cuenta?");
-		registroInfoLabel.setBounds(247,364,198,40);
+		registroInfoLabel.setBounds(247,349,198,40);
 		registroInfoLabel.setFont(Constantes.SANS_SERIF_18);
 		registroInfoLabel.setForeground(Constantes.BLANCO);
 		add(registroInfoLabel);
-		
+
+		errorLabel = new JLabel();
+		errorLabel.setText("");
+		errorLabel.setBounds(247,399,344,40);
+		errorLabel.setFont(Constantes.SANS_SERIF_18);
+		errorLabel.setForeground(Constantes.ROJO);
+		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		add(errorLabel);
+
 		registroLinkBtn = new JButton();
 		registroLinkBtn.setText("Registrate aquí");
-		registroLinkBtn.setBounds(431,364,158,40);
+		registroLinkBtn.setBounds(431,349,158,40);
 		registroLinkBtn.setFont(Constantes.SANS_SERIF_18);
 		registroLinkBtn.setForeground(Constantes.CELESTE_OSCURO);
 		registroLinkBtn.setBackground(null);
@@ -92,7 +101,7 @@ public class PanelLogin extends JPanel {
 		add(usuarioTextField);
 	
 		claveTextField = new JPasswordField();
-		claveTextField.setBounds(282, 311, 262, 25);
+		claveTextField.setBounds(282, 295, 262, 25);
 		claveTextField.setBackground(Constantes.AZUL_OSCURO_CLARO);
 		claveTextField.setBorder(Constantes.BORDER_INPUT_ESTILO_2);
 		claveTextField.setFont(Constantes.SANS_SERIF_16);
@@ -106,7 +115,7 @@ public class PanelLogin extends JPanel {
 		loginBtn.addActionListener(controladorLogin);
 		loginBtn.setFont(Constantes.SANS_SERIF_18);
 		loginBtn.setText("Entrar");
-		loginBtn.setBounds(334,426,158,40);
+		loginBtn.setBounds(334,449,158,40);
 		add(loginBtn);
 		
 		
@@ -136,9 +145,5 @@ public class PanelLogin extends JPanel {
 	public JPasswordField getClaveTextField() {
 		return claveTextField;
 	}
-	
-
-	
-	
-	
+	public JLabel getErrorLabel() {return errorLabel;}
 }

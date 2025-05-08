@@ -24,10 +24,7 @@ public class PanelMiPerfil extends JPanel {
 	private JLabel matriculaValueLabel;
 	private JLabel cicloValueLabel;
 	
-	private Usuario usuario;
-	
 	public PanelMiPerfil() {
-		this.usuario = new Usuario(1, "123456A", true, new UsuarioDescripcion("123456A", "Hugo Rubio Crespo", "DAW"));
 		inicializarComponentes();
 	}
 
@@ -65,21 +62,21 @@ public class PanelMiPerfil extends JPanel {
 		add(cicloLabel);
 		
 		nombreApellidosValueLabel = new JLabel();
-		nombreApellidosValueLabel.setText(usuario.getUsuarioDescripcion().getNombreApellidos());
+		nombreApellidosValueLabel.setText(Constantes.usuarioAutenticado.getUsuarioDescripcion().getNombreApellidos());
 		nombreApellidosValueLabel.setBounds(86,167,188,40);
 		nombreApellidosValueLabel.setFont(Constantes.SANS_SERIF_16);
 		nombreApellidosValueLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(nombreApellidosValueLabel);
 	
 		matriculaValueLabel = new JLabel();
-		matriculaValueLabel.setText(usuario.getCodigoMatricula());
+		matriculaValueLabel.setText(Constantes.usuarioAutenticado.getCodigoMatricula());
 		matriculaValueLabel.setBounds(86,255,128,40);
 		matriculaValueLabel.setFont(Constantes.SANS_SERIF_16);
 		matriculaValueLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(matriculaValueLabel);
 		
 		cicloValueLabel = new JLabel();
-		cicloValueLabel.setText(usuario.getUsuarioDescripcion().getCiclo());
+		cicloValueLabel.setText(Constantes.usuarioAutenticado.getUsuarioDescripcion().getCiclo());
 		cicloValueLabel.setBounds(86,339,74,40);
 		cicloValueLabel.setFont(Constantes.SANS_SERIF_16);
 		cicloValueLabel.setForeground(Constantes.NEGRO_CLARO);

@@ -24,6 +24,7 @@ public class PanelRegistro extends JPanel {
 	private JLabel cicloLabel;
 	private JLabel claveLabel;
 	private JLabel confirmarClaveLabel;
+	private JLabel errorLabel;
 	private JButton volverLinkBtn;
 	private JTextField nombreApellidosTextField;
 	private JTextField matriculaTextField;
@@ -89,6 +90,14 @@ public class PanelRegistro extends JPanel {
 		confirmarClaveLabel.setFont(Constantes.SANS_SERIF_18);
 		confirmarClaveLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(confirmarClaveLabel);
+
+		errorLabel = new JLabel();
+		errorLabel.setText("");
+		errorLabel.setBounds(245,370,395,40);
+		errorLabel.setFont(Constantes.SANS_SERIF_18);
+		errorLabel.setForeground(Constantes.ROJO);
+		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		add(errorLabel);
 		
 		volverLinkBtn = new JButton();
 		volverLinkBtn.setText("Volver");
@@ -200,6 +209,9 @@ public class PanelRegistro extends JPanel {
 	}
 	public JPasswordField getConfirmarClaveTextField() {
 		return confirmarClaveTextField;
+	}
+	public JLabel getErrorLabel() {
+		return errorLabel;
 	}
 
 	

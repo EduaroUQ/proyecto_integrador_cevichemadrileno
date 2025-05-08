@@ -13,6 +13,7 @@ import com.cevichemadrileno.vista.PanelLogin;
  */
 public class ControladorLogin implements ActionListener {
 	private PanelLogin vista;
+	private AccesoBD accesoBD;
 	
 	/**
 	 * Constructor
@@ -20,6 +21,7 @@ public class ControladorLogin implements ActionListener {
 	 */
 	public ControladorLogin(PanelLogin vista) {
 		this.vista = vista;
+		this.accesoBD = new AccesoBD();
 	}
 
 	@Override
@@ -28,12 +30,17 @@ public class ControladorLogin implements ActionListener {
 			vista.getControladorPrincipal().showPanel("registro");
 		}
 		if (e.getSource() == vista.getLoginBtn()) {
-			System.out.println("Iniciando sesión");
-			boolean inicioSesionExitoso = true;
-			if (inicioSesionExitoso) {
-				
+			String usuario = vista.getUsuarioTextField().getText();
+			String clave = vista.getClaveTextField().getText();
+			if (!accesoBD.existeUsuario(usuario)) {
+				vista.getErrorLabel().setText("El usuario no existe");
+				return;
 			}
-			vista.getControladorPrincipal().showPanel("dashboard");
+			if (accesoBD.login(usuario, clave)) {
+				vista.getControladorPrincipal().showPanel("dashboard");
+			} else {
+				vista.getErrorLabel().setText("Usuario o contraseña incorrectos");
+			}
 		}
 	}
 

@@ -2,6 +2,7 @@ package com.cevichemadrileno.vista;
 
 import javax.swing.*;
 import com.cevichemadrileno.controlador.ControladorPrincipal;
+import com.cevichemadrileno.modelo.Usuario;
 import com.cevichemadrileno.util.Constantes;
 
 /**
@@ -16,12 +17,17 @@ public class VentanaPrincipal extends JFrame {
 	private ControladorPrincipal controladorPrincipal;
 	private JScrollPane scrollPane;
 
-	
+	/**
+	 * Constructor de la ventana principal
+	 */
 	public VentanaPrincipal() {
 		super(Constantes.TITULO_APLICACION);
 		inicializarComponentes();
 	}
 
+	/**
+	 * Constructor de la ventana principal
+	 */
 	private void inicializarComponentes() {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setSize(Constantes.ANCHURA_APLICACION, Constantes.ALTURA_APLICACION);
@@ -38,10 +44,18 @@ public class VentanaPrincipal extends JFrame {
 		// TODO: cambiar por "login" para prueba funcional
 		controladorPrincipal.showPanel("login");
 	}
-	
+
+	/**
+	 * Hace visible la ventana
+	 */
 	public void hacerVisible() {
 		setVisible(true);
 	}
+
+	/**
+	 * Cambia el panel del scrollPane
+	 * @param panel
+	 */
 	public void cambiarPanel(JPanel panel) {
 		scrollPane.setViewportView(panel);
 	}

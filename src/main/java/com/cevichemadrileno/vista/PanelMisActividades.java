@@ -31,7 +31,7 @@ public class PanelMisActividades extends JPanel {
 	
 	public PanelMisActividades() {
 		// datos de prueba
-		Usuario usuario = new Usuario(1, "ZZZZ", true, new UsuarioDescripcion("ZZZZ", "Hugo",  "DAW"));
+		Usuario usuario = new Usuario(1, "ZZZZ", "123",true, new UsuarioDescripcion("ZZZZ", "Hugo",  "DAW"));
 		Actividad actividad = new Actividad(1, 1, 1, "Baile", new Date(), new ActividadDescripcion("Baile", "bailar", 10));
 		Sala sala = new Sala(1, "B312", new SalaEspacio("B312", 10, "Salon de clase"));
 		Inscripcion inscripcion = new Inscripcion(1, 1, usuario, actividad);
@@ -94,13 +94,11 @@ public class PanelMisActividades extends JPanel {
 	}
 	
 	public static String obtenerDiaSemana(Date date) {
-		System.out.println(date);
 		SimpleDateFormat sdf = new SimpleDateFormat("EEEE", new Locale("es", "ES"));
         return sdf.format(date);
     }
 	
 	public static String obtenerHora(Date date) {
-		System.out.println(date);
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:", new Locale("es", "ES"));
         String dateStr = sdf.format(date) + "00 - " + sdf.format(date) + "00";
         return dateStr;

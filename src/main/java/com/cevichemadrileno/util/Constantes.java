@@ -1,5 +1,7 @@
 package com.cevichemadrileno.util;
 
+import com.cevichemadrileno.modelo.Usuario;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -24,6 +26,7 @@ public class Constantes {
 	public static Color CELESTE_OSCURO = new Color(75,129,199);
 	public static Color NEGRO_CLARO = new Color(30,30,30);
 	public static Color BLANCO = new Color(255,255,255);
+	public static Color ROJO = new Color(255,0,0);
 	public static Color GRIS = new Color(237,234,233);
 	public static Font SANS_SERIF_34 = new Font("SansSerif", Font.PLAIN, 34);
 	public static Font SANS_SERIF_18 = new Font("SansSerif", Font.PLAIN, 18);
@@ -40,6 +43,6 @@ public class Constantes {
 		    BorderFactory.createEmptyBorder(0, 10, 0, 10)
 		);
 	public static final String[] CICLOS = { "DAW", "DAM", "ASIR", "A3D","TAFD","EI","CI" };
-
+	public static Usuario usuarioAutenticado;
 
 }

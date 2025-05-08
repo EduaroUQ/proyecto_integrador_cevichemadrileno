@@ -3,6 +3,8 @@ package com.cevichemadrileno.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.cevichemadrileno.modelo.Usuario;
+import com.cevichemadrileno.modelo.UsuarioDescripcion;
 import com.cevichemadrileno.vista.PanelRegistro;
 
 /**
@@ -14,6 +16,7 @@ import com.cevichemadrileno.vista.PanelRegistro;
  */
 public class ControladorRegistro implements ActionListener {
 	private PanelRegistro vista;
+	private AccesoBD accesoBD;
 	
 	/**
 	 * Constructor
@@ -21,6 +24,7 @@ public class ControladorRegistro implements ActionListener {
 	 */
 	public ControladorRegistro(PanelRegistro vista) {
 		this.vista = vista;
+		this.accesoBD = new AccesoBD();
 	}
 
 	/**
@@ -28,7 +32,50 @@ public class ControladorRegistro implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == vista.getRegistroBtn()) {
-			// registrar al usuario
+			// Validar campos
+			String nombreApellidos = vista.getNombreApellidosTextField().getText();
+			String matricula = vista.getMatriculaTextField().getText();
+			String ciclo = (String) vista.getCicloComboBox().getSelectedItem();
+			String clave = new String(vista.getClaveTextField().getPassword());
+			String confirmarClave = new String(vista.getConfirmarClaveTextField().getPassword());
+			if (nombreApellidos.isEmpty()){
+				vista.getErrorLabel().setText("Escribe tu nombre y apellidos");
+				return;
+			}
+			if (matricula.isEmpty()){
+				vista.getErrorLabel().setText("Escribe tu codigo de matricula");
+				return;
+			}
+			if (clave.isEmpty()){
+				vista.getErrorLabel().setText("Escribe tu contraseña");
+				return;
+			}
+			if (confirmarClave.isEmpty()){
+				vista.getErrorLabel().setText("Escribe tu contraseña de nuevo");
+				return;
+			}
+			if (!clave.equals(confirmarClave)){
+				vista.getErrorLabel().setText("Las contraseña no coinciden");
+				return;
+			}
+			if (accesoBD.existeUsuario(matricula)){
+				vista.getErrorLabel().setText("Ya existe un usuario con esa matricula");
+				return;
+			}
+			// Crear usuario
+			UsuarioDescripcion nuevoUsuarioDescripcion = new UsuarioDescripcion();
+			nuevoUsuarioDescripcion.setNombreApellidos(nombreApellidos);
+			nuevoUsuarioDescripcion.setCodigoMatricula(matricula);
+			nuevoUsuarioDescripcion.setCiclo(ciclo);
+
+			Usuario nuevoUsuario = new Usuario();
+			nuevoUsuario.setUsuarioDescripcion(nuevoUsuarioDescripcion);
+			nuevoUsuario.setClave(clave);
+			nuevoUsuario.setCodigoMatricula(matricula);
+			nuevoUsuario.setEsMonitor(false);
+			accesoBD.registrarUsuario(nuevoUsuario);
+
+			vista.getControladorPrincipal().showPanel("login");
 		}
 		if (e.getSource() == vista.getVolverLinkBtn()) {
 			vista.getControladorPrincipal().showPanel("login");

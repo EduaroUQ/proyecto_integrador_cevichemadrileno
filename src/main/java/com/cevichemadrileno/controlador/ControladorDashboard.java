@@ -1,9 +1,12 @@
 package com.cevichemadrileno.controlador;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.cevichemadrileno.vista.*;
+
+import javax.swing.*;
 
 /**
  * Controlador del panel del dashboard principal después de autenticarse
@@ -18,6 +21,7 @@ public class ControladorDashboard implements ActionListener {
 	private PanelMisActividades panelMisActividades;
 	private PanelActividades panelActividades;
 	private PanelCrearActividad panelCrearActividad;
+
 	/**
 	 * Constructor
 	 * @param vista
@@ -31,6 +35,7 @@ public class ControladorDashboard implements ActionListener {
 	}
 
 	/**
+	 * Inicializa los listeners de los botones
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -46,8 +51,20 @@ public class ControladorDashboard implements ActionListener {
 		if (e.getSource() == vista.getCrearActividadBtn()) {
 			showPanel("crearActividad");
 		}
+		if (e.getSource() == vista.getCerrarSesionBtn()) {
+			// Cerrar JFrame contenedor del panel
+			Window window = SwingUtilities.getWindowAncestor(vista);
+			window.dispose();
+			// Reiniciar la aplicación
+			VentanaPrincipal ventanaLogin = new VentanaPrincipal();
+			ventanaLogin.hacerVisible();
+		}
 	}
-	
+
+	/**
+	 * Cambia el panel que se muestra en el dashboard
+	 * @param nombre Nombre del panel a mostrar
+	 */
 	public void showPanel(String nombre) {
 		if (nombre.equals("miPerfil")) {
 			vista.cambiarPanel(panelMiPerfil);

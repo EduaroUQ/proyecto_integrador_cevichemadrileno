@@ -22,6 +22,7 @@ public class PanelDashboard extends JPanel {
 	private JButton misActividadesBtn;
 	private JButton actividadesBtn;
 	private JButton crearActividadBtn;
+	private JButton cerrarSesionBtn;
 	private JPanel sidebarPanelBackground;
 	private JScrollPane mainContentScrollPanel;
 	private ControladorDashboard controladorDashboard;
@@ -92,20 +93,41 @@ public class PanelDashboard extends JPanel {
 		actividadesBtn.addActionListener(controladorDashboard);
 		actividadesBtn.setBounds(0, 200, 120, 40);
 		add(actividadesBtn);
-		
-		crearActividadBtn = new JButton();
-		crearActividadBtn.setText("Crear actividad");
-		crearActividadBtn.setFont(Constantes.SANS_SERIF_12);
-		crearActividadBtn.setForeground(Constantes.BLANCO);
-		crearActividadBtn.setBackground(null);
-		crearActividadBtn.setContentAreaFilled(false);
-		crearActividadBtn.setBorderPainted(false);
-		crearActividadBtn.setFocusPainted(false);
-		crearActividadBtn.setHorizontalAlignment(SwingConstants.LEFT);
-		crearActividadBtn.setOpaque(false);
-		crearActividadBtn.addActionListener(controladorDashboard);
-		crearActividadBtn.setBounds(0, 240, 120, 40);
-		add(crearActividadBtn);
+
+		if (Constantes.usuarioAutenticado.getEsMonitor()) {
+			crearActividadBtn = new JButton();
+			crearActividadBtn.setText("Crear actividad");
+			crearActividadBtn.setFont(Constantes.SANS_SERIF_12);
+			crearActividadBtn.setForeground(Constantes.BLANCO);
+			crearActividadBtn.setBackground(null);
+			crearActividadBtn.setContentAreaFilled(false);
+			crearActividadBtn.setBorderPainted(false);
+			crearActividadBtn.setFocusPainted(false);
+			crearActividadBtn.setHorizontalAlignment(SwingConstants.LEFT);
+			crearActividadBtn.setOpaque(false);
+			crearActividadBtn.addActionListener(controladorDashboard);
+			crearActividadBtn.setBounds(0, 240, 120, 40);
+			add(crearActividadBtn);
+		}
+
+
+		cerrarSesionBtn = new JButton();
+		cerrarSesionBtn.setText("Cerrar sesión");
+		cerrarSesionBtn.setFont(Constantes.SANS_SERIF_12);
+		cerrarSesionBtn.setForeground(Constantes.BLANCO);
+		cerrarSesionBtn.setBackground(null);
+		cerrarSesionBtn.setContentAreaFilled(false);
+		cerrarSesionBtn.setBorderPainted(false);
+		cerrarSesionBtn.setFocusPainted(false);
+		cerrarSesionBtn.setHorizontalAlignment(SwingConstants.LEFT);
+		cerrarSesionBtn.setOpaque(false);
+		cerrarSesionBtn.addActionListener(controladorDashboard);
+		if (Constantes.usuarioAutenticado.getEsMonitor()) {
+			cerrarSesionBtn.setBounds(0, 280, 120, 40);
+		} else {
+			cerrarSesionBtn.setBounds(0, 240, 120, 40);
+		}
+		add(cerrarSesionBtn);
 		
 		mainContentScrollPanel = new JScrollPane();
 		mainContentScrollPanel.setBounds(119, 0, Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
@@ -134,6 +156,9 @@ public class PanelDashboard extends JPanel {
 	}
 	public JButton getCrearActividadBtn() {
 		return crearActividadBtn;
+	}
+	public JButton getCerrarSesionBtn() {
+		return cerrarSesionBtn;
 	}
 	
 
