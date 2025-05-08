@@ -8,7 +8,6 @@ import javax.swing.*;
 
 import com.cevichemadrileno.controlador.ControladorCrearActividad;
 import com.cevichemadrileno.modelo.Sala;
-import com.cevichemadrileno.modelo.SalaEspacio;
 import com.cevichemadrileno.util.Constantes;
 
 /**
@@ -47,8 +46,8 @@ public class PanelCrearActividad extends JPanel {
 	private ControladorCrearActividad controladorCrearActividad;
 	
 	public PanelCrearActividad() {
-		salas.add(new Sala(1, "D101", new SalaEspacio("D101", 10, "sala de maquinas")));
-		salas.add(new Sala(2, "E302", new SalaEspacio("E302", 10, "sala de maquinas")));
+		salas.add(new Sala(1, "D101", 10, "sala de maquinas"));
+		salas.add(new Sala(2, "E302", 10, "sala de maquinas"));
 		inicializarComponentes();
 	}
 

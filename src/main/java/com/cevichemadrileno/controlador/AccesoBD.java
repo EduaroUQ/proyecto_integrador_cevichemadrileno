@@ -1,7 +1,6 @@
 package com.cevichemadrileno.controlador;
 
 import com.cevichemadrileno.modelo.Usuario;
-import com.cevichemadrileno.modelo.UsuarioDescripcion;
 import com.cevichemadrileno.util.Constantes;
 
 import java.sql.*;
@@ -16,7 +15,7 @@ public class AccesoBD {
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String url ="jdbc:mysql://localhost:3306/ceviche_madrileno";
     private String usuarioSQL = "root";
-    private String passwordSQL = "root";
+    private String passwordSQL = "123456";
 
     /**
      * Comprueba si existe un usuario en la base de datos
@@ -67,20 +66,8 @@ public class AccesoBD {
                     usuarioAutenticado.setCodigoMatricula(rsUsuario.getString("matricula"));
                     usuarioAutenticado.setClave(rsUsuario.getString("clave"));
                     usuarioAutenticado.setEsMonitor(rsUsuario.getBoolean("esMonitor"));
-
-                    // Obtener la descripción del usuario
-                    try (PreparedStatement pstmtDesc = con.prepareStatement(queryDescripcion)) {
-                        pstmtDesc.setString(1, usuario);
-                        try (ResultSet rsDesc = pstmtDesc.executeQuery()) {
-                            if (rsDesc.next()) {
-                                UsuarioDescripcion ud = new UsuarioDescripcion();
-                                ud.setCodigoMatricula(rsDesc.getString("matricula"));
-                                ud.setNombreApellidos(rsDesc.getString("nombreApellidos"));
-                                ud.setCiclo(rsDesc.getString("ciclo"));
-                                usuarioAutenticado.setUsuarioDescripcion(ud);
-                            }
-                        }
-                    }
+                    usuarioAutenticado.setNombreApellidos(rsUsuario.getString("nombreApellidos"));
+                    usuarioAutenticado.setCiclo(rsUsuario.getString("ciclo"));
 
                     Constantes.usuarioAutenticado = usuarioAutenticado;
                     return true;
@@ -102,25 +89,19 @@ public class AccesoBD {
      * @param usuario
      */
     public void registrarUsuario(Usuario usuario) {
-        String queryDescripcion = "INSERT INTO usuario_descripcion(matricula, nombreApellidos, ciclo) VALUES(?, ?, ?)";
-        String queryUsuario = "INSERT INTO usuario(matricula, clave, esMonitor) VALUES(?, ?, ?)";
+        String queryUsuario = "INSERT INTO usuario(matricula, clave, esMonitor, nombreApellidos, ciclo) VALUES(?, ?, ?)";
 
         try (
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
             PreparedStatement pstmtUsuario = con.prepareStatement(queryUsuario);
-            PreparedStatement pstmtDescripcion = con.prepareStatement(queryDescripcion)
         ) {
-            // Insertar la descripción del usuario
-            UsuarioDescripcion desc = usuario.getUsuarioDescripcion();
-            pstmtDescripcion.setString(1, desc.getCodigoMatricula());
-            pstmtDescripcion.setString(2, desc.getNombreApellidos());
-            pstmtDescripcion.setString(3, desc.getCiclo());
-            pstmtDescripcion.executeUpdate();
 
             // Insertar el usuario
             pstmtUsuario.setString(1, usuario.getCodigoMatricula());
             pstmtUsuario.setString(2, usuario.getClave());
             pstmtUsuario.setBoolean(3, usuario.getEsMonitor() != null ? usuario.getEsMonitor() : false);
+            pstmtUsuario.setString(4, usuario.getNombreApellidos());
+            pstmtUsuario.setString(5, usuario.getCiclo());
             pstmtUsuario.executeUpdate();
 
         } catch (SQLException e) {

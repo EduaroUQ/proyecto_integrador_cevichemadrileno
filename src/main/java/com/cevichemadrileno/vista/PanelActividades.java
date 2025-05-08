@@ -14,6 +14,7 @@ import com.cevichemadrileno.util.Constantes;
 @SuppressWarnings("serial")
 public class PanelActividades extends JPanel {
 	private JLabel tituloLabel;
+	private JScrollPane actividadesScrollPanel;
 	
 	public PanelActividades() {
 		inicializarComponentes();

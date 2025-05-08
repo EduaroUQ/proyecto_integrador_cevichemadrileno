@@ -2,8 +2,6 @@ package com.cevichemadrileno.vista;
 
 import javax.swing.*;
 
-import com.cevichemadrileno.modelo.Usuario;
-import com.cevichemadrileno.modelo.UsuarioDescripcion;
 import com.cevichemadrileno.util.Constantes;
 
 /**
@@ -62,7 +60,7 @@ public class PanelMiPerfil extends JPanel {
 		add(cicloLabel);
 		
 		nombreApellidosValueLabel = new JLabel();
-		nombreApellidosValueLabel.setText(Constantes.usuarioAutenticado.getUsuarioDescripcion().getNombreApellidos());
+		nombreApellidosValueLabel.setText(Constantes.usuarioAutenticado.getNombreApellidos());
 		nombreApellidosValueLabel.setBounds(86,167,188,40);
 		nombreApellidosValueLabel.setFont(Constantes.SANS_SERIF_16);
 		nombreApellidosValueLabel.setForeground(Constantes.NEGRO_CLARO);
@@ -76,7 +74,7 @@ public class PanelMiPerfil extends JPanel {
 		add(matriculaValueLabel);
 		
 		cicloValueLabel = new JLabel();
-		cicloValueLabel.setText(Constantes.usuarioAutenticado.getUsuarioDescripcion().getCiclo());
+		cicloValueLabel.setText(Constantes.usuarioAutenticado.getCiclo());
 		cicloValueLabel.setBounds(86,339,74,40);
 		cicloValueLabel.setFont(Constantes.SANS_SERIF_16);
 		cicloValueLabel.setForeground(Constantes.NEGRO_CLARO);

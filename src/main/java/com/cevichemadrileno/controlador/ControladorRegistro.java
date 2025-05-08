@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.cevichemadrileno.modelo.Usuario;
-import com.cevichemadrileno.modelo.UsuarioDescripcion;
 import com.cevichemadrileno.vista.PanelRegistro;
 
 /**
@@ -63,13 +62,9 @@ public class ControladorRegistro implements ActionListener {
 				return;
 			}
 			// Crear usuario
-			UsuarioDescripcion nuevoUsuarioDescripcion = new UsuarioDescripcion();
-			nuevoUsuarioDescripcion.setNombreApellidos(nombreApellidos);
-			nuevoUsuarioDescripcion.setCodigoMatricula(matricula);
-			nuevoUsuarioDescripcion.setCiclo(ciclo);
-
 			Usuario nuevoUsuario = new Usuario();
-			nuevoUsuario.setUsuarioDescripcion(nuevoUsuarioDescripcion);
+			nuevoUsuario.setNombreApellidos(nombreApellidos);
+			nuevoUsuario.setCiclo(ciclo);
 			nuevoUsuario.setClave(clave);
 			nuevoUsuario.setCodigoMatricula(matricula);
 			nuevoUsuario.setEsMonitor(false);

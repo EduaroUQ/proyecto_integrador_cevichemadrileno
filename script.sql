@@ -22,7 +22,7 @@ CREATE TABLE USUARIO (
     esMonitor BOOLEAN default FALSE,
     clave VARCHAR(100),
     nombreApellidos VARCHAR(100),
-    ciclo VARCHAR(50),
+    ciclo VARCHAR(50)
 );
 
 CREATE TABLE SALA (

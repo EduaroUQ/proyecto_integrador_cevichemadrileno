@@ -8,23 +8,25 @@ public class Usuario {
 	private String codigoMatricula;
 	private String clave;
 	private Boolean esMonitor;
-	
-	private UsuarioDescripcion usuarioDescripcion;
+	private String nombreApellidos;
+	private String ciclo;
 
 	/**
 	 * Constructor de la clase
 	 * @param id
 	 * @param codigoMatricula
+	 * @param clave
 	 * @param esMonitor
-	 * @param usuarioDescripcion
-	 * @return instancia de Usuario
+	 * @param nombreApellidos
+	 * @param ciclo
 	 */
-	public Usuario(Integer id, String codigoMatricula, String clave, Boolean esMonitor, UsuarioDescripcion usuarioDescripcion) {
+	public Usuario(Integer id, String codigoMatricula, String clave, Boolean esMonitor, String nombreApellidos, String ciclo) {
 		this.id = id;
 		this.codigoMatricula = codigoMatricula;
 		this.clave = clave;
 		this.esMonitor = esMonitor;
-		this.usuarioDescripcion = usuarioDescripcion;
+		this.nombreApellidos = nombreApellidos;
+		this.ciclo = ciclo;
 	}
 
 	/**
@@ -39,34 +41,48 @@ public class Usuario {
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getCodigoMatricula() {
 		return codigoMatricula;
 	}
+
 	public void setCodigoMatricula(String codigoMatricula) {
 		this.codigoMatricula = codigoMatricula;
 	}
-	public Boolean getEsMonitor() {
-		return esMonitor;
-	}
-	public void setEsMonitor(Boolean esMonitor) {
-		this.esMonitor = esMonitor;
-	}
-	public UsuarioDescripcion getUsuarioDescripcion() {
-		return usuarioDescripcion;
-	}
-	public void setUsuarioDescripcion(UsuarioDescripcion usuarioDescripcion) {
-		this.usuarioDescripcion = usuarioDescripcion;
-	}
+
 	public String getClave() {
 		return clave;
 	}
+
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
-	
-	
-	
+
+	public Boolean getEsMonitor() {
+		return esMonitor;
+	}
+
+	public void setEsMonitor(Boolean esMonitor) {
+		this.esMonitor = esMonitor;
+	}
+
+	public String getNombreApellidos() {
+		return nombreApellidos;
+	}
+
+	public void setNombreApellidos(String nombreApellidos) {
+		this.nombreApellidos = nombreApellidos;
+	}
+
+	public String getCiclo() {
+		return ciclo;
+	}
+
+	public void setCiclo(String ciclo) {
+		this.ciclo = ciclo;
+	}
 }

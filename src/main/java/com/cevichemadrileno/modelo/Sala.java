@@ -6,22 +6,22 @@ package com.cevichemadrileno.modelo;
 public class Sala {
 	private Integer id;
 	private String codigoSala;
-	
-	private SalaEspacio salaEspacio;
+	private Integer capacidad;
+	private String tipoSala;
 
 	/**
 	 * Constructor de la clase
 	 * @param id
+	 * @param capacidad
 	 * @param codigoSala
-	 * @param salaEspacio
-	 * @return instancia de Sala
+	 * @param tipoSala
 	 */
-	public Sala(Integer id, String codigoSala, SalaEspacio salaEspacio) {
+	public Sala( Integer id, String codigoSala, Integer capacidad,String tipoSala) {
 		this.id = id;
+		this.capacidad = capacidad;
 		this.codigoSala = codigoSala;
-		this.salaEspacio = salaEspacio;
+		this.tipoSala = tipoSala;
 	}
-	
 
 	/**
 	 * Constructor vacio de la clase
@@ -35,20 +35,32 @@ public class Sala {
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getCodigoSala() {
 		return codigoSala;
 	}
+
 	public void setCodigoSala(String codigoSala) {
 		this.codigoSala = codigoSala;
 	}
-	public SalaEspacio getSalaEspacio() {
-		return salaEspacio;
+
+	public Integer getCapacidad() {
+		return capacidad;
 	}
-	public void setSalaEspacio(SalaEspacio salaEspacio) {
-		this.salaEspacio = salaEspacio;
+
+	public void setCapacidad(Integer capacidad) {
+		this.capacidad = capacidad;
 	}
-	
-}	
+
+	public String getTipoSala() {
+		return tipoSala;
+	}
+
+	public void setTipoSala(String tipoSala) {
+		this.tipoSala = tipoSala;
+	}
+}

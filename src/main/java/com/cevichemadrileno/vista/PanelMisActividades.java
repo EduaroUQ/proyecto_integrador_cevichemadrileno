@@ -34,10 +34,12 @@ public class PanelMisActividades extends JPanel {
 
 	public PanelMisActividades() {
 		// datos de prueba
-		Usuario usuario = new Usuario(1, "ZZZZ", "123",true, new UsuarioDescripcion("ZZZZ", "Hugo",  "DAW"));
 		Actividad actividad = new Actividad(1, 1, 1, "Baile", "bailar", 10, new Date());
-		Sala sala = new Sala(1, "B312", new SalaEspacio("B312", 10, "Salon de clase"));
-		Inscripcion inscripcion = new Inscripcion(1, 1, usuario, actividad);
+		Sala sala = new Sala(1, "B312", 10, "Salon de clase");
+		actividad.setSala(sala);
+		Inscripcion inscripcion = new Inscripcion(1, 1, Constantes.usuarioAutenticado, actividad);
+
+		actividadesCreadas.add(actividad);
 		actividadesInscritas.add(inscripcion);
 		
 		inicializarComponentes();
@@ -70,7 +72,8 @@ public class PanelMisActividades extends JPanel {
 		actividadesCreadasLabel.setFont(Constantes.SANS_SERIF_16);
 		actividadesCreadasLabel.setForeground(Constantes.NEGRO_CLARO);
 		add(actividadesCreadasLabel);
-		
+
+		// Crear tabla de actividades inscritas
 		actividadesInscritasTable = new JTable(null);
 		String[] columnas = {"Nombre", "Curso", "Fecha"};
         DefaultTableModel modeloTabla1 = new DefaultTableModel(columnas, 0);
@@ -93,13 +96,13 @@ public class PanelMisActividades extends JPanel {
         add(actividadesInscritasScrollPanel);
 
 
-
+		// Crear tabla de actividades creadas
 		actividadesCreadasTable = new JTable(null);
-		String[] columnas2 = {"Nombre", "Dia", "Hora", "Estado", "Accion"};
+		String[] columnas2 = {"Nombre", "Dia", "Hora", "Lugar", "Accion"};
 		DefaultTableModel modeloTabla2 = new DefaultTableModel(columnas2, 0);
 
 		for (Actividad actividad : actividadesCreadas) {
-			Object[] row = {actividad.getNombre(), obtenerDiaSemana(actividad.getFecha()), obtenerHora(actividad.getFecha()) };
+			Object[] row = {actividad.getNombre(), obtenerDiaSemana(actividad.getFecha()), obtenerHora(actividad.getFecha()), actividad.getSala().getCodigoSala(), "Eliminar" };
 			modeloTabla2.addRow(row);
 		}
 
