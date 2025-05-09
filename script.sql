@@ -77,7 +77,11 @@ INSERT INTO INSCRIPCION (id_usuario, id_actividad) VALUES
 
 
 -- selects
--- select * from USUARIO;
--- select * from SALA;
--- select * from ACTIVIDAD;
--- select * from INSCRIPCION;
+# select * from USUARIO;
+# select * from SALA;
+# select * from ACTIVIDAD;
+# select * from INSCRIPCION;
+#
+# SELECT a.id, a.id_monitor, a.nombre, a.id_sala, a.descripcion, a.nroMaximoInscritos, a.fecha, s.codigoSala, s.capacidad, s.tipoSala FROM actividad a, sala s where a.id_sala = s.id
+#
+# select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala  from INSCRIPCION i , SALA s, ACTIVIDAD a where i.id_actividad = a.id and s.id = a.id_sala and id_usuario = 2 ;

@@ -94,7 +94,13 @@ public class PanelActividades extends JPanel {
 		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
 
 		for (Actividad actividad : actividades) {
-			Object[] row = {actividad.getNombre(), obtenerDiaSemana(actividad.getFecha()), obtenerHora(actividad.getFecha()), actividad.getSala().getCodigoSala(), "Ver mas" };
+			Object[] row = {
+					actividad.getNombre(),
+					obtenerDiaSemana(actividad.getFecha()),
+					obtenerHora(actividad.getFecha()),
+					actividad.getSala().getCodigoSala(),
+					"Ver más"
+			};
 			modeloTabla.addRow(row);
 		}
 

@@ -102,7 +102,7 @@ public class AccesoBD {
             // Insertar el usuario
             pstmtUsuario.setString(1, usuario.getCodigoMatricula());
             pstmtUsuario.setString(2, usuario.getClave());
-            pstmtUsuario.setBoolean(3, usuario.getEsMonitor() != null ? usuario.getEsMonitor() : false);
+            pstmtUsuario.setBoolean(3, usuario.getEsMonitor());
             pstmtUsuario.setString(4, usuario.getNombreApellidos());
             pstmtUsuario.setString(5, usuario.getCiclo());
             pstmtUsuario.executeUpdate();
@@ -193,7 +193,35 @@ public class AccesoBD {
     }
 
     public ArrayList<Inscripcion> obtenerActividadesInscritas() {
-        return null;
+        String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala as tipoSala  from INSCRIPCION i , SALA s, ACTIVIDAD a where i.id_actividad = a.id and s.id = a.id_sala and id_usuario = ?";
+        ArrayList<Inscripcion> inscripciones = new ArrayList<>();
+
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setInt(1, Constantes.usuarioAutenticado.getId());
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Inscripcion inscripcion = new Inscripcion();
+                inscripcion.setIdActividad(rs.getInt("idActividad"));
+
+                Sala sala = new Sala();
+                sala.setTipoSala(rs.getString("tipoSala"));
+
+                Actividad actividad = new Actividad();
+                actividad.setNombre(rs.getString("nombreActividad"));
+                actividad.setFecha(rs.getTimestamp("fechaActividad"));
+                actividad.setSala(sala);
+
+                inscripcion.setActividad(actividad);
+                inscripciones.add(inscripcion);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener las actividades inscritas");
+            e.printStackTrace();
+        }
+        return inscripciones;
     }
 
     public ArrayList<Actividad> obtenerActividadesCreadas() {

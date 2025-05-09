@@ -32,7 +32,6 @@ public class ControladorMisActividades implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 //		if (e.getSource() == vista.getCrearBtn()) {
 //			 JOptionPane.showMessageDialog(vista, "Actividad creada con exito", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 //		}
@@ -40,11 +39,11 @@ public class ControladorMisActividades implements ActionListener {
 
 	public void cargarActividadesInscritas() {
 		ArrayList<Inscripcion> actividades = accesoBD.obtenerActividadesInscritas();
-//		vista.actualizarTablaMisActividades(actividades);
+		vista.actualizarTablaActividadesInscritas(actividades);
 	}
 
 	public void cargarActividadesCreadas() {
 		ArrayList<Actividad> actividades = accesoBD.obtenerActividadesCreadas();
-//		vista.actualizarTablaActividadesCreadas(actividades);
+		vista.actualizarTablaActividadesCreadas(actividades);
 	}
 }

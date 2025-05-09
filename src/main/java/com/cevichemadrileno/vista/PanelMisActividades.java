@@ -1,6 +1,5 @@
 package com.cevichemadrileno.vista;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,26 +25,15 @@ public class PanelMisActividades extends JPanel {
 	private JLabel tituloLabel;
 	private JLabel actividadesInscritasLabel;
 	private JLabel actividadesCreadasLabel;
-	private JScrollPane actividadesInscritasScrollPanel;
-	private JScrollPane actividadesCreadasScrollPanel;
+	private JScrollPane actividadesInscritasScrollPane;
+	private JScrollPane actividadesCreadasScrollPane;
 	private JTable actividadesInscritasTable;
 	private JTable actividadesCreadasTable;
 	private ControladorDashboard controladorDashboard;
 	private ControladorMisActividades controladorMisActividades;
-	private ArrayList<Inscripcion> actividadesInscritas = new ArrayList<Inscripcion>();
-	private ArrayList<Actividad> actividadesCreadas = new ArrayList<Actividad>();
 
 	public PanelMisActividades(ControladorDashboard controladorDashboard) {
 		this.controladorDashboard = controladorDashboard;
-		// datos de prueba
-		Actividad actividad = new Actividad(1, 1, 1, "Actividad de prueba", "Descripcion de prueba", 10, new Timestamp(0), null);
-		Sala sala = new Sala(1, "B312", 10, "Salon de clase");
-		actividad.setSala(sala);
-		Inscripcion inscripcion = new Inscripcion(1, 1, Constantes.usuarioAutenticado, actividad);
-
-		actividadesCreadas.add(actividad);
-		actividadesInscritas.add(inscripcion);
-		
 		inicializarComponentes();
 	}
 
@@ -79,49 +67,31 @@ public class PanelMisActividades extends JPanel {
 
 		// Crear tabla de actividades inscritas
 		actividadesInscritasTable = new JTable(null);
-		String[] columnas = {"Nombre", "Curso", "Fecha"};
-        DefaultTableModel modeloTabla1 = new DefaultTableModel(columnas, 0);
-
-        for (Inscripcion ins : actividadesInscritas) {
-            Object[] row = {ins.getActividad().getNombre(), obtenerDiaSemana(ins.getActividad().getFecha()), obtenerHora(ins.getActividad().getFecha()) };
-			modeloTabla1.addRow(row);
-        }
-
-		actividadesInscritasTable = new JTable(modeloTabla1);
 		actividadesInscritasTable.setTableHeader(null);
-		actividadesInscritasScrollPanel = new JScrollPane(actividadesInscritasTable);
-        actividadesInscritasScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        actividadesInscritasScrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        actividadesInscritasScrollPanel.setBackground(Constantes.GRIS);
-        actividadesInscritasScrollPanel.setForeground(Constantes.GRIS);
-        actividadesInscritasScrollPanel.setBorder(null);
-        actividadesInscritasScrollPanel.setBounds(45,145,620,140);
+		actividadesInscritasScrollPane = new JScrollPane(actividadesInscritasTable);
+        actividadesInscritasScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        actividadesInscritasScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        actividadesInscritasScrollPane.setBackground(Constantes.GRIS);
+        actividadesInscritasScrollPane.setForeground(Constantes.GRIS);
+        actividadesInscritasScrollPane.setBorder(null);
+        actividadesInscritasScrollPane.setBounds(45,145,620,140);
         
-        add(actividadesInscritasScrollPanel);
+        add(actividadesInscritasScrollPane);
 
 
 		// Crear tabla de actividades creadas
 		actividadesCreadasTable = new JTable(null);
-		String[] columnas2 = {"Nombre", "Dia", "Hora", "Lugar", "Accion"};
-		DefaultTableModel modeloTabla2 = new DefaultTableModel(columnas2, 0);
-
-		for (Actividad actividad : actividadesCreadas) {
-			Object[] row = {actividad.getNombre(), obtenerDiaSemana(actividad.getFecha()), obtenerHora(actividad.getFecha()), actividad.getSala().getCodigoSala(), "Eliminar" };
-			modeloTabla2.addRow(row);
-		}
-
-		actividadesCreadasTable = new JTable(modeloTabla2);
 		actividadesCreadasTable.setTableHeader(null);
-		actividadesCreadasScrollPanel = new JScrollPane(actividadesCreadasTable);
-		actividadesCreadasScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		actividadesCreadasScrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		actividadesCreadasScrollPanel.setBackground(Constantes.GRIS);
-		actividadesCreadasScrollPanel.setForeground(Constantes.GRIS);
-		actividadesCreadasScrollPanel.setBorder(null);
-		actividadesCreadasScrollPanel.setBounds(45,366,620,140);
+		actividadesCreadasScrollPane = new JScrollPane(actividadesCreadasTable);
+		actividadesCreadasScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		actividadesCreadasScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		actividadesCreadasScrollPane.setBackground(Constantes.GRIS);
+		actividadesCreadasScrollPane.setForeground(Constantes.GRIS);
+		actividadesCreadasScrollPane.setBorder(null);
+		actividadesCreadasScrollPane.setBounds(45,366,620,140);
 
-		add(actividadesInscritasScrollPanel);
-		add(actividadesCreadasScrollPanel);
+		add(actividadesInscritasScrollPane);
+		add(actividadesCreadasScrollPane);
 		
 	}
 	
@@ -151,12 +121,12 @@ public class PanelMisActividades extends JPanel {
 		return actividadesCreadasLabel;
 	}
 
-	public JScrollPane getActividadesInscritasScrollPanel() {
-		return actividadesInscritasScrollPanel;
+	public JScrollPane getActividadesInscritasScrollPane() {
+		return actividadesInscritasScrollPane;
 	}
 
-	public JScrollPane getActividadesCreadasScrollPanel() {
-		return actividadesCreadasScrollPanel;
+	public JScrollPane getActividadesCreadasScrollPane() {
+		return actividadesCreadasScrollPane;
 	}
 
 	public JTable getActividadesInscritasTable() {
@@ -175,11 +145,47 @@ public class PanelMisActividades extends JPanel {
 		return controladorMisActividades;
 	}
 
-	public ArrayList<Inscripcion> getActividadesInscritas() {
-		return actividadesInscritas;
+	public void actualizarTablaActividadesInscritas(ArrayList<Inscripcion> actividadesInscritas) {
+		String[] columnas = {"Nombre", "Dia", "Hora", "Lugar", "Desinscribirse"};
+		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+
+
+		for (Inscripcion inscripcion : actividadesInscritas) {
+			Object[] row = {
+					inscripcion.getActividad().getNombre(),
+					obtenerDiaSemana(inscripcion.getActividad().getFecha()),
+					obtenerHora(inscripcion.getActividad().getFecha()),
+					inscripcion.getActividad().getSala().getCodigoSala(),
+					"Desinscribirse"
+			};
+			modeloTabla.addRow(row);
+		}
+
+		actividadesInscritasTable.setModel(modeloTabla);
+		actividadesInscritasScrollPane.setViewportView(actividadesInscritasTable);
+		revalidate();
+		repaint();
 	}
 
-	public ArrayList<Actividad> getActividadesCreadas() {
-		return actividadesCreadas;
+	public void actualizarTablaActividadesCreadas(ArrayList<Actividad> actividadesCreadas){
+		String[] columnas = {"Nombre", "Dia", "Horario", "Lugar", "Editar", "Eliminar"};
+		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+
+		for (Actividad actividad : actividadesCreadas) {
+			Object[] row = {
+					actividad.getNombre(),
+					obtenerDiaSemana(actividad.getFecha()),
+					obtenerHora(actividad.getFecha()),
+					actividad.getSala().getCodigoSala(),
+					"Editar",
+					"Eliminar"
+			};
+			modeloTabla.addRow(row);
+		}
+
+		actividadesCreadasTable.setModel(modeloTabla);
+		actividadesCreadasScrollPane.setViewportView(actividadesCreadasTable);
+		revalidate();
+		repaint();
 	}
 }
