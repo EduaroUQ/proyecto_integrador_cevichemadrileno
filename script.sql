@@ -56,7 +56,24 @@ CREATE TABLE INSCRIPCION (
 INSERT INTO USUARIO (id,matricula, esMonitor, clave, nombreApellidos, ciclo) VALUES
 (1,'123', TRUE, '123', 'Hugo Rubio Crespo', 'DAW'),
 (2,'2244193B', FALSE, '123', 'Eduardo Utrilla Quispe', 'DAW'),
-(3,'22451182', FALSE, '123', 'Santi', 'DAW');
+(3,'22451182', FALSE, '123', 'Santi Nuñez', 'DAM'),
+(4,'2245118C', FALSE, '123', 'Sara Villanueva', 'DAW'),
+(5,'2245119D', TRUE, '123', 'Raúl Rodriguez', 'ASIR'),
+(6,'2245118E', FALSE, '123', 'Herminia Edoko', 'A3D'),
+(7,'2245117A', FALSE, '123', 'Diego Flores', 'DAM'),
+(8,'2245112F', FALSE, '123', 'Rosa Meltrozo', 'EI'),
+(9,'2245112G', TRUE, '123', 'Debora Meltrozo', 'CI'),
+(10,'2245114H', FALSE, '123', 'Armando Esteban Quito', 'DAM'),
+(11,'2245111I', FALSE, '123', 'Aquiles Caigo', 'ASIR'),
+(12,'2245112J', TRUE, '123', 'Pablo Alborán', 'A3D'),
+(13,'2245113K', TRUE, '123', 'Benito Camelo', 'ASIR'),
+(14,'2245114L', TRUE, '123', 'María Garrido Bravo', 'EI'),
+(15,'2245115M', TRUE, '123', 'Julián Martinez Cruz', 'CI'),
+(16,'2245116N', FALSE, '123', 'Álvaro Bulldog Inglés', 'A3D'),
+(17,'2245117O', FALSE, '123', 'Dolores Delano', 'CI'),
+(18,'2245118P', FALSE, '123', 'Lucho Portuano', 'EI'),
+(19,'2245118Q', TRUE, '123', 'Jorge Nitales ', 'DAW'),
+(20,'2245119R', TRUE, '123', 'Paco Gertes', 'EI');
 
 INSERT INTO SALA (id, codigoSala, capacidad, tipoSala) VALUES
 (1,'PPA1', 40, 'Pabellón 1'),
@@ -66,15 +83,38 @@ INSERT INTO SALA (id, codigoSala, capacidad, tipoSala) VALUES
 (5,'PPB1', 10, 'Pista de baloncesto 1'),
 (6,'PPB2', 10, 'Pista de baloncesto 2'),
 (7,'PPE1', 40, 'Pista de atletismo 1'),
-(8,'PPE2', 40, 'Pista de atletismo 2');
+(8,'PPE2', 40, 'Pista de atletismo 2'),
+(9,'PPG1', 40, 'Gimnasio 1'),
+(10,'PPG2', 40, 'Gimnasio 2');
 
 INSERT INTO ACTIVIDAD (id, id_monitor, nombre, id_sala, descripcion, nroMaximoInscritos) VALUES
 (1,1,'Yoga',1, 'Estiramiento del cuerpo y poses',10),
-(2,1,'Box',4, 'Box descripcion',5);
+(2,1,'Box',2, 'Box descripcion',5),
+(3,1,'Ciclismo',3, 'Ciclismo descripcion',15),
+(4,1,'Natación',4, 'Natación descripcion',10),
+(5,1,'Futbol 5',9, 'Futbol descripcion',15),
+(6,1,'Kick Boxing',10, 'Kick Boxing descripcion',10),
+(7,1,'Pilates',9, 'Pilates descripcion',20),
+(8,1,'Calistenia',3, 'Calistenia descripcion',15),
+(9,1,'Powerlifting',2, 'Powerlifting descripcion',10),
+(10,1,'Beisbol',1, 'Beisbol descripcion',10),
+(11,5,'Basket',5, 'Basket descripcion',15),
+(12,1,'Voley',6, 'Voley descripcion',10);
+
 
 INSERT INTO INSCRIPCION (id_usuario, id_actividad) VALUES
-(1,1),
-(1,2);
+(2,1),
+(2,2),
+(2,3),
+(2,4),
+(2,5),
+(2,6),
+(2,7),
+(2,8),
+(2,9),
+(2,10),
+(2,11);
+
 
 
 -- selects
