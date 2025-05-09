@@ -135,7 +135,7 @@ public class PanelDashboard extends JPanel {
 		add(mainContentScrollPanel);
 		add(sidebarPanelBackground);
 		
-		controladorDashboard.showPanel("misActividades");
+		controladorDashboard.showPanel("misActividades",null);
 	}
 
 

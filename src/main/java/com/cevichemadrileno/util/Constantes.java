@@ -36,6 +36,7 @@ public class Constantes {
 	public static Font SANS_SERIF_16 = new Font("SansSerif", Font.PLAIN, 16);
 	public static Font SANS_SERIF_14 = new Font("SansSerif", Font.PLAIN, 14);
 	public static Font SANS_SERIF_12 = new Font("SansSerif", Font.PLAIN, 12);
+	public static int ALTURA_FILAS_TABLA = 30;
 	public static final Border BORDE_INPUT_ESTILO_1 = BorderFactory.createCompoundBorder(
 	    new RoundedBorder(15, 3, new Color(60,103,184)),
 	    BorderFactory.createEmptyBorder(0, 10, 0, 10)
@@ -44,7 +45,7 @@ public class Constantes {
 			new RoundedBorder(15, 0, null),
 		    BorderFactory.createEmptyBorder(0, 10, 0, 10)
 		);
-	public static final String[] CICLOS = { "DAW", "DAM", "ASIR", "A3D","TAFD","EI","CI" };
+	public static final String[] CICLOS = { "DAW", "DAM", "ASIR", "A3D","EI","CI" };
 
 	public static Usuario usuarioAutenticado;
 	public static ArrayList<Sala> salas = new ArrayList<>();

@@ -1,14 +1,13 @@
 package com.cevichemadrileno.vista;
 
 
-import java.util.Calendar;
-
-import javax.swing.*;
-
-import com.cevichemadrileno.controlador.ControladorCrearActividad;
 import com.cevichemadrileno.controlador.ControladorDashboard;
+import com.cevichemadrileno.controlador.ControladorEditarActividad;
 import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.util.Constantes;
+
+import javax.swing.*;
+import java.util.Calendar;
 
 /**
  * Panel de crear actividad
@@ -18,9 +17,9 @@ import com.cevichemadrileno.util.Constantes;
  * @author Hugo R.
  */
 @SuppressWarnings("serial")
-public class PanelCrearActividad extends JPanel {
+public class PanelEditarActividad extends JPanel {
 	private JLabel tituloLabel;
-	
+
 	private JLabel nombreLabel;
 	private JLabel fechaLabel;
 	private JLabel horaLabel;
@@ -28,24 +27,24 @@ public class PanelCrearActividad extends JPanel {
 	private JLabel nroMaximoInscritosLabel;
 	private JLabel descripcionLabel;
 	private JLabel errorLabel;
-	
+
 	private JTextField nombreTextField;
 	private JComboBox<String> diaCombo;
 	private JComboBox<String> mesCombo;
 	private JComboBox<Integer> yearCombo;
 	private JComboBox<String> horaCombo;
 	private JComboBox<String> minuteCombo;
-	
+
 	private JComboBox<String> lugarCombo;
 	private JComboBox<Integer> nroMaximoInscritosCombo;
 	private JScrollPane descripcionScrollPane;
 	private JTextArea descripcionTextArea;
 
-	private JButton crearBtn;
+	private JButton editarBtn;
 	private ControladorDashboard controladorDashboard;
-	private ControladorCrearActividad controladorCrearActividad;
-	
-	public PanelCrearActividad(ControladorDashboard controladorDashboard) {
+	private ControladorEditarActividad controladorEditarActividad;
+
+	public PanelEditarActividad(ControladorDashboard controladorDashboard) {
 		inicializarComponentes();
 		this.controladorDashboard = controladorDashboard;
 	}
@@ -54,11 +53,11 @@ public class PanelCrearActividad extends JPanel {
 		setBackground(Constantes.GRIS);
 		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
 		setLayout(null);
-		
-		controladorCrearActividad = new ControladorCrearActividad(this);
+
+		controladorEditarActividad = new ControladorEditarActividad(this);
 		
 		tituloLabel = new JLabel();
-		tituloLabel.setText("Crear Actividad");
+		tituloLabel.setText("Editar Actividad");
 		tituloLabel.setBounds(229,41,262,62);
 		tituloLabel.setFont(Constantes.SANS_SERIF_34);
 		tituloLabel.setForeground(Constantes.NEGRO_CLARO);
@@ -208,16 +207,16 @@ public class PanelCrearActividad extends JPanel {
         descripcionScrollPane.setBounds(129,402,403,76);
         add(descripcionScrollPane);
         
-		crearBtn = new JButton();
-		crearBtn.setBorderPainted(false);
-		crearBtn.setFocusPainted(false);
-		crearBtn.setBackground(Constantes.AZUL_OSCURO_CLARO);
-		crearBtn.setForeground(Constantes.BLANCO);
-		crearBtn.addActionListener(controladorCrearActividad);
-		crearBtn.setFont(Constantes.SANS_SERIF_18);
-		crearBtn.setText("Crear");
-		crearBtn.setBounds(300,527,120,32);
-		add(crearBtn);
+		editarBtn = new JButton();
+		editarBtn.setBorderPainted(false);
+		editarBtn.setFocusPainted(false);
+		editarBtn.setBackground(Constantes.AZUL_OSCURO_CLARO);
+		editarBtn.setForeground(Constantes.BLANCO);
+		editarBtn.addActionListener(controladorEditarActividad);
+		editarBtn.setFont(Constantes.SANS_SERIF_18);
+		editarBtn.setText("Actualizar");
+		editarBtn.setBounds(300,527,120,32);
+		add(editarBtn);
 	}
 
 
@@ -297,14 +296,15 @@ public class PanelCrearActividad extends JPanel {
 		return descripcionTextArea;
 	}
 
-	public JButton getCrearBtn() {
-		return crearBtn;
+	public JButton getEditarBtn() {
+		return editarBtn;
 	}
-
-	public ControladorCrearActividad getControladorCrearActividad() {
-		return controladorCrearActividad;
+	public ControladorDashboard getControladorDashboard() {
+		return controladorDashboard;
 	}
-
+	public ControladorEditarActividad getControladorEditarActividad() {
+		return controladorEditarActividad;
+	}
 
 
 	public void refrescarLugares() {

@@ -225,7 +225,124 @@ public class AccesoBD {
     }
 
     public ArrayList<Actividad> obtenerActividadesCreadas() {
-        return new ArrayList<>();
+        String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.codigoSala as codigoSala  from ACTIVIDAD a, SALA s where a.id_sala = s.id and a.id_monitor = ?";
+        ArrayList<Actividad> actividadesCreadas = new ArrayList<>();
+
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setInt(1, Constantes.usuarioAutenticado.getId());
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Actividad actividad = new Actividad();
+                actividad.setId(rs.getInt("idActividad"));
+                actividad.setNombre(rs.getString("nombreActividad"));
+                actividad.setFecha(rs.getTimestamp("fechaActividad"));
+
+                Sala sala = new Sala();
+                sala.setCodigoSala(rs.getString("codigoSala"));
+
+                actividad.setSala(sala);
+                actividadesCreadas.add(actividad);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener las actividades creadas");
+            e.printStackTrace();
+        }
+        return actividadesCreadas;
+    }
+
+    public void desinscribirseDeActividad(Integer idActividad) {
+        String query = "DELETE FROM INSCRIPCION WHERE id_actividad = ? AND id_usuario = ?";
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setInt(1, idActividad);
+            pstmt.setInt(2, Constantes.usuarioAutenticado.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error al desinscribirse de la actividad");
+            e.printStackTrace();
+        }
+    }
+
+    public void eliminarActividad(Integer idActividad) {
+        String query = "DELETE FROM ACTIVIDAD WHERE id = ?";
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setInt(1, idActividad);
+            pstmt.executeUpdate();
+
+            // Eliminar las inscripciones asociadas a la actividad
+            String queryInscripcion = "DELETE FROM INSCRIPCION WHERE id_actividad = ?";
+            try (PreparedStatement pstmtInscripcion = con.prepareStatement(queryInscripcion)) {
+                pstmtInscripcion.setInt(1, idActividad);
+                pstmtInscripcion.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar la actividad");
+            e.printStackTrace();
+        }
+    }
+
+    public void actualizarActividad(Actividad actividad) {
+        String query = "UPDATE actividad SET id_monitor=?, id_sala=?, nombre=?, descripcion=?, nroMaximoInscritos=?, fecha=? WHERE id=?";
+
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setInt(1, actividad.getIdMonitor());
+            pstmt.setInt(2, actividad.getIdSala());
+            pstmt.setString(3, actividad.getNombre());
+            pstmt.setString(4, actividad.getDescripcion());
+            pstmt.setInt(5, actividad.getNroMaximoInscritos());
+            pstmt.setTimestamp(6, actividad.getFecha());
+            pstmt.setInt(7, actividad.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar la actividad");
+            e.printStackTrace();
+        }
+    }
+
+    public Actividad obtenerActividadPorId(Integer idActividadParametroOpcional) {
+        String query = "SELECT a.id, a.id_monitor, a.nombre, a.id_sala, a.descripcion, a.nroMaximoInscritos, a.fecha, s.codigoSala, s.capacidad, s.tipoSala FROM actividad a, sala s where a.id_sala = s.id and a.id = ?";
+        Actividad actividad = new Actividad();
+
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setInt(1, idActividadParametroOpcional);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                actividad.setId(rs.getInt("id"));
+                actividad.setIdMonitor(rs.getInt("id_monitor"));
+                actividad.setNombre(rs.getString("nombre"));
+                actividad.setIdSala(rs.getInt("id_sala"));
+                actividad.setDescripcion(rs.getString("descripcion"));
+                actividad.setNroMaximoInscritos(rs.getInt("nroMaximoInscritos"));
+                actividad.setFecha(rs.getTimestamp("fecha"));
+
+                // Crear y asociar la sala
+                Sala sala = new Sala();
+                sala.setId(rs.getInt("id_sala"));
+                sala.setCodigoSala(rs.getString("codigoSala"));
+                sala.setCapacidad(rs.getInt("capacidad"));
+                sala.setTipoSala(rs.getString("tipoSala"));
+
+                actividad.setSala(sala);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener la actividad por id");
+            e.printStackTrace();
+        }
+        return actividad;
     }
 }
 

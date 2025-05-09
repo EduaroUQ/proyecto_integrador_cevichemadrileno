@@ -22,6 +22,7 @@ public class ControladorDashboard implements ActionListener {
 	private PanelMisActividades panelMisActividades;
 	private PanelActividades panelActividades;
 	private PanelCrearActividad panelCrearActividad;
+	private PanelEditarActividad panelEditarActividad;
 
 	/**
 	 * Constructor
@@ -33,6 +34,7 @@ public class ControladorDashboard implements ActionListener {
 		panelMiPerfil = new PanelMiPerfil(this);
 		panelMisActividades = new PanelMisActividades(this);
 		panelCrearActividad = new PanelCrearActividad(this);
+		panelEditarActividad = new PanelEditarActividad(this);
 	}
 
 	/**
@@ -41,16 +43,16 @@ public class ControladorDashboard implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == vista.getMiPerfilBtn()) {
-			showPanel("miPerfil");
+			showPanel("miPerfil", null);
 		}
 		if (e.getSource() == vista.getMisActividadesBtn()) {
-			showPanel("misActividades");
+			showPanel("misActividades",null);
 		}
 		if (e.getSource() == vista.getActividadesBtn()) {
-			showPanel("actividades");
+			showPanel("actividades",null);
 		}
 		if (e.getSource() == vista.getCrearActividadBtn()) {
-			showPanel("crearActividad");
+			showPanel("crearActividad",null);
 		}
 		if (e.getSource() == vista.getCerrarSesionBtn()) {
 			// Cerrar JFrame contenedor del panel
@@ -66,7 +68,7 @@ public class ControladorDashboard implements ActionListener {
 	 * Cambia el panel que se muestra en el dashboard
 	 * @param nombre Nombre del panel a mostrar
 	 */
-	public void showPanel(String nombre) {
+	public void showPanel(String nombre, Integer idActividad_ParametroOpcional) {
 		if (nombre.equals("miPerfil")) {
 			System.out.println("Cambio de panel a miPerfil");
 			vista.getMainContentScrollPanel().setViewportView(panelMiPerfil);
@@ -89,7 +91,11 @@ public class ControladorDashboard implements ActionListener {
 			panelCrearActividad.refrescarLugares();
 			vista.getMainContentScrollPanel().setViewportView(panelCrearActividad);
 		}
+		if (nombre.equals("editarActividad")) {
+			System.out.println("Cambio de panel a editarActividad");
+			panelEditarActividad.refrescarLugares();
+			vista.getMainContentScrollPanel().setViewportView(panelEditarActividad);
+			panelEditarActividad.getControladorEditarActividad().cargarDatosActividad(idActividad_ParametroOpcional);
+		}
 	}
-	
-
 }
