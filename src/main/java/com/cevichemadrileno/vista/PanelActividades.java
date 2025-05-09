@@ -91,7 +91,13 @@ public class PanelActividades extends JPanel {
 	 */
 	public void actualizarTablaActividades(ArrayList<Actividad> actividades) {
 		String[] columnas = {"Nombre", "Dia", "Horario", "Lugar", "Accion"};
-		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0){
+			// Esto es para que la tabla no sea editable
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 
 		for (Actividad actividad : actividades) {
 			Object[] row = {

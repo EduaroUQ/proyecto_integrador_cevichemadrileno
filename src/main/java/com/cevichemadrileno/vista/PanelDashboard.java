@@ -137,11 +137,6 @@ public class PanelDashboard extends JPanel {
 		
 		controladorDashboard.showPanel("misActividades");
 	}
-	
-
-	public void cambiarPanel(JPanel panel) {
-		mainContentScrollPanel.setViewportView(panel);
-	}
 
 
 

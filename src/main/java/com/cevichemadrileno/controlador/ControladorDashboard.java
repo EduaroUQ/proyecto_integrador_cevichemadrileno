@@ -45,17 +45,11 @@ public class ControladorDashboard implements ActionListener {
 		}
 		if (e.getSource() == vista.getMisActividadesBtn()) {
 			showPanel("misActividades");
-			panelMisActividades.getControladorMisActividades().cargarActividadesInscritas();
-			if (Constantes.usuarioAutenticado.getEsMonitor()){
-				panelMisActividades.getControladorMisActividades().cargarActividadesCreadas();
-			}
 		}
 		if (e.getSource() == vista.getActividadesBtn()) {
 			showPanel("actividades");
-			panelActividades.getControladorActividades().cargarActividades();
 		}
 		if (e.getSource() == vista.getCrearActividadBtn()) {
-			panelCrearActividad.refrescarLugares();
 			showPanel("crearActividad");
 		}
 		if (e.getSource() == vista.getCerrarSesionBtn()) {
@@ -74,16 +68,26 @@ public class ControladorDashboard implements ActionListener {
 	 */
 	public void showPanel(String nombre) {
 		if (nombre.equals("miPerfil")) {
-			vista.cambiarPanel(panelMiPerfil);
+			System.out.println("Cambio de panel a miPerfil");
+			vista.getMainContentScrollPanel().setViewportView(panelMiPerfil);
 		}
 		if (nombre.equals("misActividades")) {
-			vista.cambiarPanel(panelMisActividades);
+			System.out.println("Cambio de panel a misActividades");
+			vista.getMainContentScrollPanel().setViewportView(panelMisActividades);
+			panelMisActividades.getControladorMisActividades().cargarActividadesInscritas();
+			if (Constantes.usuarioAutenticado.getEsMonitor()){
+				panelMisActividades.getControladorMisActividades().cargarActividadesCreadas();
+			}
 		}
 		if (nombre.equals("actividades")) {
-			vista.cambiarPanel(panelActividades);
+			System.out.println("Cambio de panel a actividades");
+			vista.getMainContentScrollPanel().setViewportView(panelActividades);
+			panelActividades.getControladorActividades().cargarActividades();
 		}
 		if (nombre.equals("crearActividad")) {
-			vista.cambiarPanel(panelCrearActividad);
+			System.out.println("Cambio de panel a crearActividad");
+			panelCrearActividad.refrescarLugares();
+			vista.getMainContentScrollPanel().setViewportView(panelCrearActividad);
 		}
 	}
 	

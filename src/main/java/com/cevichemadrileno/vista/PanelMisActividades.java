@@ -147,7 +147,13 @@ public class PanelMisActividades extends JPanel {
 
 	public void actualizarTablaActividadesInscritas(ArrayList<Inscripcion> actividadesInscritas) {
 		String[] columnas = {"Nombre", "Dia", "Hora", "Lugar", "Desinscribirse"};
-		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0){
+			// Esto es para que la tabla no sea editable
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 
 
 		for (Inscripcion inscripcion : actividadesInscritas) {
@@ -155,8 +161,8 @@ public class PanelMisActividades extends JPanel {
 					inscripcion.getActividad().getNombre(),
 					obtenerDiaSemana(inscripcion.getActividad().getFecha()),
 					obtenerHora(inscripcion.getActividad().getFecha()),
-					inscripcion.getActividad().getSala().getCodigoSala(),
-					"Desinscribirse"
+					inscripcion.getActividad().getSala().getTipoSala(),
+					"🗑️"
 			};
 			modeloTabla.addRow(row);
 		}
@@ -169,7 +175,13 @@ public class PanelMisActividades extends JPanel {
 
 	public void actualizarTablaActividadesCreadas(ArrayList<Actividad> actividadesCreadas){
 		String[] columnas = {"Nombre", "Dia", "Horario", "Lugar", "Editar", "Eliminar"};
-		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0){
+			// Esto es para que la tabla no sea editable
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 
 		for (Actividad actividad : actividadesCreadas) {
 			Object[] row = {

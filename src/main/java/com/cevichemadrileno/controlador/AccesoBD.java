@@ -193,7 +193,7 @@ public class AccesoBD {
     }
 
     public ArrayList<Inscripcion> obtenerActividadesInscritas() {
-        String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala as tipoSala  from INSCRIPCION i , SALA s, ACTIVIDAD a where i.id_actividad = a.id and s.id = a.id_sala and id_usuario = ?";
+        String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala as tipoSala  from INSCRIPCION i , SALA s, ACTIVIDAD a where i.id_actividad = a.id and s.id = a.id_sala and i.id_usuario = ?";
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
 
         try (
@@ -225,7 +225,7 @@ public class AccesoBD {
     }
 
     public ArrayList<Actividad> obtenerActividadesCreadas() {
-        return null;
+        return new ArrayList<>();
     }
 }
 
