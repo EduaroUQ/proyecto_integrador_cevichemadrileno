@@ -1,11 +1,14 @@
 package com.cevichemadrileno.controlador;
 
 import com.cevichemadrileno.modelo.Actividad;
+import com.cevichemadrileno.modelo.Inscripcion;
 import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.modelo.Usuario;
 import com.cevichemadrileno.util.Constantes;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 /**
  * Clase para la conexion a la base de datos que contiene metodos para interactuar con la BBDD.
  *
@@ -150,6 +153,51 @@ public class AccesoBD {
             System.err.println("Error al registrar la actividad");
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Actividad> obtenerActividades() {
+        String query = "SELECT a.id, a.id_monitor, a.nombre, a.id_sala, a.descripcion, a.nroMaximoInscritos, a.fecha, s.codigoSala, s.capacidad, s.tipoSala FROM actividad a, sala s where a.id_sala = s.id";
+        ArrayList<Actividad> actividades = new ArrayList<>();
+
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery()
+        ) {
+            while (rs.next()) {
+                Actividad actividad = new Actividad();
+                actividad.setId(rs.getInt("id"));
+                actividad.setIdMonitor(rs.getInt("id_monitor"));
+                actividad.setNombre(rs.getString("nombre"));
+                actividad.setIdSala(rs.getInt("id_sala"));
+                actividad.setDescripcion(rs.getString("descripcion"));
+                actividad.setNroMaximoInscritos(rs.getInt("nroMaximoInscritos"));
+                actividad.setFecha(rs.getTimestamp("fecha"));
+
+                // Crear y asociar la sala
+                Sala sala = new Sala();
+                sala.setId(rs.getInt("id_sala"));
+                sala.setCodigoSala(rs.getString("codigoSala"));
+                sala.setCapacidad(rs.getInt("capacidad"));
+                sala.setTipoSala(rs.getString("tipoSala"));
+
+                actividad.setSala(sala);
+
+                actividades.add(actividad);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener las actividades");
+            e.printStackTrace();
+        }
+        return actividades;
+    }
+
+    public ArrayList<Inscripcion> obtenerActividadesInscritas() {
+        return null;
+    }
+
+    public ArrayList<Actividad> obtenerActividadesCreadas() {
+        return null;
     }
 }
 

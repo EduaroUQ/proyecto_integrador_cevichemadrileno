@@ -2,7 +2,6 @@ package com.cevichemadrileno.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
@@ -40,14 +39,15 @@ public class ControladorCrearActividad implements ActionListener {
 		if (e.getSource() == vista.getCrearBtn()) {
 
 			String nombreActividad = vista.getNombreTextField().getText();
-			String horaStr = vista.getHourCombo().getSelectedItem().toString();
+			String horaStr = vista.getHoraCombo().getSelectedItem().toString();
 			String lugar = vista.getLugarCombo().getSelectedItem().toString();
 			String descripcion = vista.getDescripcionTextArea().getText();
 			Integer numeroMaxInscritos = Integer.parseInt(vista.getNroMaximoInscritosCombo().getSelectedItem().toString());
 			String codigoSala = vista.getLugarCombo().getSelectedItem().toString();
 
-			int dia = Integer.parseInt(vista.getDayCombo().getSelectedItem().toString());
-			int mes = Integer.parseInt(vista.getMonthCombo().getSelectedItem().toString()) - 1;
+			// Obtener fecha y hora de la actividad
+			int dia = Integer.parseInt(vista.getDiaCombo().getSelectedItem().toString());
+			int mes = Integer.parseInt(vista.getMesCombo().getSelectedItem().toString()) - 1;
 			int anio = (Integer) vista.getYearCombo().getSelectedItem();
 			int hora = Integer.parseInt(horaStr.split(":")[0]);
 			System.out.println("Hora de nueva actividad: " + hora);
@@ -64,11 +64,11 @@ public class ControladorCrearActividad implements ActionListener {
 			Timestamp fecha = new Timestamp(calendar.getTimeInMillis());
 			System.out.println("Fecha de actividad: " + fecha);
 
+			// Validar campos
 			if (nombreActividad.isEmpty()){
 				vista.getErrorLabel().setText("Escribe el nombre de la actividad");
 				return;
 			}
-
 			if (lugar.isEmpty()){
 				vista.getErrorLabel().setText("Escribe el lugar de la actividad");
 				return;
@@ -85,7 +85,7 @@ public class ControladorCrearActividad implements ActionListener {
 			actividad.setFecha(fecha);
 			actividad.setIdMonitor(Constantes.usuarioAutenticado.getId());
 
-			// Buscar id de la sala por codigo de la sala
+			// Buscar id de la sala por codigo de la sala y asignar a la actividad
 			for (Sala sala: Constantes.salas){
 				if (sala.getCodigoSala().equals(codigoSala)){
 					actividad.setIdSala(sala.getId());

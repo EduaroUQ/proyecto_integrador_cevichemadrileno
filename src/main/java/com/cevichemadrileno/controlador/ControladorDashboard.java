@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.cevichemadrileno.util.Constantes;
 import com.cevichemadrileno.vista.*;
 
 import javax.swing.*;
@@ -28,7 +29,10 @@ public class ControladorDashboard implements ActionListener {
 	 */
 	public ControladorDashboard(PanelDashboard vista) {
 		this.vista = vista;
-		panelMisActividades = new PanelMisActividades();
+		panelActividades = new PanelActividades(this);
+		panelMiPerfil = new PanelMiPerfil(this);
+		panelMisActividades = new PanelMisActividades(this);
+		panelCrearActividad = new PanelCrearActividad(this);
 	}
 
 	/**
@@ -37,18 +41,21 @@ public class ControladorDashboard implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == vista.getMiPerfilBtn()) {
-			panelMiPerfil = new PanelMiPerfil();
 			showPanel("miPerfil");
 		}
 		if (e.getSource() == vista.getMisActividadesBtn()) {
 			showPanel("misActividades");
+			panelMisActividades.getControladorMisActividades().cargarActividadesInscritas();
+			if (Constantes.usuarioAutenticado.getEsMonitor()){
+				panelMisActividades.getControladorMisActividades().cargarActividadesCreadas();
+			}
 		}
 		if (e.getSource() == vista.getActividadesBtn()) {
-			panelActividades = new PanelActividades();
 			showPanel("actividades");
+			panelActividades.getControladorActividades().cargarActividades();
 		}
 		if (e.getSource() == vista.getCrearActividadBtn()) {
-			panelCrearActividad = new PanelCrearActividad();
+			panelCrearActividad.refrescarLugares();
 			showPanel("crearActividad");
 		}
 		if (e.getSource() == vista.getCerrarSesionBtn()) {

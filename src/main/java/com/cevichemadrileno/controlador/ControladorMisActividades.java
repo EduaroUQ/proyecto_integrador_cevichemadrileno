@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.modelo.Inscripcion;
 import com.cevichemadrileno.vista.PanelMisActividades;
 
@@ -16,6 +17,7 @@ import com.cevichemadrileno.vista.PanelMisActividades;
  */
 public class ControladorMisActividades implements ActionListener {
 	private PanelMisActividades vista;
+	private AccesoBD accesoBD;
 	
 	/**
 	 * Constructor
@@ -23,6 +25,7 @@ public class ControladorMisActividades implements ActionListener {
 	 */
 	public ControladorMisActividades(PanelMisActividades vista) {
 		this.vista = vista;
+		this.accesoBD = new AccesoBD();
 	}
 
 	/**
@@ -35,4 +38,13 @@ public class ControladorMisActividades implements ActionListener {
 //		}
 	}
 
+	public void cargarActividadesInscritas() {
+		ArrayList<Inscripcion> actividades = accesoBD.obtenerActividadesInscritas();
+//		vista.actualizarTablaMisActividades(actividades);
+	}
+
+	public void cargarActividadesCreadas() {
+		ArrayList<Actividad> actividades = accesoBD.obtenerActividadesCreadas();
+//		vista.actualizarTablaActividadesCreadas(actividades);
+	}
 }

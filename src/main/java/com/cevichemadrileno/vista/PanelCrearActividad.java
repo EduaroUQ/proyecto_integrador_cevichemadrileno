@@ -1,12 +1,12 @@
 package com.cevichemadrileno.vista;
 
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.*;
 
 import com.cevichemadrileno.controlador.ControladorCrearActividad;
+import com.cevichemadrileno.controlador.ControladorDashboard;
 import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.util.Constantes;
 
@@ -30,10 +30,10 @@ public class PanelCrearActividad extends JPanel {
 	private JLabel errorLabel;
 	
 	private JTextField nombreTextField;
-	private JComboBox<String> dayCombo;
-	private JComboBox<String> monthCombo;
+	private JComboBox<String> diaCombo;
+	private JComboBox<String> mesCombo;
 	private JComboBox<Integer> yearCombo;
-	private JComboBox<String> hourCombo;
+	private JComboBox<String> horaCombo;
 	private JComboBox<String> minuteCombo;
 	
 	private JComboBox<String> lugarCombo;
@@ -42,10 +42,12 @@ public class PanelCrearActividad extends JPanel {
 	private JTextArea descripcionTextArea;
 
 	private JButton crearBtn;
+	private ControladorDashboard controladorDashboard;
 	private ControladorCrearActividad controladorCrearActividad;
 	
-	public PanelCrearActividad() {
+	public PanelCrearActividad(ControladorDashboard controladorDashboard) {
 		inicializarComponentes();
+		this.controladorDashboard = controladorDashboard;
 	}
 
 	private void inicializarComponentes() {
@@ -100,28 +102,28 @@ public class PanelCrearActividad extends JPanel {
 		
 		Calendar now = Calendar.getInstance();
 
-        dayCombo = new JComboBox<>();
-        dayCombo.setBounds(259, 173, 69, 26);
-        dayCombo.setBackground(Constantes.GRIS);
-        dayCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
-        dayCombo.setFont(Constantes.SANS_SERIF_14);
-        dayCombo.setForeground(Constantes.NEGRO_CLARO);
-        dayCombo.setOpaque(false);
+        diaCombo = new JComboBox<>();
+        diaCombo.setBounds(259, 173, 69, 26);
+        diaCombo.setBackground(Constantes.GRIS);
+        diaCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+        diaCombo.setFont(Constantes.SANS_SERIF_14);
+        diaCombo.setForeground(Constantes.NEGRO_CLARO);
+        diaCombo.setOpaque(false);
         for (int i = 1; i <= 31; i++) {
-            dayCombo.addItem(String.format("%02d", i));
+            diaCombo.addItem(String.format("%02d", i));
         }
-        dayCombo.setSelectedItem(String.format("%02d", now.get(Calendar.DAY_OF_MONTH)));
+        diaCombo.setSelectedItem(String.format("%02d", now.get(Calendar.DAY_OF_MONTH)));
 
-        monthCombo = new JComboBox<>();
-        monthCombo.setBounds(338, 173, 69, 26);
-        monthCombo.setBackground(Constantes.GRIS);
-        monthCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
-        monthCombo.setFont(Constantes.SANS_SERIF_14);
-        monthCombo.setForeground(Constantes.NEGRO_CLARO);
+        mesCombo = new JComboBox<>();
+        mesCombo.setBounds(338, 173, 69, 26);
+        mesCombo.setBackground(Constantes.GRIS);
+        mesCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+        mesCombo.setFont(Constantes.SANS_SERIF_14);
+        mesCombo.setForeground(Constantes.NEGRO_CLARO);
         for (int i = 1; i <= 12; i++) {
-            monthCombo.addItem(String.format("%02d", i));
+            mesCombo.addItem(String.format("%02d", i));
         }
-        monthCombo.setSelectedItem(String.format("%02d", now.get(Calendar.MONTH) + 1));
+        mesCombo.setSelectedItem(String.format("%02d", now.get(Calendar.MONTH) + 1));
         
         yearCombo = new JComboBox<>();
         yearCombo.setBounds(417, 173, 89, 26);
@@ -132,20 +134,20 @@ public class PanelCrearActividad extends JPanel {
         for (int i = 2025; i <= 2026; i++) yearCombo.addItem(i);
         yearCombo.setSelectedItem(now.get(Calendar.YEAR));
 
-        hourCombo = new JComboBox<>();
-        hourCombo.setBounds(259, 216, 148, 26);
-        hourCombo.setBackground(Constantes.GRIS);
-        hourCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
-        hourCombo.setFont(Constantes.SANS_SERIF_14);
-        hourCombo.setForeground(Constantes.NEGRO_CLARO);
-        for (int i = 9; i <= 20; i++) hourCombo.addItem(String.format("%02d", i) + ":00 - " + String.format("%02d", i+1) + ":00");
-        hourCombo.setSelectedItem(now.get(Calendar.HOUR_OF_DAY));
+        horaCombo = new JComboBox<>();
+        horaCombo.setBounds(259, 216, 148, 26);
+        horaCombo.setBackground(Constantes.GRIS);
+        horaCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
+        horaCombo.setFont(Constantes.SANS_SERIF_14);
+        horaCombo.setForeground(Constantes.NEGRO_CLARO);
+        for (int i = 9; i <= 20; i++) horaCombo.addItem(String.format("%02d", i) + ":00 - " + String.format("%02d", i+1) + ":00");
+        horaCombo.setSelectedItem(now.get(Calendar.HOUR_OF_DAY));
 
 
-        add(dayCombo);
-        add(monthCombo);
+        add(diaCombo);
+        add(mesCombo);
         add(yearCombo);
-        add(hourCombo);
+        add(horaCombo);
         
 		
 		lugarLabel = new JLabel();
@@ -161,10 +163,6 @@ public class PanelCrearActividad extends JPanel {
         lugarCombo.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
         lugarCombo.setFont(Constantes.SANS_SERIF_14);
         lugarCombo.setForeground(Constantes.NEGRO_CLARO);
-        for (Sala sala : Constantes.salas) {
-            lugarCombo.addItem(sala.getCodigoSala());
-		}
-        lugarCombo.setSelectedIndex(0);
         add(lugarCombo);
         
         
@@ -263,20 +261,20 @@ public class PanelCrearActividad extends JPanel {
 		return nombreTextField;
 	}
 
-	public JComboBox<String> getDayCombo() {
-		return dayCombo;
+	public JComboBox<String> getDiaCombo() {
+		return diaCombo;
 	}
 
-	public JComboBox<String> getMonthCombo() {
-		return monthCombo;
+	public JComboBox<String> getMesCombo() {
+		return mesCombo;
 	}
 
 	public JComboBox<Integer> getYearCombo() {
 		return yearCombo;
 	}
 
-	public JComboBox<String> getHourCombo() {
-		return hourCombo;
+	public JComboBox<String> getHoraCombo() {
+		return horaCombo;
 	}
 
 	public JComboBox<String> getMinuteCombo() {
@@ -305,5 +303,15 @@ public class PanelCrearActividad extends JPanel {
 
 	public ControladorCrearActividad getControladorCrearActividad() {
 		return controladorCrearActividad;
+	}
+
+
+
+	public void refrescarLugares() {
+		lugarCombo.removeAllItems();
+		for (Sala sala : Constantes.salas) {
+			lugarCombo.addItem(sala.getCodigoSala());
+		}
+		lugarCombo.setSelectedIndex(0);
 	}
 }

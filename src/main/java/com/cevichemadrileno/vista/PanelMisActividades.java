@@ -9,6 +9,7 @@ import java.util.Locale;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import com.cevichemadrileno.controlador.ControladorDashboard;
 import com.cevichemadrileno.controlador.ControladorMisActividades;
 import com.cevichemadrileno.modelo.*;
 import com.cevichemadrileno.util.Constantes;
@@ -29,11 +30,13 @@ public class PanelMisActividades extends JPanel {
 	private JScrollPane actividadesCreadasScrollPanel;
 	private JTable actividadesInscritasTable;
 	private JTable actividadesCreadasTable;
+	private ControladorDashboard controladorDashboard;
 	private ControladorMisActividades controladorMisActividades;
 	private ArrayList<Inscripcion> actividadesInscritas = new ArrayList<Inscripcion>();
 	private ArrayList<Actividad> actividadesCreadas = new ArrayList<Actividad>();
 
-	public PanelMisActividades() {
+	public PanelMisActividades(ControladorDashboard controladorDashboard) {
+		this.controladorDashboard = controladorDashboard;
 		// datos de prueba
 		Actividad actividad = new Actividad(1, 1, 1, "Actividad de prueba", "Descripcion de prueba", 10, new Timestamp(0), null);
 		Sala sala = new Sala(1, "B312", 10, "Salon de clase");
@@ -136,9 +139,47 @@ public class PanelMisActividades extends JPanel {
 	/**
 	 * Getters
 	 */
-	
+	public JLabel getTituloLabel() {
+		return tituloLabel;
+	}
 
-	
-	
-	
+	public JLabel getActividadesInscritasLabel() {
+		return actividadesInscritasLabel;
+	}
+
+	public JLabel getActividadesCreadasLabel() {
+		return actividadesCreadasLabel;
+	}
+
+	public JScrollPane getActividadesInscritasScrollPanel() {
+		return actividadesInscritasScrollPanel;
+	}
+
+	public JScrollPane getActividadesCreadasScrollPanel() {
+		return actividadesCreadasScrollPanel;
+	}
+
+	public JTable getActividadesInscritasTable() {
+		return actividadesInscritasTable;
+	}
+
+	public JTable getActividadesCreadasTable() {
+		return actividadesCreadasTable;
+	}
+
+	public ControladorDashboard getControladorDashboard() {
+		return controladorDashboard;
+	}
+
+	public ControladorMisActividades getControladorMisActividades() {
+		return controladorMisActividades;
+	}
+
+	public ArrayList<Inscripcion> getActividadesInscritas() {
+		return actividadesInscritas;
+	}
+
+	public ArrayList<Actividad> getActividadesCreadas() {
+		return actividadesCreadas;
+	}
 }

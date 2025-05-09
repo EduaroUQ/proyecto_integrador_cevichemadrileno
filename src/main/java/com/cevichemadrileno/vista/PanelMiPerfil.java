@@ -2,6 +2,7 @@ package com.cevichemadrileno.vista;
 
 import javax.swing.*;
 
+import com.cevichemadrileno.controlador.ControladorDashboard;
 import com.cevichemadrileno.util.Constantes;
 
 /**
@@ -21,9 +22,12 @@ public class PanelMiPerfil extends JPanel {
 	private JLabel nombreApellidosValueLabel;
 	private JLabel matriculaValueLabel;
 	private JLabel cicloValueLabel;
+
+	private ControladorDashboard controladorDashboard;
 	
-	public PanelMiPerfil() {
+	public PanelMiPerfil(ControladorDashboard controladorDashboard) {
 		inicializarComponentes();
+		this.controladorDashboard = controladorDashboard;
 	}
 
 	private void inicializarComponentes() {
