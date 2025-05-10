@@ -224,34 +224,6 @@ public class PanelEditarActividad extends JPanel {
 	/**
 	 * Getters
 	 */
-	public JLabel getTituloLabel() {
-		return tituloLabel;
-	}
-
-	public JLabel getNombreLabel() {
-		return nombreLabel;
-	}
-
-	public JLabel getFechaLabel() {
-		return fechaLabel;
-	}
-
-	public JLabel getHoraLabel() {
-		return horaLabel;
-	}
-
-	public JLabel getLugarLabel() {
-		return lugarLabel;
-	}
-
-	public JLabel getNroMaximoInscritosLabel() {
-		return nroMaximoInscritosLabel;
-	}
-
-	public JLabel getDescripcionLabel() {
-		return descripcionLabel;
-	}
-
 	public JLabel getErrorLabel() {
 		return errorLabel;
 	}

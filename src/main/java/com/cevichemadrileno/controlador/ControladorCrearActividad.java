@@ -95,7 +95,18 @@ public class ControladorCrearActividad implements ActionListener {
 
 			accesoBD.registrarActividad(actividad);
 
-			JOptionPane.showMessageDialog(vista, "Actividad creada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+			int resultado = JOptionPane.showConfirmDialog(
+					vista,
+					"Actividad creada con éxito",
+					"Éxito",
+					JOptionPane.DEFAULT_OPTION,
+					JOptionPane.INFORMATION_MESSAGE
+			);
+
+			if (resultado == JOptionPane.OK_OPTION || resultado == JOptionPane.CLOSED_OPTION) {
+				vista.getControladorDashboard().showPanel("misActividades", null);
+			}
+
 
 		}
 	}

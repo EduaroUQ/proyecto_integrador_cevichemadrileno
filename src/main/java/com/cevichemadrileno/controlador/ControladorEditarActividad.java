@@ -95,7 +95,17 @@ public class ControladorEditarActividad implements ActionListener {
 
 			accesoBD.actualizarActividad(actividad);
 
-			JOptionPane.showMessageDialog(vista, "Actividad actualizada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+			int resultado = JOptionPane.showConfirmDialog(
+					vista,
+					"Actividad actualizada con éxito",
+					"Éxito",
+					JOptionPane.DEFAULT_OPTION,
+					JOptionPane.INFORMATION_MESSAGE
+			);
+
+			if (resultado == JOptionPane.OK_OPTION || resultado == JOptionPane.CLOSED_OPTION) {
+				vista.getControladorDashboard().showPanel("misActividades", null);
+			}
 
 		}
 	}

@@ -221,7 +221,6 @@ public class PanelCrearActividad extends JPanel {
 	}
 
 
-
 	/**
 	 * Getters
 	 */
@@ -301,9 +300,14 @@ public class PanelCrearActividad extends JPanel {
 		return crearBtn;
 	}
 
+	public ControladorDashboard getControladorDashboard() {
+		return controladorDashboard;
+	}
+
 	public ControladorCrearActividad getControladorCrearActividad() {
 		return controladorCrearActividad;
 	}
+
 
 
 

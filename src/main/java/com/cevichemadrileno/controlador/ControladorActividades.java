@@ -30,9 +30,6 @@ public class ControladorActividades implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-//		if (e.getSource() == vista.getVolverLinkBtn()) {
-//			vista.getControladorPrincipal().showPanel("login");
-//		}
 	}
 
 	public void cargarActividades(){

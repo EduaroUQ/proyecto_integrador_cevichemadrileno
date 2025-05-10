@@ -23,6 +23,7 @@ public class ControladorDashboard implements ActionListener {
 	private PanelActividades panelActividades;
 	private PanelCrearActividad panelCrearActividad;
 	private PanelEditarActividad panelEditarActividad;
+	private PanelDetalleActividad panelDetalleActividad;
 
 	/**
 	 * Constructor
@@ -35,6 +36,7 @@ public class ControladorDashboard implements ActionListener {
 		panelMisActividades = new PanelMisActividades(this);
 		panelCrearActividad = new PanelCrearActividad(this);
 		panelEditarActividad = new PanelEditarActividad(this);
+		panelDetalleActividad = new PanelDetalleActividad(this);
 	}
 
 	/**
@@ -66,7 +68,7 @@ public class ControladorDashboard implements ActionListener {
 
 	/**
 	 * Cambia el panel que se muestra en el dashboard
-	 * @param nombre Nombre del panel a mostrar
+	 * @param nombre nombre del panel a mostrar
 	 */
 	public void showPanel(String nombre, Integer idActividad_ParametroOpcional) {
 		if (nombre.equals("miPerfil")) {
@@ -96,6 +98,11 @@ public class ControladorDashboard implements ActionListener {
 			panelEditarActividad.refrescarLugares();
 			vista.getMainContentScrollPanel().setViewportView(panelEditarActividad);
 			panelEditarActividad.getControladorEditarActividad().cargarDatosActividad(idActividad_ParametroOpcional);
+		}
+		if (nombre.equals("detalleActividad")){
+			System.out.println("Cambio de panel a detalleActividad");
+			vista.getMainContentScrollPanel().setViewportView(panelDetalleActividad);
+			panelDetalleActividad.getControladorDetalleActividad().cargarDetalleActividad(idActividad_ParametroOpcional);
 		}
 	}
 }

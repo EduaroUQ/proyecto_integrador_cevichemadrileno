@@ -9,6 +9,8 @@ import com.cevichemadrileno.controlador.ControladorDashboard;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.util.Constantes;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import static com.cevichemadrileno.vista.PanelMisActividades.obtenerDiaSemana;
@@ -50,13 +52,33 @@ public class PanelActividades extends JPanel {
 
 
 		actividadesTable = new JTable();
+		actividadesTable.setTableHeader(null);
+		actividadesTable.setFont(Constantes.SANS_SERIF_12);
+		actividadesTable.setRowHeight(Constantes.ALTURA_FILAS_TABLA);
+		actividadesTable.setShowGrid(false);
+		actividadesTable.setBorder(null);
+
+		// Crear escuchador de click en los botones de accion
+		actividadesTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = actividadesTable.rowAtPoint(e.getPoint());
+				int column = actividadesTable.columnAtPoint(e.getPoint());
+				if (column == 4) {
+					Integer idActividad = (Integer) actividadesTable.getValueAt(row, 5);
+					System.out.println("Ver más detalle de actividad con id: "+ idActividad);
+					controladorDashboard.showPanel("detalleActividad", idActividad);
+				}
+			}
+		});
+
 		actividadesScrollPane = new JScrollPane(actividadesTable);
 		actividadesScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		actividadesScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		actividadesScrollPane.setBackground(Constantes.GRIS);
 		actividadesScrollPane.setForeground(Constantes.GRIS);
-		actividadesScrollPane.setBorder(null);
-		actividadesScrollPane.setBounds(45,145,620,183);
+		actividadesScrollPane.setBorder(BorderFactory.createEmptyBorder());
+		actividadesScrollPane.setBounds(45,145,620,250);
 
 		add(actividadesScrollPane);
 	}
@@ -90,7 +112,7 @@ public class PanelActividades extends JPanel {
 	 * @param actividades
 	 */
 	public void actualizarTablaActividades(ArrayList<Actividad> actividades) {
-		String[] columnas = {"Nombre", "Dia", "Horario", "Lugar", "Accion"};
+		String[] columnas = {"Nombre", "Dia", "Horario", "Lugar", "Accion", "idActividad"};
 		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0){
 			// Esto es para que la tabla no sea editable
 			@Override
@@ -104,13 +126,19 @@ public class PanelActividades extends JPanel {
 					actividad.getNombre(),
 					obtenerDiaSemana(actividad.getFecha()),
 					obtenerHora(actividad.getFecha()),
-					actividad.getSala().getCodigoSala(),
-					"Ver más"
+					actividad.getSala().getTipoSala(),
+					"Ver más",
+					actividad.getId()
 			};
 			modeloTabla.addRow(row);
 		}
 
 		actividadesTable.setModel(modeloTabla);
+		// Ocultar la columna de idActividad
+		actividadesTable.getColumnModel().getColumn(5).setMinWidth(0);
+		actividadesTable.getColumnModel().getColumn(5).setMaxWidth(0);
+		actividadesTable.getColumnModel().getColumn(5).setWidth(0);
+
 		actividadesScrollPane.setViewportView(actividadesTable);
 		revalidate();
 		repaint();

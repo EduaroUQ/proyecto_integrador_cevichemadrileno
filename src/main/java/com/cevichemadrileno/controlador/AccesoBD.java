@@ -156,7 +156,7 @@ public class AccesoBD {
     }
 
     public ArrayList<Actividad> obtenerActividades() {
-        String query = "SELECT a.id, a.id_monitor, a.nombre, a.id_sala, a.descripcion, a.nroMaximoInscritos, a.fecha, s.codigoSala, s.capacidad, s.tipoSala FROM actividad a, sala s where a.id_sala = s.id";
+        String query = "SELECT a.id, a.nombre, a.descripcion, a.nroMaximoInscritos, a.fecha, s.codigoSala, s.tipoSala FROM actividad a, sala s where a.id_sala = s.id";
         ArrayList<Actividad> actividades = new ArrayList<>();
 
         try (
@@ -167,18 +167,14 @@ public class AccesoBD {
             while (rs.next()) {
                 Actividad actividad = new Actividad();
                 actividad.setId(rs.getInt("id"));
-                actividad.setIdMonitor(rs.getInt("id_monitor"));
                 actividad.setNombre(rs.getString("nombre"));
-                actividad.setIdSala(rs.getInt("id_sala"));
                 actividad.setDescripcion(rs.getString("descripcion"));
                 actividad.setNroMaximoInscritos(rs.getInt("nroMaximoInscritos"));
                 actividad.setFecha(rs.getTimestamp("fecha"));
 
                 // Crear y asociar la sala
                 Sala sala = new Sala();
-                sala.setId(rs.getInt("id_sala"));
                 sala.setCodigoSala(rs.getString("codigoSala"));
-                sala.setCapacidad(rs.getInt("capacidad"));
                 sala.setTipoSala(rs.getString("tipoSala"));
 
                 actividad.setSala(sala);
@@ -225,7 +221,7 @@ public class AccesoBD {
     }
 
     public ArrayList<Actividad> obtenerActividadesCreadas() {
-        String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.codigoSala as codigoSala  from ACTIVIDAD a, SALA s where a.id_sala = s.id and a.id_monitor = ?";
+        String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala as tipoSala  from ACTIVIDAD a, SALA s where a.id_sala = s.id and a.id_monitor = ?";
         ArrayList<Actividad> actividadesCreadas = new ArrayList<>();
 
         try (
@@ -241,7 +237,7 @@ public class AccesoBD {
                 actividad.setFecha(rs.getTimestamp("fechaActividad"));
 
                 Sala sala = new Sala();
-                sala.setCodigoSala(rs.getString("codigoSala"));
+                sala.setTipoSala(rs.getString("tipoSala"));
 
                 actividad.setSala(sala);
                 actividadesCreadas.add(actividad);
@@ -343,6 +339,60 @@ public class AccesoBD {
             e.printStackTrace();
         }
         return actividad;
+    }
+
+    public Actividad obtenerDetalleActividadPorId(Integer idActividad) {
+        String query = "select a.id, a.nombre, a.descripcion, a.nroMaximoInscritos - (select count(*) from inscripcion i where i.id_actividad = a.id) as nroPlazasDisponibles, a.nroMaximoInscritos , s.tipoSala, u.nombreApellidos from ACTIVIDAD a, USUARIO u, SALA s where a.id_monitor = u.id and a.id_sala = s.id and a.id = ?";
+        Actividad actividad = new Actividad();
+
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setInt(1, idActividad);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                actividad.setId(rs.getInt("id"));
+                actividad.setNombre(rs.getString("nombre"));
+                actividad.setDescripcion(rs.getString("descripcion"));
+                actividad.setNroMaximoInscritos(rs.getInt("nroMaximoInscritos"));
+                actividad.setNroPlazasDisponibles(rs.getInt("nroPlazasDisponibles"));
+
+                // Crear y asociar la sala
+                Sala sala = new Sala();
+                sala.setTipoSala(rs.getString("tipoSala"));
+
+                actividad.setSala(sala);
+
+                // Crear y asociar el monitor
+                Usuario monitor = new Usuario();
+                monitor.setNombreApellidos(rs.getString("nombreApellidos"));
+
+                actividad.setMonitor(monitor);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener el detalle de la actividad por id");
+            e.printStackTrace();
+        }
+        return actividad;
+    }
+
+    public void inscribirseEnActividad(Integer idActividad) {
+        String query = "INSERT INTO INSCRIPCION(id_usuario, id_actividad) VALUES(?, ?)";
+
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmtUsuario = con.prepareStatement(query);
+        ) {
+
+            pstmtUsuario.setInt(1, Constantes.usuarioAutenticado.getId());
+            pstmtUsuario.setInt(2, idActividad);
+            pstmtUsuario.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
 
