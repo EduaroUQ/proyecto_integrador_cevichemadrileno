@@ -13,7 +13,7 @@ import com.cevichemadrileno.util.Constantes;
 import com.cevichemadrileno.vista.PanelCrearActividad;
 
 /**
- * Controlador del panel de actividades
+ * Controlador del panel de crear actividad
  *
  * @author Cristhian C.
  * @author Eduardo U.
@@ -33,6 +33,8 @@ public class ControladorCrearActividad implements ActionListener {
 	}
 
 	/**
+	 *  Recibe los eventos de los botones
+	 *  @param e: evento
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

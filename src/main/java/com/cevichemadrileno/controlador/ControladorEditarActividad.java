@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 
 /**
- * Controlador del panel de actividades
+ * Controlador del panel de editar actividad
  *
  * @author Cristhian C.
  * @author Eduardo U.
@@ -33,9 +33,14 @@ public class ControladorEditarActividad implements ActionListener {
 	}
 
 	/**
+	 *  Recibe los eventos de los botones
+	 *  @param e: evento
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == vista.getVolverLinkBtn()) {
+			vista.getControladorDashboard().showPanel("misActividades", null);
+		}
 		if (e.getSource() == vista.getEditarBtn()) {
 
 			String nombreActividad = vista.getNombreTextField().getText();

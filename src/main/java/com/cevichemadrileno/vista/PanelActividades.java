@@ -30,12 +30,19 @@ public class PanelActividades extends JPanel {
 	private JTable actividadesTable;
 	private ControladorDashboard controladorDashboard;
 	private ControladorActividades controladorActividades;
-	
+
+	/**
+	 * Constructor
+	 * @param controladorDashboard
+	 */
 	public PanelActividades(ControladorDashboard controladorDashboard) {
 		inicializarComponentes();
 		this.controladorDashboard = controladorDashboard;
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void inicializarComponentes() {
 		setBackground(Constantes.GRIS);
 		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
@@ -87,22 +94,6 @@ public class PanelActividades extends JPanel {
 	/**
 	 * Getters
 	 */
-	public JLabel getTituloLabel() {
-		return tituloLabel;
-	}
-
-	public JScrollPane getActividadesScrollPane() {
-		return actividadesScrollPane;
-	}
-
-	public JTable getActividadesTable() {
-		return actividadesTable;
-	}
-
-	public ControladorDashboard getControladorDashboard() {
-		return controladorDashboard;
-	}
-
 	public ControladorActividades getControladorActividades() {
 		return controladorActividades;
 	}

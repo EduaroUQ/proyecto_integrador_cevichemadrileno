@@ -34,6 +34,8 @@ public class ControladorDetalleActividad implements ActionListener {
 	}
 
 	/**
+	 * Recibe los eventos de los botones
+	 * @param e: evento
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -41,8 +43,34 @@ public class ControladorDetalleActividad implements ActionListener {
 			vista.getControladorDashboard().showPanel("actividades", null);
 		}
 		if (e.getSource() == vista.getInscribirseBtn()) {
-			// TODO: validacion de ya estar inscrito en actividad
-			// TODO: validacion de monitor no puede inscribirse en sus propias actividades
+			System.out.println("Inscribirse en actividad");
+			if (actividad.getIdMonitor() == Constantes.usuarioAutenticado.getId()) {
+				JOptionPane.showMessageDialog(
+					vista,
+					"No puedes inscribirte en tu propia actividad",
+					"Error",
+					JOptionPane.ERROR_MESSAGE
+				);
+				return;
+			}
+			if (actividad.getNroPlazasDisponibles() <= 0) {
+				JOptionPane.showMessageDialog(
+					vista,
+					"No hay plazas disponibles",
+					"Error",
+					JOptionPane.ERROR_MESSAGE
+				);
+				return;
+			}
+			if (accesoBD.usuarioYaInscritoEnActividad(actividad.getId())) {
+				JOptionPane.showMessageDialog(
+					vista,
+					"Ya estás inscrito en esta actividad",
+					"Error",
+					JOptionPane.ERROR_MESSAGE
+				);
+				return;
+			}
 			accesoBD.inscribirseEnActividad(actividad.getId());
 
 			int resultado = JOptionPane.showConfirmDialog(
@@ -60,6 +88,10 @@ public class ControladorDetalleActividad implements ActionListener {
 		}
 	}
 
+	/**
+	 * Carga los detalles de la actividad
+	 * @param idActividad: numero entero con el id de la actividad
+	 */
 	public void cargarDetalleActividad(Integer idActividad) {
 		actividad = accesoBD.obtenerDetalleActividadPorId(idActividad);
 		vista.getNombreActividadLabel().setText(actividad.getNombre());

@@ -17,6 +17,7 @@ import com.cevichemadrileno.vista.PanelActividades;
 public class ControladorActividades implements ActionListener {
 	private PanelActividades vista;
 	private AccesoBD accesoBD;
+
 	/**
 	 * Constructor
 	 * @param vista
@@ -26,12 +27,13 @@ public class ControladorActividades implements ActionListener {
 		accesoBD = new AccesoBD();
 	}
 
-	/**
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	}
 
+	/**
+	 * Carga las actividades disponibles
+	 */
 	public void cargarActividades(){
 		ArrayList<Actividad> actividades = accesoBD.obtenerActividades();
 		vista.actualizarTablaActividades(actividades);

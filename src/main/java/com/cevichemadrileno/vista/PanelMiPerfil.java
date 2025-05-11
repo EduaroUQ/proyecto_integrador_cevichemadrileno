@@ -24,12 +24,19 @@ public class PanelMiPerfil extends JPanel {
 	private JLabel cicloValueLabel;
 
 	private ControladorDashboard controladorDashboard;
-	
+
+	/**
+	 * Constructor
+	 * @param controladorDashboard
+	 */
 	public PanelMiPerfil(ControladorDashboard controladorDashboard) {
 		inicializarComponentes();
 		this.controladorDashboard = controladorDashboard;
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void inicializarComponentes() {
 		setBackground(Constantes.GRIS);
 		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
@@ -85,12 +92,4 @@ public class PanelMiPerfil extends JPanel {
 		add(cicloValueLabel);
 	}
 
-	/**
-	 * Getters
-	 */
-	
-
-	
-	
-	
 }

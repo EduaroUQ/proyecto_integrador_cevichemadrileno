@@ -27,6 +27,8 @@ public class ControladorRegistro implements ActionListener {
 	}
 
 	/**
+	 * Recibe los eventos de los botones
+	 * @param e: evento
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -15,8 +15,9 @@ import javax.swing.*;
  */
 @SuppressWarnings("serial")
 public class PanelDetalleActividad extends JPanel {
-	// JLabels de texto fijo
 	private JButton volverLinkBtn;
+
+	// JLabels de texto fijo
 	private JLabel textoDetalleActividadLabel;
 	private JLabel textoPlazasDisponiblesLabel;
 	private JLabel textoUbicacionLabel;
@@ -174,39 +175,27 @@ public class PanelDetalleActividad extends JPanel {
 	public JButton getVolverLinkBtn() {
 		return volverLinkBtn;
 	}
-
 	public JLabel getNombreActividadLabel() {
 		return nombreActividadLabel;
 	}
-
 	public JLabel getPlazasDisponiblesLabel() {
 		return plazasDisponiblesLabel;
 	}
-
 	public JLabel getUbicacionLabel() {
 		return ubicacionLabel;
 	}
-
-	public JLabel getDuracionLabel() {
-		return duracionLabel;
-	}
-
 	public JLabel getDescripcionLabel() {
 		return descripcionLabel;
 	}
-
 	public JLabel getInstructorLabel() {
 		return instructorLabel;
 	}
-
 	public JButton getInscribirseBtn() {
 		return inscribirseBtn;
 	}
-
 	public ControladorDashboard getControladorDashboard() {
 		return controladorDashboard;
 	}
-
 	public ControladorDetalleActividad getControladorDetalleActividad() {
 		return controladorDetalleActividad;
 	}

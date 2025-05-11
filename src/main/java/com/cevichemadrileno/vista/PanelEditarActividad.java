@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.util.Calendar;
 
 /**
- * Panel de crear actividad
+ * Panel de editar actividad
  *
  * @author Cristhian C.
  * @author Eduardo U.
@@ -18,8 +18,9 @@ import java.util.Calendar;
  */
 @SuppressWarnings("serial")
 public class PanelEditarActividad extends JPanel {
-	private JLabel tituloLabel;
+	private JButton volverLinkBtn;
 
+	private JLabel tituloLabel;
 	private JLabel nombreLabel;
 	private JLabel fechaLabel;
 	private JLabel horaLabel;
@@ -44,17 +45,37 @@ public class PanelEditarActividad extends JPanel {
 	private ControladorDashboard controladorDashboard;
 	private ControladorEditarActividad controladorEditarActividad;
 
+	/**
+	 * Constructor
+	 * @param controladorDashboard
+	 */
 	public PanelEditarActividad(ControladorDashboard controladorDashboard) {
 		inicializarComponentes();
 		this.controladorDashboard = controladorDashboard;
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void inicializarComponentes() {
 		setBackground(Constantes.GRIS);
 		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
 		setLayout(null);
 
 		controladorEditarActividad = new ControladorEditarActividad(this);
+
+		volverLinkBtn = new JButton();
+		volverLinkBtn.setText("Volver");
+		volverLinkBtn.setBounds(1,1,101,40);
+		volverLinkBtn.setFont(Constantes.SANS_SERIF_18);
+		volverLinkBtn.setForeground(Constantes.CELESTE_OSCURO);
+		volverLinkBtn.setBackground(null);
+		volverLinkBtn.setContentAreaFilled(false);
+		volverLinkBtn.setBorderPainted(false);
+		volverLinkBtn.setFocusPainted(false);
+		volverLinkBtn.setOpaque(false);
+		volverLinkBtn.addActionListener(controladorEditarActividad);
+		add(volverLinkBtn);
 		
 		tituloLabel = new JLabel();
 		tituloLabel.setText("Editar Actividad");
@@ -277,8 +298,13 @@ public class PanelEditarActividad extends JPanel {
 	public ControladorEditarActividad getControladorEditarActividad() {
 		return controladorEditarActividad;
 	}
+	public JButton getVolverLinkBtn() {
+		return volverLinkBtn;
+	}
 
-
+	/**
+	 * Actualiza el combo de lugares
+	 */
 	public void refrescarLugares() {
 		lugarCombo.removeAllItems();
 		for (Sala sala : Constantes.salas) {

@@ -34,11 +34,18 @@ public class PanelMisActividades extends JPanel {
 	private ControladorDashboard controladorDashboard;
 	private ControladorMisActividades controladorMisActividades;
 
+	/**
+	 * Constructor
+	 * @param controladorDashboard
+	 */
 	public PanelMisActividades(ControladorDashboard controladorDashboard) {
 		this.controladorDashboard = controladorDashboard;
 		inicializarComponentes();
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void inicializarComponentes() {
 		setBackground(Constantes.GRIS);
 		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
@@ -148,6 +155,12 @@ public class PanelMisActividades extends JPanel {
 		
 	}
 
+	/**
+	 * Obtiene el dia de la semana a partir de una fecha
+	 *
+	 * @param date
+	 * @return string con el dia de la semana en uppercase y en español
+	 */
 	public static String obtenerDiaSemana(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("EEEE", new Locale("es", "ES"));
 		String dia = sdf.format(date);
@@ -155,6 +168,12 @@ public class PanelMisActividades extends JPanel {
 	}
 
 
+	/**
+	 * Obtiene la hora a partir de una fecha
+	 *
+	 * @param date
+	 * @return string con la hora formateada en formato HH:MM - HH:MM
+	 */
 	public static String obtenerHora(Date date) {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH", new Locale("es", "ES"));
 		int hora = Integer.parseInt(simpleDateFormat.format(date));
@@ -166,42 +185,15 @@ public class PanelMisActividades extends JPanel {
 	/**
 	 * Getters
 	 */
-	public JLabel getTituloLabel() {
-		return tituloLabel;
-	}
-
-	public JLabel getActividadesInscritasLabel() {
-		return actividadesInscritasLabel;
-	}
-
-	public JLabel getActividadesCreadasLabel() {
-		return actividadesCreadasLabel;
-	}
-
-	public JScrollPane getActividadesInscritasScrollPane() {
-		return actividadesInscritasScrollPane;
-	}
-
-	public JScrollPane getActividadesCreadasScrollPane() {
-		return actividadesCreadasScrollPane;
-	}
-
-	public JTable getActividadesInscritasTable() {
-		return actividadesInscritasTable;
-	}
-
-	public JTable getActividadesCreadasTable() {
-		return actividadesCreadasTable;
-	}
-
-	public ControladorDashboard getControladorDashboard() {
-		return controladorDashboard;
-	}
-
 	public ControladorMisActividades getControladorMisActividades() {
 		return controladorMisActividades;
 	}
 
+	/**
+	 * Actualiza el contenido de la tabla de actividades inscritas
+	 *
+	 * @param actividadesInscritas
+	 */
 	public void actualizarTablaActividadesInscritas(ArrayList<Inscripcion> actividadesInscritas) {
 		String[] columnas = {"Nombre", "Dia", "Hora", "Lugar", "Desinscribirse", "idActividad oculta"};
 		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0){
@@ -235,6 +227,11 @@ public class PanelMisActividades extends JPanel {
 		repaint();
 	}
 
+	/**
+	 * Actualiza el contenido de la tabla de actividades creadas
+	 *
+	 * @param actividadesCreadas
+	 */
 	public void actualizarTablaActividadesCreadas(ArrayList<Actividad> actividadesCreadas){
 		String[] columnas = {"Nombre", "Dia", "Horario", "Lugar", "Editar", "Eliminar", "idActividad oculta"};
 		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0){

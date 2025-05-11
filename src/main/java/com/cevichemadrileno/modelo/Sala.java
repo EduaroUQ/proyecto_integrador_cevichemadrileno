@@ -35,31 +35,24 @@ public class Sala {
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getCodigoSala() {
 		return codigoSala;
 	}
-
 	public void setCodigoSala(String codigoSala) {
 		this.codigoSala = codigoSala;
 	}
-
 	public Integer getCapacidad() {
 		return capacidad;
 	}
-
 	public void setCapacidad(Integer capacidad) {
 		this.capacidad = capacidad;
 	}
-
 	public String getTipoSala() {
 		return tipoSala;
 	}
-
 	public void setTipoSala(String tipoSala) {
 		this.tipoSala = tipoSala;
 	}

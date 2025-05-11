@@ -20,7 +20,6 @@ import javax.swing.border.Border;
 public class Constantes {
 	public static final int ANCHURA_APLICACION = 840;
 	public static final int ALTURA_APLICACION = 620;
-	public static final int ANCHURA_SIDEBAR = 120;
 	public static final int ANCHURA_DASHBOARD = 720;
 	public static final String TITULO_APLICACION = "Ceviche Madrileño";
 	public static final Color AZUL_OSCURO = new Color(2,48,71);
@@ -32,7 +31,6 @@ public class Constantes {
 	public static final Color GRIS = new Color(237,234,233);
 
 	public static final Font SANS_SERIF_34 = new Font("SansSerif", Font.PLAIN, 34);
-	public static final Font SANS_SERIF_22 = new Font("SansSerif", Font.PLAIN, 22);
 	public static final Font SANS_SERIF_20 = new Font("SansSerif", Font.PLAIN, 20);
 	public static final Font SANS_SERIF_18 = new Font("SansSerif", Font.PLAIN, 18);
 	public static final Font SANS_SERIF_18_NEGRITA = new Font("SansSerif", Font.BOLD, 18);
@@ -41,6 +39,7 @@ public class Constantes {
 	public static final Font SANS_SERIF_14 = new Font("SansSerif", Font.PLAIN, 14);
 	public static final Font SANS_SERIF_12 = new Font("SansSerif", Font.PLAIN, 12);
 	public static final int ALTURA_FILAS_TABLA = 30;
+
 	public static final Border BORDE_INPUT_ESTILO_1 = BorderFactory.createCompoundBorder(
 	    new RoundedBorder(15, 3, new Color(60,103,184)),
 	    BorderFactory.createEmptyBorder(0, 10, 0, 10)
@@ -51,7 +50,13 @@ public class Constantes {
 		);
 	public static final String[] CICLOS = { "DAW", "DAM", "ASIR", "A3D","EI","CI" };
 
+	/**
+	 * Variable globalmente accesible que almacena el usuario autenticado en toda la sesión
+	 */
 	public static Usuario usuarioAutenticado;
+	/**
+	 * Variable globalmente accesible que almacena la lista de salas
+	 */
 	public static ArrayList<Sala> salas = new ArrayList<>();
 
 }

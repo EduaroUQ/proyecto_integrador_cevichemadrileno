@@ -40,7 +40,8 @@ public class ControladorDashboard implements ActionListener {
 	}
 
 	/**
-	 * Inicializa los listeners de los botones
+	 *  Recibe los eventos de los botones
+	 *  @param e: evento
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -57,7 +58,10 @@ public class ControladorDashboard implements ActionListener {
 			showPanel("crearActividad",null);
 		}
 		if (e.getSource() == vista.getCerrarSesionBtn()) {
-			// Cerrar JFrame contenedor del panel
+			/**
+			 * Cerrar JFrame contenedor del panel
+			 */
+			// Obtener el JFrame padre del panel y cerrarlo
 			Window window = SwingUtilities.getWindowAncestor(vista);
 			window.dispose();
 			// Reiniciar la aplicación

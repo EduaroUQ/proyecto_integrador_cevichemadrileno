@@ -113,7 +113,9 @@ public class AccesoBD {
         }
     }
 
-
+    /**
+     * Carga las salas de la base de datos
+     */
     public void cargarSalas() {
         String query = "SELECT * FROM sala";
         try (
@@ -135,6 +137,10 @@ public class AccesoBD {
         }
     }
 
+    /**
+     * Registra una actividad en la base de datos
+     * @param actividad
+     */
     public void registrarActividad(Actividad actividad) {
         String query = "INSERT INTO actividad(id_monitor, id_sala, nombre, descripcion, nroMaximoInscritos, fecha) VALUES(?, ?, ?, ?, ?, ?)";
 
@@ -155,6 +161,10 @@ public class AccesoBD {
         }
     }
 
+    /**
+     * Obtiene todas las actividades de la base de datos
+     * @return ArrayList<Actividad>
+     */
     public ArrayList<Actividad> obtenerActividades() {
         String query = "SELECT a.id, a.nombre, a.descripcion, a.nroMaximoInscritos, a.fecha, s.codigoSala, s.tipoSala FROM actividad a, sala s where a.id_sala = s.id";
         ArrayList<Actividad> actividades = new ArrayList<>();
@@ -188,6 +198,10 @@ public class AccesoBD {
         return actividades;
     }
 
+    /**
+     * Obtiene las actividades inscritas por el usuario autenticado
+     * @return ArrayList<Inscripcion>
+     */
     public ArrayList<Inscripcion> obtenerActividadesInscritas() {
         String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala as tipoSala  from INSCRIPCION i , SALA s, ACTIVIDAD a where i.id_actividad = a.id and s.id = a.id_sala and i.id_usuario = ?";
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
@@ -220,6 +234,10 @@ public class AccesoBD {
         return inscripciones;
     }
 
+    /**
+     * Obtiene las actividades creadas por el monitor autenticado
+     * @return ArrayList<Actividad>
+     */
     public ArrayList<Actividad> obtenerActividadesCreadas() {
         String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala as tipoSala  from ACTIVIDAD a, SALA s where a.id_sala = s.id and a.id_monitor = ?";
         ArrayList<Actividad> actividadesCreadas = new ArrayList<>();
@@ -249,6 +267,10 @@ public class AccesoBD {
         return actividadesCreadas;
     }
 
+    /**
+     * Desinscribe al usuario autenticado de una actividad
+     * @param idActividad
+     */
     public void desinscribirseDeActividad(Integer idActividad) {
         String query = "DELETE FROM INSCRIPCION WHERE id_actividad = ? AND id_usuario = ?";
         try (
@@ -264,6 +286,10 @@ public class AccesoBD {
         }
     }
 
+    /**
+     * Elimina una actividad de la base de datos y sus inscripciones
+     * @param idActividad
+     */
     public void eliminarActividad(Integer idActividad) {
         String query = "DELETE FROM ACTIVIDAD WHERE id = ?";
         try (
@@ -285,6 +311,10 @@ public class AccesoBD {
         }
     }
 
+    /**
+     * Actualiza una actividad en la base de datos
+     * @param actividad
+     */
     public void actualizarActividad(Actividad actividad) {
         String query = "UPDATE actividad SET id_monitor=?, id_sala=?, nombre=?, descripcion=?, nroMaximoInscritos=?, fecha=? WHERE id=?";
 
@@ -306,7 +336,12 @@ public class AccesoBD {
         }
     }
 
-    public Actividad obtenerActividadPorId(Integer idActividadParametroOpcional) {
+    /**
+     * Obtiene una actividad por su id
+     * @param idActividad
+     * @return Actividad
+     */
+    public Actividad obtenerActividadPorId(Integer idActividad) {
         String query = "SELECT a.id, a.id_monitor, a.nombre, a.id_sala, a.descripcion, a.nroMaximoInscritos, a.fecha, s.codigoSala, s.capacidad, s.tipoSala FROM actividad a, sala s where a.id_sala = s.id and a.id = ?";
         Actividad actividad = new Actividad();
 
@@ -314,7 +349,7 @@ public class AccesoBD {
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
             PreparedStatement pstmt = con.prepareStatement(query)
         ) {
-            pstmt.setInt(1, idActividadParametroOpcional);
+            pstmt.setInt(1, idActividad);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 actividad.setId(rs.getInt("id"));
@@ -341,6 +376,11 @@ public class AccesoBD {
         return actividad;
     }
 
+    /**
+     * Obtiene el detalle de una actividad por su id, consultando a las tablas actividad, sala y usuario
+     * @param idActividad
+     * @return Actividad
+     */
     public Actividad obtenerDetalleActividadPorId(Integer idActividad) {
         String query = "select a.id, a.nombre, a.descripcion, a.nroMaximoInscritos - (select count(*) from inscripcion i where i.id_actividad = a.id) as nroPlazasDisponibles, a.nroMaximoInscritos , s.tipoSala, u.nombreApellidos from ACTIVIDAD a, USUARIO u, SALA s where a.id_monitor = u.id and a.id_sala = s.id and a.id = ?";
         Actividad actividad = new Actividad();
@@ -378,6 +418,10 @@ public class AccesoBD {
         return actividad;
     }
 
+    /**
+     * Inscribe al usuario autenticado en una actividad
+     * @param idActividad
+     */
     public void inscribirseEnActividad(Integer idActividad) {
         String query = "INSERT INTO INSCRIPCION(id_usuario, id_actividad) VALUES(?, ?)";
 
@@ -393,6 +437,28 @@ public class AccesoBD {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Comprueba si el usuario autenticado ya está inscrito en una actividad
+     * @param id
+     * @return true si ya está inscrito, false si no
+     */
+    public boolean usuarioYaInscritoEnActividad(Integer id) {
+        String query = "SELECT * FROM INSCRIPCION WHERE id_usuario = ? AND id_actividad = ?";
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setInt(1, Constantes.usuarioAutenticado.getId());
+            pstmt.setInt(2, id);
+            ResultSet rs = pstmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.err.println("Error al comprobar si el usuario ya está inscrito en la actividad");
+            e.printStackTrace();
+        }
+        return false;
     }
 }
 

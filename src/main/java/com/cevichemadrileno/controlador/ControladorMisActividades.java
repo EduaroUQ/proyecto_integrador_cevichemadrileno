@@ -28,30 +28,39 @@ public class ControladorMisActividades implements ActionListener {
 		this.accesoBD = new AccesoBD();
 	}
 
-	/**
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 	}
 
+	/**
+	 * Carga las actividades inscritas del usuario
+	 */
 	public void cargarActividadesInscritas() {
 		ArrayList<Inscripcion> actividades = accesoBD.obtenerActividadesInscritas();
 		vista.actualizarTablaActividadesInscritas(actividades);
 	}
 
+	/**
+	 * Carga las actividades creadas por el usuario
+	 */
 	public void cargarActividadesCreadas() {
 		ArrayList<Actividad> actividades = accesoBD.obtenerActividadesCreadas();
 		vista.actualizarTablaActividadesCreadas(actividades);
 	}
 
+	/**
+	 * Desinscribe al usuario de una actividad
+	 * @param idActividad
+	 */
 	public void desinscribirseDeActividad(Integer idActividad) {
 		accesoBD.desinscribirseDeActividad(idActividad);
 	}
 
-	public void editarActividad(Integer idActividad) {
-	}
-
+	/**
+	 * Elimina una actividad creada por el usuario
+	 * @param idActividad
+	 */
 	public void eliminarActividad(Integer idActividad) {
 		accesoBD.eliminarActividad(idActividad);
 	}
