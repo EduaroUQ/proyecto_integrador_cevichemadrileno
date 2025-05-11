@@ -38,14 +38,14 @@ public class ControladorPrincipal implements ActionListener {
 	 */
 	public void showPanel(String nombre) {
 		if (nombre.equals("login")) {
-			vista.cambiarPanel(panelLogin);
+			vista.getScrollPane().setViewportView(panelLogin);
 		}
 		if (nombre.equals("registro")) {
-			vista.cambiarPanel(panelRegistro);
+			vista.getScrollPane().setViewportView(panelRegistro);
 		}
 		if (nombre.equals("dashboard")) {
 			panelDashboard = new PanelDashboard();
-			vista.cambiarPanel(panelDashboard);
+			vista.getScrollPane().setViewportView(panelDashboard);
 		}
 	}
 

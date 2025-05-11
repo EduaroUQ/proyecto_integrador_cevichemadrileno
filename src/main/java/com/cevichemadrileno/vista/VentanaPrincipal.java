@@ -63,11 +63,10 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	/**
-	 * Cambia el panel del scrollPane
-	 * @param panel
+	 * Getters
 	 */
-	public void cambiarPanel(JPanel panel) {
-		scrollPane.setViewportView(panel);
+	public JScrollPane getScrollPane() {
+		return this.scrollPane;
 	}
 	
 	

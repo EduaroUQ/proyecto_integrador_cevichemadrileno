@@ -107,8 +107,12 @@ public class PanelMisActividades extends JPanel {
         actividadesInscritasScrollPane.setBackground(Constantes.GRIS);
         actividadesInscritasScrollPane.setForeground(Constantes.GRIS);
 		actividadesInscritasScrollPane.setBorder(BorderFactory.createEmptyBorder());
-        actividadesInscritasScrollPane.setBounds(45,145,620,140);
-        
+		if (Constantes.usuarioAutenticado.getEsMonitor()){
+			actividadesInscritasScrollPane.setBounds(45,145,620,140);
+		} else{
+			actividadesInscritasScrollPane.setBounds(45,145,620,340);
+		}
+
         add(actividadesInscritasScrollPane);
 
 

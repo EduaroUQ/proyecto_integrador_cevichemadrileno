@@ -105,7 +105,7 @@ public class PanelLogin extends JPanel {
 		usuarioTextField.setBorder(Constantes.BORDER_INPUT_ESTILO_2);
 		usuarioTextField.setFont(Constantes.SANS_SERIF_16);
 		usuarioTextField.setForeground(Constantes.BLANCO);
-		usuarioTextField.setText("123");
+		usuarioTextField.setText("2244193B");
 		add(usuarioTextField);
 	
 		claveTextField = new JPasswordField();

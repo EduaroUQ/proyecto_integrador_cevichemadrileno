@@ -49,6 +49,7 @@ public class Constantes {
 		    BorderFactory.createEmptyBorder(0, 10, 0, 10)
 		);
 	public static final String[] CICLOS = { "DAW", "DAM", "ASIR", "A3D","EI","CI" };
+	public static final String PANEL_DEL_DASHBOARD_POR_DEFECTO = "misActividades";
 
 	/**
 	 * Variable globalmente accesible que almacena el usuario autenticado en toda la sesión

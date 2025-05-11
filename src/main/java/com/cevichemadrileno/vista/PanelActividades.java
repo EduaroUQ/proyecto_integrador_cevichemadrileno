@@ -85,7 +85,7 @@ public class PanelActividades extends JPanel {
 		actividadesScrollPane.setBackground(Constantes.GRIS);
 		actividadesScrollPane.setForeground(Constantes.GRIS);
 		actividadesScrollPane.setBorder(BorderFactory.createEmptyBorder());
-		actividadesScrollPane.setBounds(45,145,620,250);
+		actividadesScrollPane.setBounds(45,145,620,340);
 
 		add(actividadesScrollPane);
 	}

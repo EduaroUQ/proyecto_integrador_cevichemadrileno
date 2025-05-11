@@ -8,6 +8,7 @@ import com.cevichemadrileno.util.Constantes;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase para la conexion a la base de datos que contiene metodos para interactuar con la BBDD.
@@ -118,6 +119,7 @@ public class AccesoBD {
      */
     public void cargarSalas() {
         String query = "SELECT * FROM sala";
+        ArrayList<Sala> salas = new ArrayList<>();
         try (
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
             PreparedStatement pstmt = con.prepareStatement(query);
@@ -129,12 +131,13 @@ public class AccesoBD {
                 Integer capacidad = rs.getInt("capacidad");
                 String tipoSala = rs.getString("tipoSala");
                 Sala sala = new Sala(id, codigoSala, capacidad, tipoSala);
-                Constantes.salas.add(sala);
+                salas.add(sala);
             }
         } catch (SQLException e) {
             System.err.println("Error al cargar las salas");
             e.printStackTrace();
         }
+        Constantes.salas = salas;
     }
 
     /**
@@ -382,7 +385,7 @@ public class AccesoBD {
      * @return Actividad
      */
     public Actividad obtenerDetalleActividadPorId(Integer idActividad) {
-        String query = "select a.id, a.nombre, a.descripcion, a.nroMaximoInscritos - (select count(*) from inscripcion i where i.id_actividad = a.id) as nroPlazasDisponibles, a.nroMaximoInscritos , s.tipoSala, u.nombreApellidos from ACTIVIDAD a, USUARIO u, SALA s where a.id_monitor = u.id and a.id_sala = s.id and a.id = ?";
+        String query = "select a.id, a.id_monitor as idMonitor, a.nombre, a.descripcion, a.nroMaximoInscritos - (select count(*) from inscripcion i where i.id_actividad = a.id) as nroPlazasDisponibles, a.nroMaximoInscritos , s.tipoSala, u.nombreApellidos from ACTIVIDAD a, USUARIO u, SALA s where a.id_monitor = u.id and a.id_sala = s.id and a.id = ?";
         Actividad actividad = new Actividad();
 
         try (
@@ -393,6 +396,7 @@ public class AccesoBD {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 actividad.setId(rs.getInt("id"));
+                actividad.setIdMonitor(rs.getInt("idMonitor"));
                 actividad.setNombre(rs.getString("nombre"));
                 actividad.setDescripcion(rs.getString("descripcion"));
                 actividad.setNroMaximoInscritos(rs.getInt("nroMaximoInscritos"));

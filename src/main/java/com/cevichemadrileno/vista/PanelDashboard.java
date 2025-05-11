@@ -140,8 +140,9 @@ public class PanelDashboard extends JPanel {
 
 		add(mainContentScrollPanel);
 		add(sidebarPanelBackground);
-		
-		controladorDashboard.showPanel("actividades",null);
+
+		// Define cual es el panel del dashboard que se va a mostrar por defecto
+		controladorDashboard.showPanel(Constantes.PANEL_DEL_DASHBOARD_POR_DEFECTO,null);
 	}
 
 

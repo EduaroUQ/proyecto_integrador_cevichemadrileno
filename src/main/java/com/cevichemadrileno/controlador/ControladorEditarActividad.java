@@ -43,6 +43,7 @@ public class ControladorEditarActividad implements ActionListener {
 		}
 		if (e.getSource() == vista.getEditarBtn()) {
 
+			// Obtener datos de la vista
 			String nombreActividad = vista.getNombreTextField().getText();
 			String horaStr = vista.getHoraCombo().getSelectedItem().toString();
 			String lugar = vista.getLugarCombo().getSelectedItem().toString();
@@ -50,7 +51,7 @@ public class ControladorEditarActividad implements ActionListener {
 			Integer numeroMaxInscritos = Integer.parseInt(vista.getNroMaximoInscritosCombo().getSelectedItem().toString());
 			String codigoSala = vista.getLugarCombo().getSelectedItem().toString();
 
-			// Obtener fecha y hora de la actividad
+			// Obtener fecha y hora de los componentes de la vista
 			int dia = Integer.parseInt(vista.getDiaCombo().getSelectedItem().toString());
 			int mes = Integer.parseInt(vista.getMesCombo().getSelectedItem().toString()) - 1;
 			int anio = (Integer) vista.getYearCombo().getSelectedItem();
@@ -83,7 +84,7 @@ public class ControladorEditarActividad implements ActionListener {
 				return;
 			}
 
-
+			// Actualizar atributos de la actividad
 			actividad.setNombre(nombreActividad);
 			actividad.setDescripcion(descripcion);
 			actividad.setNroMaximoInscritos(numeroMaxInscritos);
@@ -98,8 +99,10 @@ public class ControladorEditarActividad implements ActionListener {
 				}
 			}
 
+			// Actualizar actividad en la base de datos
 			accesoBD.actualizarActividad(actividad);
 
+			// Mostrar mensaje de éxito
 			int resultado = JOptionPane.showConfirmDialog(
 					vista,
 					"Actividad actualizada con éxito",

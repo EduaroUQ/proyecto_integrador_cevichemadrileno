@@ -47,7 +47,7 @@ public class ControladorDetalleActividad implements ActionListener {
 			if (actividad.getIdMonitor() == Constantes.usuarioAutenticado.getId()) {
 				JOptionPane.showMessageDialog(
 					vista,
-					"No puedes inscribirte en tu propia actividad",
+					"Como monitor no puedes inscribirte en tu propia actividad",
 					"Error",
 					JOptionPane.ERROR_MESSAGE
 				);
@@ -95,7 +95,7 @@ public class ControladorDetalleActividad implements ActionListener {
 	public void cargarDetalleActividad(Integer idActividad) {
 		actividad = accesoBD.obtenerDetalleActividadPorId(idActividad);
 		vista.getNombreActividadLabel().setText(actividad.getNombre());
-		vista.getPlazasDisponiblesLabel().setText(actividad.getNroPlazasDisponibles() + " de "+actividad.getNroMaximoInscritos());
+		vista.getPlazasDisponiblesLabel().setText(actividad.getNroPlazasDisponibles() + " de "+actividad.getNroMaximoInscritos() + " plazas");
 		vista.getUbicacionLabel().setText(actividad.getSala().getTipoSala());
 		vista.getDescripcionLabel().setText(actividad.getDescripcion());
 		vista.getInstructorLabel().setText(actividad.getMonitor().getNombreApellidos());

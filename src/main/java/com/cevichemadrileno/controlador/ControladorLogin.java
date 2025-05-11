@@ -39,7 +39,6 @@ public class ControladorLogin implements ActionListener {
 			if (accesoBD.login(usuario, clave)) {
 				accesoBD.cargarSalas();
 				vista.getControladorPrincipal().showPanel("dashboard");
-
 			} else {
 				vista.getErrorLabel().setText("Usuario o contraseña incorrectos");
 			}
