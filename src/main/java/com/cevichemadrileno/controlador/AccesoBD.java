@@ -151,7 +151,7 @@ public class AccesoBD {
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
             PreparedStatement pstmt = con.prepareStatement(query)
         ) {
-            pstmt.setInt(1, actividad.getIdMonitor());
+            pstmt.setInt(1, Constantes.usuarioAutenticado.getId());
             pstmt.setInt(2, actividad.getIdSala());
             pstmt.setString(3, actividad.getNombre());
             pstmt.setString(4, actividad.getDescripcion());

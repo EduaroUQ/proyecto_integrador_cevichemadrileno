@@ -269,7 +269,7 @@ public class PanelCrearActividad extends JPanel {
 	public void refrescarLugares() {
 		lugarCombo.removeAllItems();
 		for (Sala sala : Constantes.salas) {
-			lugarCombo.addItem(sala.getCodigoSala() + " - " + sala.getTipoSala());
+			lugarCombo.addItem(sala.getCodigoSala());
 		}
 		lugarCombo.setSelectedIndex(0);
 	}

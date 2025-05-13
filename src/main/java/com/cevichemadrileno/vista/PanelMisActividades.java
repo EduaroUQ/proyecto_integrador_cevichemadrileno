@@ -70,7 +70,7 @@ public class PanelMisActividades extends JPanel {
 		actividadesCreadasLabel = new JLabel();
 		actividadesCreadasLabel.setText("Actividades creadas");
 		actividadesCreadasLabel.setBounds(35,322,195,40);
-		actividadesCreadasLabel.setFont(Constantes.SANS_SERIF_14);
+		actividadesCreadasLabel.setFont(Constantes.SANS_SERIF_16);
 		actividadesCreadasLabel.setForeground(Constantes.NEGRO_CLARO);
 
 		if (Constantes.usuarioAutenticado.getEsMonitor()){
