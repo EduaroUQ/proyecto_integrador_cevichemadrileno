@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import com.cevichemadrileno.controlador.ControladorActividades;
-import com.cevichemadrileno.controlador.ControladorCrearActividad;
 import com.cevichemadrileno.controlador.ControladorDashboard;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.util.Constantes;
@@ -45,7 +44,7 @@ public class PanelActividades extends JPanel {
 	 */
 	private void inicializarComponentes() {
 		setBackground(Constantes.GRIS);
-		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
+		setSize(Constantes.ANCHURA_PANEL_DERECHO_DASHBOARD, Constantes.ALTURA_APLICACION);
 		setLayout(null);
 
 		controladorActividades = new ControladorActividades(this);

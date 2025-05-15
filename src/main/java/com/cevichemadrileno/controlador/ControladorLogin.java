@@ -40,7 +40,7 @@ public class ControladorLogin implements ActionListener {
 				accesoBD.cargarSalas();
 				vista.getControladorPrincipal().showPanel("dashboard");
 			} else {
-				vista.getErrorLabel().setText("Usuario o contraseña incorrectos");
+				vista.getErrorLabel().setText("Contraseña incorrecta");
 			}
 		}
 	}

@@ -30,7 +30,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	/**
-	 * Constructor de la ventana principal
+	 *  Metodo para inicializar componentes
 	 */
 	private void inicializarComponentes() {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

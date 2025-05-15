@@ -56,7 +56,7 @@ public class ControladorRegistro implements ActionListener {
 				return;
 			}
 			if (!clave.equals(confirmarClave)){
-				vista.getErrorLabel().setText("Las contraseña no coinciden");
+				vista.getErrorLabel().setText("Las contraseñas no coinciden");
 				return;
 			}
 			if (accesoBD.existeUsuario(matricula)){

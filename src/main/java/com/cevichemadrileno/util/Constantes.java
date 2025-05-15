@@ -20,7 +20,7 @@ import javax.swing.border.Border;
 public class Constantes {
 	public static final int ANCHURA_APLICACION = 840;
 	public static final int ALTURA_APLICACION = 620;
-	public static final int ANCHURA_DASHBOARD = 720;
+	public static final int ANCHURA_PANEL_DERECHO_DASHBOARD = 720;
 	public static final String TITULO_APLICACION = "Ceviche Madrileño";
 	public static final Color AZUL_OSCURO = new Color(2,48,71);
 	public static final Color AZUL_OSCURO_CLARO = new Color(4,86,128);

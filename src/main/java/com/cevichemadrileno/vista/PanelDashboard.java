@@ -136,7 +136,7 @@ public class PanelDashboard extends JPanel {
 		add(cerrarSesionBtn);
 		
 		mainContentScrollPanel = new JScrollPane();
-		mainContentScrollPanel.setBounds(119, 0, Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
+		mainContentScrollPanel.setBounds(119, -1, Constantes.ANCHURA_PANEL_DERECHO_DASHBOARD, Constantes.ALTURA_APLICACION);
 
 		add(mainContentScrollPanel);
 		add(sidebarPanelBackground);

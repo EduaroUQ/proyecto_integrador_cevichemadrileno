@@ -39,7 +39,7 @@ public class PanelMiPerfil extends JPanel {
 	 */
 	private void inicializarComponentes() {
 		setBackground(Constantes.GRIS);
-		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
+		setSize(Constantes.ANCHURA_PANEL_DERECHO_DASHBOARD, Constantes.ALTURA_APLICACION);
 		setLayout(null);
 		
 		tituloLabel = new JLabel();
