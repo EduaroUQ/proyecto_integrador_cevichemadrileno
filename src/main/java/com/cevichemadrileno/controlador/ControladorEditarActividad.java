@@ -86,8 +86,7 @@ public class ControladorEditarActividad implements ActionListener {
 
 			// Actualizar atributos de la actividad
 			actividad.setNombre(nombreActividad);
-			actividad.setDescripcion(descripcion);
-			actividad.setNroMaximoInscritos(numeroMaxInscritos);
+			actividad.setDescripcion(descripcion);actividad.setNroMaximoInscritos(numeroMaxInscritos);
 			actividad.setFecha(fecha);
 			actividad.setIdMonitor(Constantes.usuarioAutenticado.getId());
 

@@ -169,7 +169,7 @@ public class AccesoBD {
      * @return ArrayList<Actividad>
      */
     public ArrayList<Actividad> obtenerActividades() {
-        String query = "SELECT a.id, a.nombre, a.descripcion, a.nroMaximoInscritos, a.fecha, s.codigoSala, s.tipoSala FROM actividad a, sala s where a.id_sala = s.id";
+        String query = "SELECT a.id, a.id_monitor, a.nombre, a.descripcion, a.nroMaximoInscritos, a.fecha, s.codigoSala, s.tipoSala FROM actividad a, sala s where a.id_sala = s.id";
         ArrayList<Actividad> actividades = new ArrayList<>();
 
         try (
@@ -180,6 +180,7 @@ public class AccesoBD {
             while (rs.next()) {
                 Actividad actividad = new Actividad();
                 actividad.setId(rs.getInt("id"));
+                actividad.setIdMonitor(rs.getInt("id_monitor"));
                 actividad.setNombre(rs.getString("nombre"));
                 actividad.setDescripcion(rs.getString("descripcion"));
                 actividad.setNroMaximoInscritos(rs.getInt("nroMaximoInscritos"));

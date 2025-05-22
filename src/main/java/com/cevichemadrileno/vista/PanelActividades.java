@@ -109,18 +109,20 @@ public class PanelActividades extends JPanel {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
-		};
+		}; 
 
 		for (Actividad actividad : actividades) {
-			Object[] row = {
-					actividad.getNombre(),
-					obtenerDiaSemana(actividad.getFecha()),
-					obtenerHora(actividad.getFecha()),
-					actividad.getSala().getTipoSala(),
-					"Ver más",
-					actividad.getId()
-			};
-			modeloTabla.addRow(row);
+			if (actividad.getIdMonitor()!=Constantes.usuarioAutenticado.getId()) {
+				Object[] row = {
+						actividad.getNombre(),
+						obtenerDiaSemana(actividad.getFecha()),
+						obtenerHora(actividad.getFecha()),
+						actividad.getSala().getTipoSala(),
+						"Ver más",
+						actividad.getId()
+				};
+				modeloTabla.addRow(row);
+			}
 		}
 
 		actividadesTable.setModel(modeloTabla);

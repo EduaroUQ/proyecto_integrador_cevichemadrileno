@@ -5,9 +5,18 @@ import org.junit.Test;
 public class LoginTest {
 
     @Test
-    public void primeraPrueba() {
+    public void deberiaLoguearseExitosamente() {
         AccesoBD accesoBD = new AccesoBD();
-        Assert.assertSame(1, 1);
+        boolean resultadoLogin = accesoBD.login("123", "123");
+        Assert.assertEquals(resultadoLogin, true);
     }
+
+    @Test
+    public void noDeberiaLoguearse() {
+        AccesoBD accesoBD = new AccesoBD();
+        boolean resultadoLogin = accesoBD.login("asdasd", "asdasdas");
+        Assert.assertEquals(resultadoLogin, false);
+    }
+
 
 }
