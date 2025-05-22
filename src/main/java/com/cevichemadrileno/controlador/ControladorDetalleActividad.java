@@ -1,16 +1,13 @@
 package com.cevichemadrileno.controlador;
 
+import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Actividad;
-import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.util.Constantes;
 import com.cevichemadrileno.vista.PanelDetalleActividad;
-import com.cevichemadrileno.vista.PanelEditarActividad;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Timestamp;
-import java.util.Calendar;
 
 /**
  * Controlador del panel de detalle de actividad

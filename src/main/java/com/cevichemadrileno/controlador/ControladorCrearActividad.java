@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
+import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.util.Constantes;

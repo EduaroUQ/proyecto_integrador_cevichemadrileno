@@ -1,14 +1,9 @@
-package com.cevichemadrileno.controlador;
+package com.cevichemadrileno.modelo;
 
-import com.cevichemadrileno.modelo.Actividad;
-import com.cevichemadrileno.modelo.Inscripcion;
-import com.cevichemadrileno.modelo.Sala;
-import com.cevichemadrileno.modelo.Usuario;
 import com.cevichemadrileno.util.Constantes;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Clase para la conexion a la base de datos que contiene metodos para interactuar con la BBDD.
@@ -464,6 +459,56 @@ public class AccesoBD {
             e.printStackTrace();
         }
         return false;
+    }
+
+
+    /**
+     * Comprueba si existe una actividad por su nombre
+     * @param nombreActividad
+     * @return Actividad
+     */
+    public Actividad obtenerActividadPorNombre(String nombreActividad) {
+        String query = "SELECT * FROM actividad WHERE nombre = ?";
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setString(1, nombreActividad);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Actividad actividad = new Actividad();
+                actividad.setId(rs.getInt("id"));
+                actividad.setNombre(rs.getString("nombre"));
+                actividad.setDescripcion(rs.getString("descripcion"));
+                actividad.setNroMaximoInscritos(rs.getInt("nroMaximoInscritos"));
+                actividad.setFecha(rs.getTimestamp("fecha"));
+                actividad.setIdMonitor(rs.getInt("id_monitor"));
+                actividad.setIdSala(rs.getInt("id_sala"));
+                return actividad;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al comprobar si la actividad existe por nombre");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Elimina un usuario de la base de datos
+     * @param idUsuario
+     */
+    public void eliminarUsuario(Integer idUsuario) {
+        String query = "DELETE FROM usuario WHERE id = ?";
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setInt(1, idUsuario);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar el usuario");
+            e.printStackTrace();
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 package com.cevichemadrileno.controlador;
 
+import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.util.Constantes;

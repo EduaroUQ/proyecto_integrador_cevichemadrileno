@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.vista.PanelActividades;
 

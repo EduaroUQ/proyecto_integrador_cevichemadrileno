@@ -3,6 +3,7 @@ package com.cevichemadrileno.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Usuario;
 import com.cevichemadrileno.vista.PanelRegistro;
 
