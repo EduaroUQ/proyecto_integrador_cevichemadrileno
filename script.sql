@@ -79,22 +79,20 @@ INSERT INTO SALA (id, codigoSala, capacidad, tipoSala) VALUES
 (1,'PPA1', 40, 'Pabellón 1'),
 (2,'PPA2', 40, 'Pabellón 2'),
 (3,'PPA3', 40, 'Pabellón 3'),
-(4,'PPIS', 40, 'Piscina'),
+(4,'PPIS', 40, 'PPIS'),
 (5,'PPB1', 10, 'Pista de baloncesto 1'),
 (6,'PPB2', 10, 'Pista de baloncesto 2'),
 (7,'PPE1', 40, 'Pista de atletismo 1'),
-(8,'PPE2', 40, 'Pista de atletismo 2'),
-(9,'PPG1', 40, 'Gimnasio 1'),
-(10,'PPG2', 40, 'Gimnasio 2');
+(8,'PPE2', 40, 'Pista de atletismo 2');
 
 INSERT INTO ACTIVIDAD (id, id_monitor, nombre, id_sala, descripcion, nroMaximoInscritos) VALUES
 (1,1,'Yoga',1, 'Estiramiento del cuerpo y poses',10),
 (2,1,'Box',2, 'Box descripcion',5),
 (3,1,'Ciclismo',3, 'Ciclismo descripcion',15),
 (4,1,'Natación',4, 'Natación descripcion',10),
-(5,1,'Futbol 5',9, 'Futbol descripcion',15),
-(6,1,'Kick Boxing',10, 'Kick Boxing descripcion',10),
-(7,1,'Pilates',9, 'Pilates descripcion',20),
+(5,1,'Futbol 5',8, 'Futbol descripcion',15),
+(6,1,'Kick Boxing',2, 'Kick Boxing descripcion',10),
+(7,1,'Pilates',1, 'Pilates descripcion',20),
 (8,1,'Calistenia',3, 'Calistenia descripcion',15),
 (9,1,'Powerlifting',2, 'Powerlifting descripcion',10),
 (10,1,'Beisbol',1, 'Beisbol descripcion',10),
