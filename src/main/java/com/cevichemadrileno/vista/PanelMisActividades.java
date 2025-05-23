@@ -214,7 +214,7 @@ public class PanelMisActividades extends JPanel {
 					obtenerDiaSemana(inscripcion.getActividad().getFecha()),
 					obtenerHora(inscripcion.getActividad().getFecha()),
 					inscripcion.getActividad().getSala().getTipoSala(),
-					"🗑️",
+					"🗑️"+ " Desapuntarse",
 					inscripcion.getIdActividad()
 			};
 			modeloTabla.addRow(row);

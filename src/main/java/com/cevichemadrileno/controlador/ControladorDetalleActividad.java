@@ -94,7 +94,13 @@ public class ControladorDetalleActividad implements ActionListener {
 		vista.getNombreActividadLabel().setText(actividad.getNombre());
 		vista.getPlazasDisponiblesLabel().setText(actividad.getNroPlazasDisponibles() + " de "+actividad.getNroMaximoInscritos() + " plazas");
 		vista.getUbicacionLabel().setText(actividad.getSala().getTipoSala());
-		vista.getDescripcionLabel().setText(actividad.getDescripcion());
+		vista.getDescripcionLabel().setText(
+				"<html>" +
+						"<body style='width:400px; '>" +
+							actividad.getDescripcion()+
+						"</body>" +
+				"</html>"
+		);
 		vista.getInstructorLabel().setText(actividad.getMonitor().getNombreApellidos());
 	}
 }

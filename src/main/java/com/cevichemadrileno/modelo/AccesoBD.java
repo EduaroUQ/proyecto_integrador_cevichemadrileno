@@ -441,17 +441,17 @@ public class AccesoBD {
 
     /**
      * Comprueba si el usuario autenticado ya está inscrito en una actividad
-     * @param id
+     * @param idActividad
      * @return true si ya está inscrito, false si no
      */
-    public boolean usuarioYaInscritoEnActividad(Integer id) {
+    public boolean usuarioYaInscritoEnActividad(Integer idActividad) {
         String query = "SELECT * FROM INSCRIPCION WHERE id_usuario = ? AND id_actividad = ?";
         try (
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
             PreparedStatement pstmt = con.prepareStatement(query)
         ) {
             pstmt.setInt(1, Constantes.usuarioAutenticado.getId());
-            pstmt.setInt(2, id);
+            pstmt.setInt(2, idActividad);
             ResultSet rs = pstmt.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -510,5 +510,6 @@ public class AccesoBD {
             e.printStackTrace();
         }
     }
+
 }
 
