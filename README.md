@@ -80,3 +80,43 @@ String contraseña = "tu_contraseña";
 
 ### 5. ¡Listo!
 La aplicación debería iniciarse mostrando la ventana de inicio de sesión. A partir de ahí, podrás usar todas las funcionalidades según el tipo de usuario (usuario o monitor).
+
+
+## Estructura del Proyecto 
+>proyecto_integrador_cevichemadrileno/
+>> img/ # Recursos gráficos o imágenes usadas en la aplicación
+>> src/main/java # Código fuente del proyecto
+>>> com.cevichemadrileno.controlador
+>>> com.cevichemadrileno.main
+>>> com.cevichemadrileno.modelo
+>>> com.cevichemadrileno.util
+>>> com.cevichemadrileno.vista
+
+
+## Ejemplo de uso 
+Una vez en Eclipse, darle al botón verde para arrancar el programa, esto debería dar la siguiente pantalla de inicio:
+![Logo](https://github.com/EduaroUQ/proyecto_integrador_cevichemadrileno/blob/dev/img/Aplicaci%C3%B3n/Inicio.png?raw=true)
+En caso de no tener una cuenta se puede dar en crear usuario: 
+![Logo](https://github.com/EduaroUQ/proyecto_integrador_cevichemadrileno/blob/dev/img/Aplicaci%C3%B3n/Crear_Cuenta.png?raw=true)
+A los tutores se les creará una cuenta y tendrán la siguiente vista principal:
+![Logo](https://github.com/EduaroUQ/proyecto_integrador_cevichemadrileno/blob/dev/img/Aplicaci%C3%B3n/Mis_Actividades.png?raw=true)
+Los tutores también se pueden inscribir a una actividad en la ventana de actividades:
+![Logo](https://github.com/EduaroUQ/proyecto_integrador_cevichemadrileno/blob/dev/img/Aplicaci%C3%B3n/Inscribir_Actividad.png?raw=true)
+También podrá crear y editar las actividades que cree:
+![Logo](https://github.com/EduaroUQ/proyecto_integrador_cevichemadrileno/blob/dev/img/Aplicaci%C3%B3n/Crear_Actividad.png?raw=true)
+Los usuarios solo podrán inscribirse a una actividad y darse de baja
+
+***
+#### Autores
++ Cristhian Andree Chafloque Chafloque 
++ Hugo Rubio Crespo
++ Eduardo Alexander Utrilla Quispe 
+#### Tutoras del proyecto
++ Sara Villanueva Rosa
++ Irene Del Rincon Bello
+#### Universidad
++ Universidad Europea de Madrid
+#### Ciclo
++ Desarrollo de Aplicaciones Web
+#### Curso
++ Primero
