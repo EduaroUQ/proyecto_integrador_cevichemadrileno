@@ -1,19 +1,19 @@
 package com.cevichemadrileno.vista;
 
+import com.cevichemadrileno.controlador.ControladorDashboard;
+import com.cevichemadrileno.controlador.ControladorMisActividades;
+import com.cevichemadrileno.modelo.Actividad;
+import com.cevichemadrileno.modelo.Inscripcion;
+import com.cevichemadrileno.util.Constantes;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
-import com.cevichemadrileno.controlador.ControladorDashboard;
-import com.cevichemadrileno.controlador.ControladorMisActividades;
-import com.cevichemadrileno.modelo.*;
-import com.cevichemadrileno.util.Constantes;
 
 /**
  * Panel de Mis actividades
@@ -34,14 +34,21 @@ public class PanelMisActividades extends JPanel {
 	private ControladorDashboard controladorDashboard;
 	private ControladorMisActividades controladorMisActividades;
 
+	/**
+	 * Constructor
+	 * @param controladorDashboard
+	 */
 	public PanelMisActividades(ControladorDashboard controladorDashboard) {
 		this.controladorDashboard = controladorDashboard;
 		inicializarComponentes();
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void inicializarComponentes() {
 		setBackground(Constantes.GRIS);
-		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
+		setSize(Constantes.ANCHURA_PANEL_DERECHO_DASHBOARD, Constantes.ALTURA_APLICACION);
 		setLayout(null);
 		
 		controladorMisActividades = new ControladorMisActividades(this);
@@ -65,13 +72,18 @@ public class PanelMisActividades extends JPanel {
 		actividadesCreadasLabel.setBounds(35,322,195,40);
 		actividadesCreadasLabel.setFont(Constantes.SANS_SERIF_16);
 		actividadesCreadasLabel.setForeground(Constantes.NEGRO_CLARO);
-		add(actividadesCreadasLabel);
+
+		if (Constantes.usuarioAutenticado.getEsMonitor()){
+			add(actividadesCreadasLabel);
+		}
 
 		// Crear tabla de actividades inscritas
 		actividadesInscritasTable = new JTable(null);
 		actividadesInscritasTable.setTableHeader(null);
-		actividadesInscritasTable.setFont(Constantes.SANS_SERIF_18);
+		actividadesInscritasTable.setFont(Constantes.SANS_SERIF_12);
 		actividadesInscritasTable.setRowHeight(Constantes.ALTURA_FILAS_TABLA);
+		actividadesInscritasTable.setShowGrid(false);
+		actividadesInscritasTable.setBorder(null);
 
 		// Crear escuchador de click en los botones de accion
 		actividadesInscritasTable.addMouseListener(new MouseAdapter() {
@@ -88,22 +100,30 @@ public class PanelMisActividades extends JPanel {
 			}
 		});
 
+		// Crear scroll pane para la tabla de actividades inscritas
 		actividadesInscritasScrollPane = new JScrollPane(actividadesInscritasTable);
         actividadesInscritasScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         actividadesInscritasScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         actividadesInscritasScrollPane.setBackground(Constantes.GRIS);
         actividadesInscritasScrollPane.setForeground(Constantes.GRIS);
-        actividadesInscritasScrollPane.setBorder(null);
-        actividadesInscritasScrollPane.setBounds(45,145,620,140);
-        
+		actividadesInscritasScrollPane.setBorder(BorderFactory.createEmptyBorder());
+		if (Constantes.usuarioAutenticado.getEsMonitor()){
+			actividadesInscritasScrollPane.setBounds(45,145,620,140);
+		} else{
+			actividadesInscritasScrollPane.setBounds(45,145,620,340);
+		}
+
         add(actividadesInscritasScrollPane);
 
 
 		// Crear tabla de actividades creadas
 		actividadesCreadasTable = new JTable(null);
 		actividadesCreadasTable.setTableHeader(null);
-		actividadesCreadasTable.setFont(Constantes.SANS_SERIF_18);
+		actividadesCreadasTable.setFont(Constantes.SANS_SERIF_12);
 		actividadesCreadasTable.setRowHeight(Constantes.ALTURA_FILAS_TABLA);
+		actividadesCreadasTable.setShowGrid(false);
+		actividadesCreadasTable.setBorder(null);
+
 		// Crear escuchador de click en los botones de accion
 		actividadesCreadasTable.addMouseListener(new MouseAdapter() {
 			@Override
@@ -123,69 +143,61 @@ public class PanelMisActividades extends JPanel {
 			}
 		});
 
+		// Crear scroll pane para la tabla de actividades creadas
 		actividadesCreadasScrollPane = new JScrollPane(actividadesCreadasTable);
 		actividadesCreadasScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		actividadesCreadasScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		actividadesCreadasScrollPane.setBackground(Constantes.GRIS);
 		actividadesCreadasScrollPane.setForeground(Constantes.GRIS);
-		actividadesCreadasScrollPane.setBorder(null);
+		actividadesCreadasScrollPane.setBorder(BorderFactory.createEmptyBorder());
 		actividadesCreadasScrollPane.setBounds(45,366,620,140);
 
-		add(actividadesInscritasScrollPane);
-		add(actividadesCreadasScrollPane);
+
+		if (Constantes.usuarioAutenticado.getEsMonitor()){
+			add(actividadesCreadasScrollPane);
+		}
 		
 	}
-	
+
+	/**
+	 * Obtiene el dia de la semana a partir de una fecha
+	 *
+	 * @param date
+	 * @return string con el dia de la semana en uppercase y en español
+	 */
 	public static String obtenerDiaSemana(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("EEEE", new Locale("es", "ES"));
-        return sdf.format(date);
-    }
-	
+		String dia = sdf.format(date);
+		return dia.substring(0, 1).toUpperCase() + dia.substring(1);
+	}
+
+
+	/**
+	 * Obtiene la hora a partir de una fecha
+	 *
+	 * @param date
+	 * @return string con la hora formateada en formato HH:MM - HH:MM
+	 */
 	public static String obtenerHora(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:", new Locale("es", "ES"));
-        String dateStr = sdf.format(date) + "00 - " + sdf.format(date) + "00";
-        return dateStr;
-    }
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH", new Locale("es", "ES"));
+		int hora = Integer.parseInt(simpleDateFormat.format(date));
+		return String.format("%02d:00", hora) + " - " + String.format("%02d:00", hora + 1);
+	}
+
+
 
 	/**
 	 * Getters
 	 */
-	public JLabel getTituloLabel() {
-		return tituloLabel;
-	}
-
-	public JLabel getActividadesInscritasLabel() {
-		return actividadesInscritasLabel;
-	}
-
-	public JLabel getActividadesCreadasLabel() {
-		return actividadesCreadasLabel;
-	}
-
-	public JScrollPane getActividadesInscritasScrollPane() {
-		return actividadesInscritasScrollPane;
-	}
-
-	public JScrollPane getActividadesCreadasScrollPane() {
-		return actividadesCreadasScrollPane;
-	}
-
-	public JTable getActividadesInscritasTable() {
-		return actividadesInscritasTable;
-	}
-
-	public JTable getActividadesCreadasTable() {
-		return actividadesCreadasTable;
-	}
-
-	public ControladorDashboard getControladorDashboard() {
-		return controladorDashboard;
-	}
-
 	public ControladorMisActividades getControladorMisActividades() {
 		return controladorMisActividades;
 	}
 
+	/**
+	 * Actualiza el contenido de la tabla de actividades inscritas
+	 *
+	 * @param actividadesInscritas
+	 */
 	public void actualizarTablaActividadesInscritas(ArrayList<Inscripcion> actividadesInscritas) {
 		String[] columnas = {"Nombre", "Dia", "Hora", "Lugar", "Desinscribirse", "idActividad oculta"};
 		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0){
@@ -202,7 +214,7 @@ public class PanelMisActividades extends JPanel {
 					obtenerDiaSemana(inscripcion.getActividad().getFecha()),
 					obtenerHora(inscripcion.getActividad().getFecha()),
 					inscripcion.getActividad().getSala().getTipoSala(),
-					"🗑️",
+					"🗑️"+ " Desapuntarse",
 					inscripcion.getIdActividad()
 			};
 			modeloTabla.addRow(row);
@@ -219,6 +231,11 @@ public class PanelMisActividades extends JPanel {
 		repaint();
 	}
 
+	/**
+	 * Actualiza el contenido de la tabla de actividades creadas
+	 *
+	 * @param actividadesCreadas
+	 */
 	public void actualizarTablaActividadesCreadas(ArrayList<Actividad> actividadesCreadas){
 		String[] columnas = {"Nombre", "Dia", "Horario", "Lugar", "Editar", "Eliminar", "idActividad oculta"};
 		DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0){
@@ -234,7 +251,7 @@ public class PanelMisActividades extends JPanel {
 					actividad.getNombre(),
 					obtenerDiaSemana(actividad.getFecha()),
 					obtenerHora(actividad.getFecha()),
-					actividad.getSala().getCodigoSala(),
+					actividad.getSala().getTipoSala(),
 					"✏️",
 					"🗑️",
 					actividad.getId()

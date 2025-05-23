@@ -2,6 +2,8 @@ package com.cevichemadrileno.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.vista.PanelLogin;
 
 /**
@@ -39,9 +41,8 @@ public class ControladorLogin implements ActionListener {
 			if (accesoBD.login(usuario, clave)) {
 				accesoBD.cargarSalas();
 				vista.getControladorPrincipal().showPanel("dashboard");
-
 			} else {
-				vista.getErrorLabel().setText("Usuario o contraseña incorrectos");
+				vista.getErrorLabel().setText("Contraseña incorrecta");
 			}
 		}
 	}

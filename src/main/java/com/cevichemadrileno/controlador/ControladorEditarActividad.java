@@ -1,5 +1,6 @@
 package com.cevichemadrileno.controlador;
 
+import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.util.Constantes;
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 
 /**
- * Controlador del panel de actividades
+ * Controlador del panel de editar actividad
  *
  * @author Cristhian C.
  * @author Eduardo U.
@@ -33,11 +34,17 @@ public class ControladorEditarActividad implements ActionListener {
 	}
 
 	/**
+	 *  Recibe los eventos de los botones
+	 *  @param e: evento
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == vista.getVolverLinkBtn()) {
+			vista.getControladorDashboard().showPanel("misActividades", null);
+		}
 		if (e.getSource() == vista.getEditarBtn()) {
 
+			// Obtener datos de la vista
 			String nombreActividad = vista.getNombreTextField().getText();
 			String horaStr = vista.getHoraCombo().getSelectedItem().toString();
 			String lugar = vista.getLugarCombo().getSelectedItem().toString();
@@ -45,7 +52,7 @@ public class ControladorEditarActividad implements ActionListener {
 			Integer numeroMaxInscritos = Integer.parseInt(vista.getNroMaximoInscritosCombo().getSelectedItem().toString());
 			String codigoSala = vista.getLugarCombo().getSelectedItem().toString();
 
-			// Obtener fecha y hora de la actividad
+			// Obtener fecha y hora de los componentes de la vista
 			int dia = Integer.parseInt(vista.getDiaCombo().getSelectedItem().toString());
 			int mes = Integer.parseInt(vista.getMesCombo().getSelectedItem().toString()) - 1;
 			int anio = (Integer) vista.getYearCombo().getSelectedItem();
@@ -78,10 +85,9 @@ public class ControladorEditarActividad implements ActionListener {
 				return;
 			}
 
-
+			// Actualizar atributos de la actividad
 			actividad.setNombre(nombreActividad);
-			actividad.setDescripcion(descripcion);
-			actividad.setNroMaximoInscritos(numeroMaxInscritos);
+			actividad.setDescripcion(descripcion);actividad.setNroMaximoInscritos(numeroMaxInscritos);
 			actividad.setFecha(fecha);
 			actividad.setIdMonitor(Constantes.usuarioAutenticado.getId());
 
@@ -93,9 +99,21 @@ public class ControladorEditarActividad implements ActionListener {
 				}
 			}
 
+			// Actualizar actividad en la base de datos
 			accesoBD.actualizarActividad(actividad);
 
-			JOptionPane.showMessageDialog(vista, "Actividad actualizada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+			// Mostrar mensaje de éxito
+			int resultado = JOptionPane.showConfirmDialog(
+					vista,
+					"Actividad actualizada con éxito",
+					"Éxito",
+					JOptionPane.DEFAULT_OPTION,
+					JOptionPane.INFORMATION_MESSAGE
+			);
+
+			if (resultado == JOptionPane.OK_OPTION || resultado == JOptionPane.CLOSED_OPTION) {
+				vista.getControladorDashboard().showPanel("misActividades", null);
+			}
 
 		}
 	}

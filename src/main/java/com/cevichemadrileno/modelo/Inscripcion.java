@@ -9,28 +9,11 @@ public class Inscripcion {
 	
 	private Usuario usuario;
 	private Actividad actividad;
-	
-	
-	/**
-	 * Constructor de la clase
-	 * @param idUsuario
-	 * @param idActividad
-	 * @param usuario
-	 * @param actividad
-	 * @return instancia de Inscripcion
-	 */
-	public Inscripcion(Integer idUsuario, Integer idActividad, Usuario usuario, Actividad actividad) {
-		this.idUsuario = idUsuario;
-		this.idActividad = idActividad;
-		this.usuario = usuario;
-		this.actividad = actividad;
-	}
 
 	/**
 	 * Constructor vacio de la clase
 	 */
 	public Inscripcion() {}
-	
 
 	/**
 	 * Getters y Setters

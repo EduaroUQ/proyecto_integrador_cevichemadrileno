@@ -3,6 +3,7 @@ package com.cevichemadrileno.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Usuario;
 import com.cevichemadrileno.vista.PanelRegistro;
 
@@ -27,6 +28,8 @@ public class ControladorRegistro implements ActionListener {
 	}
 
 	/**
+	 * Recibe los eventos de los botones
+	 * @param e: evento
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -54,7 +57,7 @@ public class ControladorRegistro implements ActionListener {
 				return;
 			}
 			if (!clave.equals(confirmarClave)){
-				vista.getErrorLabel().setText("Las contraseña no coinciden");
+				vista.getErrorLabel().setText("Las contraseñas no coinciden");
 				return;
 			}
 			if (accesoBD.existeUsuario(matricula)){

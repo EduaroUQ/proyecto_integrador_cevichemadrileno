@@ -26,11 +26,17 @@ public class PanelDashboard extends JPanel {
 	private JPanel sidebarPanelBackground;
 	private JScrollPane mainContentScrollPanel;
 	private ControladorDashboard controladorDashboard;
-	
+
+	/**
+	 * Constructor
+	 */
 	public PanelDashboard() {
 		inicializarComponentes();
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void inicializarComponentes() {
 		setBackground(Constantes.GRIS);
 		setSize(Constantes.ANCHURA_APLICACION, Constantes.ALTURA_APLICACION);
@@ -130,12 +136,13 @@ public class PanelDashboard extends JPanel {
 		add(cerrarSesionBtn);
 		
 		mainContentScrollPanel = new JScrollPane();
-		mainContentScrollPanel.setBounds(119, 0, Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
+		mainContentScrollPanel.setBounds(119, -1, Constantes.ANCHURA_PANEL_DERECHO_DASHBOARD, Constantes.ALTURA_APLICACION);
 
 		add(mainContentScrollPanel);
 		add(sidebarPanelBackground);
-		
-		controladorDashboard.showPanel("misActividades",null);
+
+		// Define cual es el panel del dashboard que se va a mostrar por defecto
+		controladorDashboard.showPanel(Constantes.PANEL_DEL_DASHBOARD_POR_DEFECTO,null);
 	}
 
 
@@ -146,64 +153,19 @@ public class PanelDashboard extends JPanel {
 	public JButton getMiPerfilBtn() {
 		return miPerfilBtn;
 	}
-
-	public void setMiPerfilBtn(JButton miPerfilBtn) {
-		this.miPerfilBtn = miPerfilBtn;
-	}
-
 	public JButton getMisActividadesBtn() {
 		return misActividadesBtn;
 	}
-
-	public void setMisActividadesBtn(JButton misActividadesBtn) {
-		this.misActividadesBtn = misActividadesBtn;
-	}
-
 	public JButton getActividadesBtn() {
 		return actividadesBtn;
 	}
-
-	public void setActividadesBtn(JButton actividadesBtn) {
-		this.actividadesBtn = actividadesBtn;
-	}
-
 	public JButton getCrearActividadBtn() {
 		return crearActividadBtn;
 	}
-
-	public void setCrearActividadBtn(JButton crearActividadBtn) {
-		this.crearActividadBtn = crearActividadBtn;
-	}
-
 	public JButton getCerrarSesionBtn() {
 		return cerrarSesionBtn;
 	}
-
-	public void setCerrarSesionBtn(JButton cerrarSesionBtn) {
-		this.cerrarSesionBtn = cerrarSesionBtn;
-	}
-
-	public JPanel getSidebarPanelBackground() {
-		return sidebarPanelBackground;
-	}
-
-	public void setSidebarPanelBackground(JPanel sidebarPanelBackground) {
-		this.sidebarPanelBackground = sidebarPanelBackground;
-	}
-
 	public JScrollPane getMainContentScrollPanel() {
 		return mainContentScrollPanel;
-	}
-
-	public void setMainContentScrollPanel(JScrollPane mainContentScrollPanel) {
-		this.mainContentScrollPanel = mainContentScrollPanel;
-	}
-
-	public ControladorDashboard getControladorDashboard() {
-		return controladorDashboard;
-	}
-
-	public void setControladorDashboard(ControladorDashboard controladorDashboard) {
-		this.controladorDashboard = controladorDashboard;
 	}
 }

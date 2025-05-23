@@ -12,28 +12,9 @@ public class Usuario {
 	private String ciclo;
 
 	/**
-	 * Constructor de la clase
-	 * @param id
-	 * @param codigoMatricula
-	 * @param clave
-	 * @param esMonitor
-	 * @param nombreApellidos
-	 * @param ciclo
-	 */
-	public Usuario(Integer id, String codigoMatricula, String clave, Boolean esMonitor, String nombreApellidos, String ciclo) {
-		this.id = id;
-		this.codigoMatricula = codigoMatricula;
-		this.clave = clave;
-		this.esMonitor = esMonitor;
-		this.nombreApellidos = nombreApellidos;
-		this.ciclo = ciclo;
-	}
-
-	/**
 	 * Constructor vacio de la clase
 	 */
 	public Usuario() {}
-
 
 	/**
 	 * Getters y Setters
@@ -41,47 +22,36 @@ public class Usuario {
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getCodigoMatricula() {
 		return codigoMatricula;
 	}
-
 	public void setCodigoMatricula(String codigoMatricula) {
 		this.codigoMatricula = codigoMatricula;
 	}
-
 	public String getClave() {
 		return clave;
 	}
-
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
-
 	public Boolean getEsMonitor() {
 		return esMonitor;
 	}
-
 	public void setEsMonitor(Boolean esMonitor) {
 		this.esMonitor = esMonitor;
 	}
-
 	public String getNombreApellidos() {
 		return nombreApellidos;
 	}
-
 	public void setNombreApellidos(String nombreApellidos) {
 		this.nombreApellidos = nombreApellidos;
 	}
-
 	public String getCiclo() {
 		return ciclo;
 	}
-
 	public void setCiclo(String ciclo) {
 		this.ciclo = ciclo;
 	}

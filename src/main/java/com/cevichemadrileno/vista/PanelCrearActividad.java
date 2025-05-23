@@ -11,7 +11,7 @@ import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.util.Constantes;
 
 /**
- * Panel de crear actividad
+ * Panel de Crear actividad
  *
  * @author Cristhian C.
  * @author Eduardo U.
@@ -34,7 +34,6 @@ public class PanelCrearActividad extends JPanel {
 	private JComboBox<String> mesCombo;
 	private JComboBox<Integer> yearCombo;
 	private JComboBox<String> horaCombo;
-	private JComboBox<String> minuteCombo;
 	
 	private JComboBox<String> lugarCombo;
 	private JComboBox<Integer> nroMaximoInscritosCombo;
@@ -50,9 +49,12 @@ public class PanelCrearActividad extends JPanel {
 		this.controladorDashboard = controladorDashboard;
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void inicializarComponentes() {
 		setBackground(Constantes.GRIS);
-		setSize(Constantes.ANCHURA_DASHBOARD, Constantes.ALTURA_APLICACION);
+		setSize(Constantes.ANCHURA_PANEL_DERECHO_DASHBOARD, Constantes.ALTURA_APLICACION);
 		setLayout(null);
 		
 		controladorCrearActividad = new ControladorCrearActividad(this);
@@ -221,92 +223,49 @@ public class PanelCrearActividad extends JPanel {
 	}
 
 
-
 	/**
 	 * Getters
 	 */
-	public JLabel getTituloLabel() {
-		return tituloLabel;
-	}
-
-	public JLabel getNombreLabel() {
-		return nombreLabel;
-	}
-
-	public JLabel getFechaLabel() {
-		return fechaLabel;
-	}
-
-	public JLabel getHoraLabel() {
-		return horaLabel;
-	}
-
-	public JLabel getLugarLabel() {
-		return lugarLabel;
-	}
-
-	public JLabel getNroMaximoInscritosLabel() {
-		return nroMaximoInscritosLabel;
-	}
-
-	public JLabel getDescripcionLabel() {
-		return descripcionLabel;
-	}
-
 	public JLabel getErrorLabel() {
 		return errorLabel;
 	}
-
 	public JTextField getNombreTextField() {
 		return nombreTextField;
 	}
-
 	public JComboBox<String> getDiaCombo() {
 		return diaCombo;
 	}
-
 	public JComboBox<String> getMesCombo() {
 		return mesCombo;
 	}
-
 	public JComboBox<Integer> getYearCombo() {
 		return yearCombo;
 	}
-
 	public JComboBox<String> getHoraCombo() {
 		return horaCombo;
 	}
-
-	public JComboBox<String> getMinuteCombo() {
-		return minuteCombo;
-	}
-
 	public JComboBox<String> getLugarCombo() {
 		return lugarCombo;
 	}
-
 	public JComboBox<Integer> getNroMaximoInscritosCombo() {
 		return nroMaximoInscritosCombo;
 	}
-
 	public JScrollPane getDescripcionScrollPane() {
 		return descripcionScrollPane;
 	}
-
 	public JTextArea getDescripcionTextArea() {
 		return descripcionTextArea;
 	}
-
 	public JButton getCrearBtn() {
 		return crearBtn;
 	}
-
-	public ControladorCrearActividad getControladorCrearActividad() {
-		return controladorCrearActividad;
+	public ControladorDashboard getControladorDashboard() {
+		return controladorDashboard;
 	}
 
-
-
+	/**
+	 * Actualiza el combo de lugares
+	 */
 	public void refrescarLugares() {
 		lugarCombo.removeAllItems();
 		for (Sala sala : Constantes.salas) {

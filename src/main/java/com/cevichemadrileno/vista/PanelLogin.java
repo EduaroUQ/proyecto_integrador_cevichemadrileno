@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Panel de inicio de sesión
+ * Panel del Login
  *
  * @author Cristhian C.
  * @author Eduardo U.
@@ -30,12 +30,19 @@ public class PanelLogin extends JPanel {
 	private JButton loginBtn;
 	private ControladorLogin controladorLogin;
 	private ControladorPrincipal controladorPrincipal;
-	
+
+	/**
+	 * Constructor
+	 * @param controladorPrincipal
+	 */
 	public PanelLogin(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
 		inicializarComponentes();
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void inicializarComponentes() {
 		setBackground(Constantes.AZUL_OSCURO);
 		setSize(Constantes.ANCHURA_APLICACION, Constantes.ALTURA_APLICACION);
@@ -98,6 +105,7 @@ public class PanelLogin extends JPanel {
 		usuarioTextField.setBorder(Constantes.BORDER_INPUT_ESTILO_2);
 		usuarioTextField.setFont(Constantes.SANS_SERIF_16);
 		usuarioTextField.setForeground(Constantes.BLANCO);
+//		usuarioTextField.setText("2244193B");
 		usuarioTextField.setText("123");
 		add(usuarioTextField);
 	
@@ -120,7 +128,7 @@ public class PanelLogin extends JPanel {
 		loginBtn.setBounds(334,449,158,40);
 		add(loginBtn);
 		
-		
+		// Colocar el logo de la aplicacion
 		String rootFolder = System.getProperty("user.dir");
 		Path imagePath = Paths.get(rootFolder, "img", "logo.png");
 		ImageIcon originalIcon = new ImageIcon(imagePath.toString());
@@ -132,6 +140,9 @@ public class PanelLogin extends JPanel {
 		add(imageLabel);
 	}
 
+	/**
+	 * Getters
+	 */
 	public JButton getRegistroLinkBtn() {
 		return registroLinkBtn;
 	}

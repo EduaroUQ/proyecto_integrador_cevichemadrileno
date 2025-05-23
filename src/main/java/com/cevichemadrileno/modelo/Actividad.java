@@ -1,7 +1,6 @@
 package com.cevichemadrileno.modelo;
 
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -21,6 +20,8 @@ public class Actividad {
 	private Timestamp fecha;
 
 	private Sala sala;
+	private Usuario monitor;
+	private Integer nroPlazasDisponibles;
 
 	/**
 	 * Constructor de la clase
@@ -55,49 +56,80 @@ public class Actividad {
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public Integer getIdMonitor() {
 		return idMonitor;
 	}
+
 	public void setIdMonitor(Integer idMonitor) {
 		this.idMonitor = idMonitor;
 	}
+
 	public Integer getIdSala() {
 		return idSala;
 	}
+
 	public void setIdSala(Integer idSala) {
 		this.idSala = idSala;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
 	public Integer getNroMaximoInscritos() {
 		return nroMaximoInscritos;
 	}
+
 	public void setNroMaximoInscritos(Integer nroMaximoInscritos) {
 		this.nroMaximoInscritos = nroMaximoInscritos;
 	}
+
 	public Timestamp getFecha() {
 		return fecha;
 	}
+
 	public void setFecha(Timestamp fecha) {
 		this.fecha = fecha;
 	}
+
 	public Sala getSala() {
 		return sala;
 	}
+
 	public void setSala(Sala sala) {
 		this.sala = sala;
+	}
+
+	public Usuario getMonitor() {
+		return monitor;
+	}
+
+	public void setMonitor(Usuario monitor) {
+		this.monitor = monitor;
+	}
+
+	public Integer getNroPlazasDisponibles() {
+		return nroPlazasDisponibles;
+	}
+
+	public void setNroPlazasDisponibles(Integer nroPlazasDisponibles) {
+		this.nroPlazasDisponibles = nroPlazasDisponibles;
 	}
 }

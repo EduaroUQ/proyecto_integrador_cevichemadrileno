@@ -7,13 +7,14 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
+import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.modelo.Sala;
 import com.cevichemadrileno.util.Constantes;
 import com.cevichemadrileno.vista.PanelCrearActividad;
 
 /**
- * Controlador del panel de actividades
+ * Controlador del panel de crear actividad
  *
  * @author Cristhian C.
  * @author Eduardo U.
@@ -33,6 +34,8 @@ public class ControladorCrearActividad implements ActionListener {
 	}
 
 	/**
+	 *  Recibe los eventos de los botones
+	 *  @param e: evento
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -95,7 +98,18 @@ public class ControladorCrearActividad implements ActionListener {
 
 			accesoBD.registrarActividad(actividad);
 
-			JOptionPane.showMessageDialog(vista, "Actividad creada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+			int resultado = JOptionPane.showConfirmDialog(
+					vista,
+					"Actividad creada con éxito",
+					"Éxito",
+					JOptionPane.DEFAULT_OPTION,
+					JOptionPane.INFORMATION_MESSAGE
+			);
+
+			if (resultado == JOptionPane.OK_OPTION || resultado == JOptionPane.CLOSED_OPTION) {
+				vista.getControladorDashboard().showPanel("misActividades", null);
+			}
+
 
 		}
 	}
