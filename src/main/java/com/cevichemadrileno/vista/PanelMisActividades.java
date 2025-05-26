@@ -5,15 +5,13 @@ import com.cevichemadrileno.controlador.ControladorMisActividades;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.modelo.Inscripcion;
 import com.cevichemadrileno.util.Constantes;
+import com.cevichemadrileno.util.DateUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Panel de Mis actividades
@@ -159,30 +157,6 @@ public class PanelMisActividades extends JPanel {
 		
 	}
 
-	/**
-	 * Obtiene el dia de la semana a partir de una fecha
-	 *
-	 * @param date
-	 * @return string con el dia de la semana en uppercase y en español
-	 */
-	public static String obtenerDiaSemana(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("EEEE", new Locale("es", "ES"));
-		String dia = sdf.format(date);
-		return dia.substring(0, 1).toUpperCase() + dia.substring(1);
-	}
-
-
-	/**
-	 * Obtiene la hora a partir de una fecha
-	 *
-	 * @param date
-	 * @return string con la hora formateada en formato HH:MM - HH:MM
-	 */
-	public static String obtenerHora(Date date) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH", new Locale("es", "ES"));
-		int hora = Integer.parseInt(simpleDateFormat.format(date));
-		return String.format("%02d:00", hora) + " - " + String.format("%02d:00", hora + 1);
-	}
 
 
 
@@ -211,8 +185,8 @@ public class PanelMisActividades extends JPanel {
 		for (Inscripcion inscripcion : actividadesInscritas) {
 			Object[] row = {
 					inscripcion.getActividad().getNombre(),
-					obtenerDiaSemana(inscripcion.getActividad().getFecha()),
-					obtenerHora(inscripcion.getActividad().getFecha()),
+					DateUtils.obtenerDiayDiaSemana(inscripcion.getActividad().getFecha()),
+					DateUtils.obtenerHora(inscripcion.getActividad().getFecha()),
 					inscripcion.getActividad().getSala().getTipoSala(),
 					"🗑️",
 					inscripcion.getIdActividad()
@@ -250,8 +224,8 @@ public class PanelMisActividades extends JPanel {
 		for (Actividad actividad : actividadesCreadas) {
 			Object[] row = {
 					actividad.getNombre(),
-					obtenerDiaSemana(actividad.getFecha()),
-					obtenerHora(actividad.getFecha()),
+					DateUtils.obtenerDiayDiaSemana(actividad.getFecha()),
+					DateUtils.obtenerHora(actividad.getFecha()),
 					actividad.getSala().getTipoSala(),
 					"✏️",
 					"🗑️",
