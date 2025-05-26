@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class AccesoBD {
     private String url ="jdbc:mysql://localhost:3306/ceviche_madrileno";
     private String usuarioSQL = "root";
-    private String passwordSQL = "123456";
+    private String passwordSQL = "root";
 
     /**
      * Comprueba si existe un usuario en la base de datos
@@ -424,7 +424,7 @@ public class AccesoBD {
      * Inscribe al usuario autenticado en una actividad
      * @param idActividad
      */
-    public void inscribirseEnActividad(Integer idActividad) {
+    public void inscribirseEnActividad(Integer idActividad, Integer idUsuario) {
         String query = "INSERT INTO INSCRIPCION(id_usuario, id_actividad) VALUES(?, ?)";
 
         try (
@@ -432,7 +432,7 @@ public class AccesoBD {
             PreparedStatement pstmtUsuario = con.prepareStatement(query);
         ) {
 
-            pstmtUsuario.setInt(1, Constantes.usuarioAutenticado.getId());
+            pstmtUsuario.setInt(1, idUsuario);
             pstmtUsuario.setInt(2, idActividad);
             pstmtUsuario.executeUpdate();
 
