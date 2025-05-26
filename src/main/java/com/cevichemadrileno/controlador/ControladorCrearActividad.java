@@ -55,6 +55,7 @@ public class ControladorCrearActividad implements ActionListener {
 			int hora = Integer.parseInt(horaStr.split(":")[0]);
 			System.out.println("Hora de nueva actividad: " + hora);
 
+			// Crear un objeto Calendar para establecer la fecha y hora
 			Calendar calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, anio);
 			calendar.set(Calendar.MONTH, mes);
@@ -94,6 +95,11 @@ public class ControladorCrearActividad implements ActionListener {
 					actividad.setIdSala(sala.getId());
 					break;
 				}
+			}
+
+			if (accesoBD.existeActividadMismaFechaYSala(actividad)) {
+				vista.getErrorLabel().setText("Ya existe una actividad en la misma fecha, hora y sala");
+				return;
 			}
 
 			accesoBD.registrarActividad(actividad);

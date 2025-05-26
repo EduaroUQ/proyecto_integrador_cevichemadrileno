@@ -115,7 +115,7 @@ public class PanelEditarActividad extends JPanel {
 		errorLabel = new JLabel();
 		errorLabel.setText("");
 		errorLabel.setBounds(183,488,354,26);
-		errorLabel.setFont(Constantes.SANS_SERIF_16);
+		errorLabel.setFont(Constantes.SANS_SERIF_14);
 		errorLabel.setForeground(Constantes.ROJO);
 		add(errorLabel);
 		

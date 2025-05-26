@@ -513,5 +513,25 @@ public class AccesoBD {
         }
     }
 
+    /**
+     * Comprueba si existe una actividad con la misma fecha y sala
+     * @param actividad: actividad a comprobar
+     * @return true si existe, false si no
+     */
+    public boolean existeActividadMismaFechaYSala(Actividad actividad) {
+        String query = "SELECT * FROM actividad WHERE fecha = ? AND id_sala = ?";
+        try (
+            Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
+            PreparedStatement pstmt = con.prepareStatement(query)
+        ) {
+            pstmt.setTimestamp(1, actividad.getFecha());
+            pstmt.setInt(2, actividad.getIdSala());
+            ResultSet rs = pstmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
 

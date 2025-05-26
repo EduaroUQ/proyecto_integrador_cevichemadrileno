@@ -99,6 +99,11 @@ public class ControladorEditarActividad implements ActionListener {
 				}
 			}
 
+			if (accesoBD.existeActividadMismaFechaYSala(actividad)) {
+				vista.getErrorLabel().setText("Ya existe una actividad en la misma fecha, hora y sala");
+				return;
+			}
+
 			// Actualizar actividad en la base de datos
 			accesoBD.actualizarActividad(actividad);
 
