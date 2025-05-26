@@ -34,7 +34,6 @@ public class PanelEditarActividad extends JPanel {
 	private JComboBox<String> mesCombo;
 	private JComboBox<Integer> yearCombo;
 	private JComboBox<String> horaCombo;
-	private JComboBox<String> minuteCombo;
 
 	private JComboBox<String> lugarCombo;
 	private JComboBox<Integer> nroMaximoInscritosCombo;
@@ -267,10 +266,6 @@ public class PanelEditarActividad extends JPanel {
 
 	public JComboBox<String> getHoraCombo() {
 		return horaCombo;
-	}
-
-	public JComboBox<String> getMinuteCombo() {
-		return minuteCombo;
 	}
 
 	public JComboBox<String> getLugarCombo() {

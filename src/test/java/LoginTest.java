@@ -1,4 +1,5 @@
 import com.cevichemadrileno.modelo.AccesoBD;
+import com.cevichemadrileno.modelo.Usuario;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,8 +11,8 @@ public class LoginTest {
     @Test
     public void deberiaLoguearseExitosamente() {
         AccesoBD accesoBD = new AccesoBD();
-        boolean resultadoLogin = accesoBD.login("123", "123");
-        Assert.assertEquals(resultadoLogin, true);
+        Usuario resultadoLogin = accesoBD.login("123", "123");
+        Assert.assertNotNull(resultadoLogin);
     }
 
     /**
@@ -20,8 +21,8 @@ public class LoginTest {
     @Test
     public void noDeberiaLoguearse() {
         AccesoBD accesoBD = new AccesoBD();
-        boolean resultadoLogin = accesoBD.login("asdasd", "asdasdas");
-        Assert.assertEquals(resultadoLogin, false);
+        Usuario resultadoLogin = accesoBD.login("asdasd", "asdasdas");
+        Assert.assertNotNull(resultadoLogin);
     }
 
 

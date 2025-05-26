@@ -56,11 +56,11 @@ public class ActividadTest {
         accesoBD.inscribirseEnActividad(actividad.getId());
 
         // Verificar que el usuario está inscrito en la actividad
-        boolean inscrito = accesoBD.usuarioYaInscritoEnActividad(actividad.getId());
+        boolean inscrito = accesoBD.usuarioYaInscritoEnActividad(actividad.getId(), Constantes.usuarioAutenticado.getId());
         Assert.assertTrue(inscrito);
 
         // Desinscribirse de la actividad
-        accesoBD.desinscribirseDeActividad(actividad.getId());
+        accesoBD.desinscribirseDeActividad(actividad.getId(), Constantes.usuarioAutenticado.getId());
     }
 
 

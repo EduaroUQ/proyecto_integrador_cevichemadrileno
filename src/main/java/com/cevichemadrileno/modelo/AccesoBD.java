@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class AccesoBD {
     private String url ="jdbc:mysql://localhost:3306/ceviche_madrileno";
     private String usuarioSQL = "root";
-    private String passwordSQL = "root";
+    private String passwordSQL = "123456";
 
     /**
      * Comprueba si existe un usuario en la base de datos
@@ -47,8 +47,9 @@ public class AccesoBD {
      * @param clave
      * @return
      */
-    public boolean login(String usuario, String clave) {
+    public Usuario login(String usuario, String clave) {
         String queryUsuario = "SELECT * FROM usuario WHERE matricula=? AND clave=?";
+        Usuario usuarioAutenticado = new Usuario();
 
         try (
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
@@ -60,7 +61,6 @@ public class AccesoBD {
             // Obtener los datos del usuario
             try (ResultSet rsUsuario = pstmtUsuario.executeQuery()) {
                 if (rsUsuario.next()) {
-                    Usuario usuarioAutenticado = new Usuario();
                     usuarioAutenticado.setId(rsUsuario.getInt("id"));
                     usuarioAutenticado.setCodigoMatricula(rsUsuario.getString("matricula"));
                     usuarioAutenticado.setClave(rsUsuario.getString("clave"));
@@ -68,8 +68,7 @@ public class AccesoBD {
                     usuarioAutenticado.setNombreApellidos(rsUsuario.getString("nombreApellidos"));
                     usuarioAutenticado.setCiclo(rsUsuario.getString("ciclo"));
 
-                    Constantes.usuarioAutenticado = usuarioAutenticado;
-                    return true;
+                    return usuarioAutenticado;
                 }
             }
         } catch (SQLException e) {
@@ -77,7 +76,7 @@ public class AccesoBD {
             e.printStackTrace();
         }
 
-        return false;
+        return null;
     }
 
 
@@ -137,7 +136,7 @@ public class AccesoBD {
 
     /**
      * Registra una actividad en la base de datos
-     * @param actividad
+     * @param actividad: actividad a registrar
      */
     public void registrarActividad(Actividad actividad) {
         String query = "INSERT INTO actividad(id_monitor, id_sala, nombre, descripcion, nroMaximoInscritos, fecha) VALUES(?, ?, ?, ?, ?, ?)";
@@ -146,7 +145,7 @@ public class AccesoBD {
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
             PreparedStatement pstmt = con.prepareStatement(query)
         ) {
-            pstmt.setInt(1, Constantes.usuarioAutenticado.getId());
+            pstmt.setInt(1, actividad.getIdMonitor());
             pstmt.setInt(2, actividad.getIdSala());
             pstmt.setString(3, actividad.getNombre());
             pstmt.setString(4, actividad.getDescripcion());
@@ -199,9 +198,10 @@ public class AccesoBD {
 
     /**
      * Obtiene las actividades inscritas por el usuario autenticado
+     * @param idUsuario
      * @return ArrayList<Inscripcion>
      */
-    public ArrayList<Inscripcion> obtenerActividadesInscritas() {
+    public ArrayList<Inscripcion> obtenerActividadesInscritas(Integer idUsuario) {
         String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala as tipoSala  from INSCRIPCION i , SALA s, ACTIVIDAD a where i.id_actividad = a.id and s.id = a.id_sala and i.id_usuario = ?";
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
 
@@ -209,7 +209,7 @@ public class AccesoBD {
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
             PreparedStatement pstmt = con.prepareStatement(query)
         ) {
-            pstmt.setInt(1, Constantes.usuarioAutenticado.getId());
+            pstmt.setInt(1, idUsuario);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Inscripcion inscripcion = new Inscripcion();
@@ -234,10 +234,11 @@ public class AccesoBD {
     }
 
     /**
-     * Obtiene las actividades creadas por el monitor autenticado
+     * Obtiene las actividades creadas por el monitor autenticadoç
+     * @param idUsuario
      * @return ArrayList<Actividad>
      */
-    public ArrayList<Actividad> obtenerActividadesCreadas() {
+    public ArrayList<Actividad> obtenerActividadesCreadas(Integer idUsuario) {
         String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala as tipoSala  from ACTIVIDAD a, SALA s where a.id_sala = s.id and a.id_monitor = ?";
         ArrayList<Actividad> actividadesCreadas = new ArrayList<>();
 
@@ -245,7 +246,7 @@ public class AccesoBD {
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
             PreparedStatement pstmt = con.prepareStatement(query)
         ) {
-            pstmt.setInt(1, Constantes.usuarioAutenticado.getId());
+            pstmt.setInt(1, idUsuario);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Actividad actividad = new Actividad();
@@ -269,15 +270,16 @@ public class AccesoBD {
     /**
      * Desinscribe al usuario autenticado de una actividad
      * @param idActividad
+     * @param idUsuario
      */
-    public void desinscribirseDeActividad(Integer idActividad) {
+    public void desinscribirseDeActividad(Integer idActividad, Integer idUsuario) {
         String query = "DELETE FROM INSCRIPCION WHERE id_actividad = ? AND id_usuario = ?";
         try (
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
             PreparedStatement pstmt = con.prepareStatement(query)
         ) {
             pstmt.setInt(1, idActividad);
-            pstmt.setInt(2, Constantes.usuarioAutenticado.getId());
+            pstmt.setInt(2, idUsuario);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error al desinscribirse de la actividad");
@@ -444,13 +446,13 @@ public class AccesoBD {
      * @param idActividad
      * @return true si ya está inscrito, false si no
      */
-    public boolean usuarioYaInscritoEnActividad(Integer idActividad) {
+    public boolean usuarioYaInscritoEnActividad(Integer idActividad, Integer idUsuario) {
         String query = "SELECT * FROM INSCRIPCION WHERE id_usuario = ? AND id_actividad = ?";
         try (
             Connection con = DriverManager.getConnection(url, usuarioSQL, passwordSQL);
             PreparedStatement pstmt = con.prepareStatement(query)
         ) {
-            pstmt.setInt(1, Constantes.usuarioAutenticado.getId());
+            pstmt.setInt(1, idUsuario);
             pstmt.setInt(2, idActividad);
             ResultSet rs = pstmt.executeQuery();
             return rs.next();

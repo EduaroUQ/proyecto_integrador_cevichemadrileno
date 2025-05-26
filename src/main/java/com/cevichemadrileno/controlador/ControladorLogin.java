@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.cevichemadrileno.modelo.AccesoBD;
+import com.cevichemadrileno.modelo.Usuario;
+import com.cevichemadrileno.util.Constantes;
 import com.cevichemadrileno.vista.PanelLogin;
 
 /**
@@ -38,7 +40,8 @@ public class ControladorLogin implements ActionListener {
 				vista.getErrorLabel().setText("El usuario no existe");
 				return;
 			}
-			if (accesoBD.login(usuario, clave)) {
+			Constantes.usuarioAutenticado = accesoBD.login(usuario, clave);
+			if (Constantes.usuarioAutenticado != null) {
 				accesoBD.cargarSalas();
 				vista.getControladorPrincipal().showPanel("dashboard");
 			} else {

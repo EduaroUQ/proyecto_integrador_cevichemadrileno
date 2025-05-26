@@ -59,7 +59,7 @@ public class ControladorDetalleActividad implements ActionListener {
 				);
 				return;
 			}
-			if (accesoBD.usuarioYaInscritoEnActividad(actividad.getId())) {
+			if (accesoBD.usuarioYaInscritoEnActividad(actividad.getId(), Constantes.usuarioAutenticado.getId())) {
 				JOptionPane.showMessageDialog(
 					vista,
 					"Ya estás inscrito en esta actividad",

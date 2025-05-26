@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.modelo.Inscripcion;
+import com.cevichemadrileno.util.Constantes;
 import com.cevichemadrileno.vista.PanelMisActividades;
 
 /**
@@ -38,7 +39,7 @@ public class ControladorMisActividades implements ActionListener {
 	 * Carga las actividades inscritas del usuario
 	 */
 	public void cargarActividadesInscritas() {
-		ArrayList<Inscripcion> actividades = accesoBD.obtenerActividadesInscritas();
+		ArrayList<Inscripcion> actividades = accesoBD.obtenerActividadesInscritas(Constantes.usuarioAutenticado.getId());
 		vista.actualizarTablaActividadesInscritas(actividades);
 	}
 
@@ -46,7 +47,7 @@ public class ControladorMisActividades implements ActionListener {
 	 * Carga las actividades creadas por el usuario
 	 */
 	public void cargarActividadesCreadas() {
-		ArrayList<Actividad> actividades = accesoBD.obtenerActividadesCreadas();
+		ArrayList<Actividad> actividades = accesoBD.obtenerActividadesCreadas(Constantes.usuarioAutenticado.getId());
 		vista.actualizarTablaActividadesCreadas(actividades);
 	}
 
@@ -55,7 +56,7 @@ public class ControladorMisActividades implements ActionListener {
 	 * @param idActividad
 	 */
 	public void desinscribirseDeActividad(Integer idActividad) {
-		accesoBD.desinscribirseDeActividad(idActividad);
+		accesoBD.desinscribirseDeActividad(idActividad, Constantes.usuarioAutenticado.getId());
 	}
 
 	/**
