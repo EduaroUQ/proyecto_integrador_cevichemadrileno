@@ -25,7 +25,7 @@ public class PanelLogin extends JPanel {
 	private JLabel registroInfoLabel;
 	private JLabel errorLabel;
 	private JButton registroLinkBtn;
-	private JTextField usuarioTextField;
+	private JTextField matriculaTextField;
 	private JPasswordField claveTextField;
 	private JButton loginBtn;
 	private ControladorLogin controladorLogin;
@@ -62,6 +62,7 @@ public class PanelLogin extends JPanel {
 		matriculaLabel.setBounds(247,162,74,40);
 		matriculaLabel.setFont(Constantes.SANS_SERIF_18);
 		matriculaLabel.setForeground(Constantes.BLANCO);
+		matriculaLabel.addKeyListener(controladorLogin);
 		add(matriculaLabel);
 		
 		claveLabel = new JLabel();
@@ -99,15 +100,15 @@ public class PanelLogin extends JPanel {
 		registroLinkBtn.addActionListener(controladorLogin);
 		add(registroLinkBtn);
 		
-		usuarioTextField = new JTextField();
-		usuarioTextField.setBounds(282, 205, 262, 25);
-		usuarioTextField.setBackground(Constantes.AZUL_OSCURO_CLARO);
-		usuarioTextField.setBorder(Constantes.BORDER_INPUT_ESTILO_2);
-		usuarioTextField.setFont(Constantes.SANS_SERIF_16);
-		usuarioTextField.setForeground(Constantes.BLANCO);
-//		usuarioTextField.setText("2244193B");
-		usuarioTextField.setText("123");
-		add(usuarioTextField);
+		matriculaTextField = new JTextField();
+		matriculaTextField.setBounds(282, 205, 262, 25);
+		matriculaTextField.setBackground(Constantes.AZUL_OSCURO_CLARO);
+		matriculaTextField.setBorder(Constantes.BORDER_INPUT_ESTILO_2);
+		matriculaTextField.setFont(Constantes.SANS_SERIF_16);
+		matriculaTextField.setForeground(Constantes.BLANCO);
+		matriculaTextField.setText("123");
+		matriculaTextField.addKeyListener(controladorLogin);
+		add(matriculaTextField);
 	
 		claveTextField = new JPasswordField();
 		claveTextField.setBounds(282, 295, 262, 25);
@@ -116,6 +117,7 @@ public class PanelLogin extends JPanel {
 		claveTextField.setFont(Constantes.SANS_SERIF_16);
 		claveTextField.setForeground(Constantes.BLANCO);
 		claveTextField.setText("123");
+		claveTextField.addKeyListener(controladorLogin);
 		add(claveTextField);
 		
 		loginBtn = new JButton();
@@ -152,8 +154,8 @@ public class PanelLogin extends JPanel {
 	public ControladorPrincipal getControladorPrincipal() {
 		return controladorPrincipal;
 	}
-	public JTextField getUsuarioTextField() {
-		return usuarioTextField;
+	public JTextField getMatriculaTextField() {
+		return matriculaTextField;
 	}
 	public JPasswordField getClaveTextField() {
 		return claveTextField;
