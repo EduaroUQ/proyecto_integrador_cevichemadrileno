@@ -1,5 +1,6 @@
 import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Actividad;
+import com.cevichemadrileno.modelo.Usuario;
 import com.cevichemadrileno.util.Constantes;
 import org.junit.Assert;
 import org.junit.Test;
@@ -46,12 +47,23 @@ public class ActividadTest {
     public void deberiaInscribirseEnActividad(){
         AccesoBD accesoBD = new AccesoBD();
 
+        // Creamos usuario para la prueba
+        Usuario usuario = new Usuario();
+        usuario.setCodigoMatricula("44455563");
+        usuario.setNombreApellidos("Usuario de prueba");
+        usuario.setClave("123");
+        usuario.setCiclo("DAW");
+        usuario.setEsMonitor(false);
+
+        // Guardar el usuario en la base de datos
+        accesoBD.registrarUsuario(usuario);
+
         // Loguearse como usuario
-        Constantes.usuarioAutenticado = accesoBD.login("2244193B", "123");
+        Constantes.usuarioAutenticado = accesoBD.login("44455563", "123");
 
         // Traer una actividad cualquiera de la base de datos
         ArrayList<Actividad> actividades = accesoBD.obtenerActividades();
-        Actividad actividad = actividades.get(actividades.size() - 1);
+        Actividad actividad = actividades.getLast();
 
         // Inscribirse en la actividad
         accesoBD.inscribirseEnActividad(actividad.getId(), Constantes.usuarioAutenticado.getId());
@@ -62,6 +74,9 @@ public class ActividadTest {
 
         // Desinscribirse de la actividad
         accesoBD.desinscribirseDeActividad(actividad.getId(), Constantes.usuarioAutenticado.getId());
+
+        // Eliminamos usuario creado para la prueba
+        accesoBD.eliminarUsuario(Constantes.usuarioAutenticado.getId());
     }
 
 

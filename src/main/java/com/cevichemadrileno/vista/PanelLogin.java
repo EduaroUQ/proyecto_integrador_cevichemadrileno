@@ -62,7 +62,6 @@ public class PanelLogin extends JPanel {
 		matriculaLabel.setBounds(247,162,74,40);
 		matriculaLabel.setFont(Constantes.SANS_SERIF_18);
 		matriculaLabel.setForeground(Constantes.BLANCO);
-		matriculaLabel.addKeyListener(controladorLogin);
 		add(matriculaLabel);
 		
 		claveLabel = new JLabel();

@@ -68,7 +68,7 @@ public class ControladorDetalleActividad implements ActionListener {
 				);
 				return;
 			}
-			accesoBD.inscribirseEnActividad(actividad.getId());
+			accesoBD.inscribirseEnActividad(actividad.getId(), Constantes.usuarioAutenticado.getId());
 
 			int resultado = JOptionPane.showConfirmDialog(
 				vista,

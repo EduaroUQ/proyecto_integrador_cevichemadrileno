@@ -22,7 +22,7 @@ public class LoginTest {
     public void noDeberiaLoguearse() {
         AccesoBD accesoBD = new AccesoBD();
         Usuario resultadoLogin = accesoBD.login("asdasd", "asdasdas");
-        Assert.assertNotNull(resultadoLogin);
+        Assert.assertNull(resultadoLogin);
     }
 
 

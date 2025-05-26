@@ -1,6 +1,6 @@
 import com.cevichemadrileno.modelo.AccesoBD;
-import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.modelo.Usuario;
+import com.cevichemadrileno.util.Constantes;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class UsuarioTest {
     public void deberiaCrearUsuario(){
         // Crear un nuevo usuario
         Usuario usuario = new Usuario();
-        usuario.setCodigoMatricula("PRUEBA");
+        usuario.setCodigoMatricula("PRU555");
         usuario.setNombreApellidos("Usuario de prueba");
         usuario.setClave("123");
         usuario.setCiclo("DAW");
@@ -29,11 +29,11 @@ public class UsuarioTest {
         accesoBD.registrarUsuario(usuario);
 
         // Verificar que el usuario fue creado correctamente
-        accesoBD.login("PRUEBA", "123");
-        Assert.assertNotNull(usuarioAutenticado);
+        Constantes.usuarioAutenticado = accesoBD.login("PRU555", "123");
+        Assert.assertNotNull(Constantes.usuarioAutenticado);
 
         // Limpiar la base de datos después de la prueba
-        accesoBD.eliminarUsuario(usuarioAutenticado.getId());
+        accesoBD.eliminarUsuario(Constantes.usuarioAutenticado.getId());
     }
 
 

@@ -152,6 +152,7 @@ public class PanelRegistro extends JPanel {
 		confirmarClaveTextField.setBorder(Constantes.BORDE_INPUT_ESTILO_1);
 		confirmarClaveTextField.setForeground(Constantes.NEGRO_CLARO);
 		confirmarClaveTextField.setFont(Constantes.SANS_SERIF_16);
+		confirmarClaveTextField.addKeyListener(controladorRegistro);
 		add(confirmarClaveTextField);
 		
 		
