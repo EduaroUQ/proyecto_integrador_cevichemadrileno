@@ -19,7 +19,6 @@ public class ActividadTest {
         AccesoBD accesoBD = new AccesoBD();
         Constantes.usuarioAutenticado = accesoBD.login("123", "123");
 
-
         // Crear una nueva actividad
         Actividad actividad = new Actividad();
         actividad.setNombre("Actividad de prueba");

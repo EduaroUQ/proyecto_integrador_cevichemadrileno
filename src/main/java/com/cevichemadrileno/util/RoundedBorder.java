@@ -49,13 +49,21 @@ public class RoundedBorder extends AbstractBorder {
      */
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        // Asegurarse de que el contexto gráfico sea Graphics2D para mejores resultados
         Graphics2D g2 = (Graphics2D) g.create();
+        // Configurar las propiedades de renderizado para suavizar los bordes
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        // Configurar el color y el grosor del borde
         g2.setColor(color);
+        // Establecer el grosor del borde
         g2.setStroke(new BasicStroke(grosor));
-        g2.drawRoundRect(x + grosor / 2, y + grosor / 2,
-                         width - grosor, height - grosor,
-                radio, radio);
+        // Dibujar el borde redondeado
+        // Usar drawRoundRect para dibujar un rectángulo con esquinas redondeadas
+        // Ajustar las coordenadas para que el borde se dibuje correctamente
+        // dentro del componente, teniendo en cuenta el grosor
+        // y el radio de las esquinas redondeadas
+        g2.drawRoundRect(x + grosor / 2, y + grosor / 2,width - grosor, height - grosor, radio, radio);
+        // Liberar el contexto gráfico
         g2.dispose();
     }
 
@@ -67,6 +75,7 @@ public class RoundedBorder extends AbstractBorder {
      */
     @Override
     public Insets getBorderInsets(Component c) {
+        // Crear un nuevo objeto Insets con el grosor especificado
         return new Insets(grosor, grosor, grosor, grosor);
     }
 
@@ -79,6 +88,7 @@ public class RoundedBorder extends AbstractBorder {
      */
     @Override
     public Insets getBorderInsets(Component c, Insets insets) {
+        // Establecer los insets con el grosor especificado
         insets.set(grosor, grosor, grosor, grosor);
         return insets;
     }

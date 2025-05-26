@@ -53,6 +53,9 @@ public class VentanaPrincipal extends JFrame {
 		getContentPane().add(scrollPane);
 
 		controladorPrincipal.showPanel("login");
+
+		// Configuración de la fuente de los botones de confirmación
+		UIManager.put("OptionPane.yesButtonText", "Sí");
 	}
 
 	/**

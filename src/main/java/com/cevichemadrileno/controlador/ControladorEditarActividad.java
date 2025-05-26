@@ -123,6 +123,10 @@ public class ControladorEditarActividad implements ActionListener {
 		}
 	}
 
+	/**
+	 * Carga los datos de la actividad a editar en la vista
+	 * @param idActividad: id de la actividad a editar
+	 */
 	public void cargarDatosActividad(Integer idActividad) {
 		actividad = accesoBD.obtenerActividadPorId(idActividad);
 		vista.getNombreTextField().setText(actividad.getNombre());

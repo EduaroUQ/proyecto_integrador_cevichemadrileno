@@ -98,7 +98,7 @@ public class PanelCrearActividad extends JPanel {
 		errorLabel = new JLabel();
 		errorLabel.setText("");
 		errorLabel.setBounds(183,488,354,26);
-		errorLabel.setFont(Constantes.SANS_SERIF_16);
+		errorLabel.setFont(Constantes.SANS_SERIF_14);
 		errorLabel.setForeground(Constantes.ROJO);
 		add(errorLabel);
 		
@@ -274,4 +274,10 @@ public class PanelCrearActividad extends JPanel {
 		lugarCombo.setSelectedIndex(0);
 	}
 
+	/**
+	 * Limpia el mensaje de error
+	 */
+	public void limpiarMensajeError() {
+		errorLabel.setText("");
+	}
 }

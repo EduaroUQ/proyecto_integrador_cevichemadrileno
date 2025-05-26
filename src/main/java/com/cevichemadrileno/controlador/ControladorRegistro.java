@@ -62,7 +62,7 @@ public class ControladorRegistro implements ActionListener, KeyListener {
 	}
 
 	/**
-	 * Registra un nuevo usuario
+	 * Intenta registrar un nuevo usuario
 	 */
 	private void registro() {
 		// Validar campos

@@ -59,6 +59,9 @@ public class ControladorLogin implements ActionListener, KeyListener {
 
 	}
 
+	/**
+	 * Intenta realizar el login del usuario
+	 */
 	private void login(){
 		String usuario = vista.getMatriculaTextField().getText();
 		String clave = vista.getClaveTextField().getText();

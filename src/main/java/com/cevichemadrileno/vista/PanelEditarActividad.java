@@ -162,7 +162,6 @@ public class PanelEditarActividad extends JPanel {
         for (int i = 9; i <= 20; i++) horaCombo.addItem(String.format("%02d", i) + ":00 - " + String.format("%02d", i+1) + ":00");
         horaCombo.setSelectedItem(now.get(Calendar.HOUR_OF_DAY));
 
-
         add(diaCombo);
         add(mesCombo);
         add(yearCombo);
@@ -276,10 +275,6 @@ public class PanelEditarActividad extends JPanel {
 		return nroMaximoInscritosCombo;
 	}
 
-	public JScrollPane getDescripcionScrollPane() {
-		return descripcionScrollPane;
-	}
-
 	public JTextArea getDescripcionTextArea() {
 		return descripcionTextArea;
 	}
@@ -308,4 +303,10 @@ public class PanelEditarActividad extends JPanel {
 		lugarCombo.setSelectedIndex(0);
 	}
 
+	/**
+	 * Limpia el mensaje de error
+	 */
+	public void limpiarMensajeError() {
+		errorLabel.setText("");
+	}
 }

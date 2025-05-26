@@ -3,12 +3,15 @@ package com.cevichemadrileno.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import com.cevichemadrileno.modelo.AccesoBD;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.modelo.Inscripcion;
 import com.cevichemadrileno.util.Constantes;
 import com.cevichemadrileno.vista.PanelMisActividades;
+
+import javax.swing.*;
 
 /**
  * Controlador del panel de Mis Actividades
@@ -64,6 +67,16 @@ public class ControladorMisActividades implements ActionListener {
 	 * @param idActividad
 	 */
 	public void eliminarActividad(Integer idActividad) {
-		accesoBD.eliminarActividad(idActividad);
+		int resultado = JOptionPane.showConfirmDialog(
+				vista,
+				"¿Está seguro que desea eliminar la actividad?",
+				"Advertencia",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.WARNING_MESSAGE
+		);
+
+		if (resultado == JOptionPane.YES_OPTION) {
+			accesoBD.eliminarActividad(idActividad);
+		}
 	}
 }

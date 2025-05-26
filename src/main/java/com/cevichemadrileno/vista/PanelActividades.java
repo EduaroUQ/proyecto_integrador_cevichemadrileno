@@ -109,6 +109,7 @@ public class PanelActividades extends JPanel {
 			}
 		}; 
 
+
 		for (Actividad actividad : actividades) {
 			if (actividad.getIdMonitor()!=Constantes.usuarioAutenticado.getId()) {
 				Object[] row = {

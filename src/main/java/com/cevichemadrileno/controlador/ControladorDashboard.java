@@ -95,11 +95,13 @@ public class ControladorDashboard implements ActionListener {
 		if (nombre.equals("crearActividad")) {
 			System.out.println("Cambio de panel a crearActividad");
 			panelCrearActividad.refrescarLugares();
+			panelCrearActividad.limpiarMensajeError();
 			vista.getMainContentScrollPanel().setViewportView(panelCrearActividad);
 		}
 		if (nombre.equals("editarActividad")) {
 			System.out.println("Cambio de panel a editarActividad");
 			panelEditarActividad.refrescarLugares();
+			panelEditarActividad.limpiarMensajeError();
 			vista.getMainContentScrollPanel().setViewportView(panelEditarActividad);
 			panelEditarActividad.getControladorEditarActividad().cargarDatosActividad(idActividad_ParametroOpcional);
 		}

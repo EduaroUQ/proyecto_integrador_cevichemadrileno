@@ -4,6 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Clase utilitaria para manejar fechas y horas
+ *
+ * @author Cristhian C.
+ * @author Eduardo U.
+ * @author Hugo R.
+ */
 public class DateUtils {
 
     /**

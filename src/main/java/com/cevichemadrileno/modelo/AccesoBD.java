@@ -307,7 +307,6 @@ public class AccesoBD {
                 pstmtInscripcion.executeUpdate();
             }
         } catch (SQLException e) {
-            System.err.println("Error al eliminar la actividad");
             e.printStackTrace();
         }
     }
@@ -383,7 +382,9 @@ public class AccesoBD {
      * @return Actividad
      */
     public Actividad obtenerDetalleActividadPorId(Integer idActividad) {
-        String query = "select a.id, a.id_monitor as idMonitor, a.nombre, a.descripcion, a.nroMaximoInscritos - (select count(*) from inscripcion i where i.id_actividad = a.id) as nroPlazasDisponibles, a.nroMaximoInscritos , s.tipoSala, u.nombreApellidos from ACTIVIDAD a, USUARIO u, SALA s where a.id_monitor = u.id and a.id_sala = s.id and a.id = ?";
+        String query = "select a.id, a.id_monitor as idMonitor, a.nombre, a.descripcion," +
+                " a.nroMaximoInscritos - (select count(*) from inscripcion i where i.id_actividad = a.id) as nroPlazasDisponibles," +
+                " a.nroMaximoInscritos , s.tipoSala, u.nombreApellidos from ACTIVIDAD a, USUARIO u, SALA s where a.id_monitor = u.id and a.id_sala = s.id and a.id = ?";
         Actividad actividad = new Actividad();
 
         try (
