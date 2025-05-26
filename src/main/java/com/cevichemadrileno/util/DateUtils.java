@@ -7,23 +7,24 @@ import java.util.Locale;
 public class DateUtils {
 
     /**
-     * Obtiene el dia y el día de la semana a partir de una fecha.
-     * Ejemplo: Miércoles, 21
+     * Formatear la fecha de la actividad
+     * Ejemplo: Miércoles, 01/10/2025
      *
      * @param date
      * @return string
      */
-    public static String obtenerDiayDiaSemana(Date date) {
+    public static String formatearFecha(Date date) {
         SimpleDateFormat diaSemanaFormat = new SimpleDateFormat("EEEE", new Locale("es", "ES"));
-        SimpleDateFormat diaMesFormat = new SimpleDateFormat("d", new Locale("es", "ES"));
+        SimpleDateFormat fechaCompletaFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         String diaSemana = diaSemanaFormat.format(date);
         diaSemana = diaSemana.substring(0, 1).toUpperCase() + diaSemana.substring(1);
 
-        String diaMes = diaMesFormat.format(date);
+        String fecha = fechaCompletaFormat.format(date);
 
-        return diaSemana + ", " + diaMes;
+        return diaSemana + ", " + fecha;
     }
+
 
 
     /**

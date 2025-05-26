@@ -113,7 +113,7 @@ public class PanelActividades extends JPanel {
 			if (actividad.getIdMonitor()!=Constantes.usuarioAutenticado.getId()) {
 				Object[] row = {
 						actividad.getNombre(),
-						DateUtils.obtenerDiayDiaSemana(actividad.getFecha()),
+						DateUtils.formatearFecha(actividad.getFecha()),
 						DateUtils.obtenerHora(actividad.getFecha()),
 						actividad.getSala().getTipoSala(),
 						"Ver más",

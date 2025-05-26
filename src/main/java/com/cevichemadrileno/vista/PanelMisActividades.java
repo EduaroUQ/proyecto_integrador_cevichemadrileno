@@ -185,7 +185,7 @@ public class PanelMisActividades extends JPanel {
 		for (Inscripcion inscripcion : actividadesInscritas) {
 			Object[] row = {
 					inscripcion.getActividad().getNombre(),
-					DateUtils.obtenerDiayDiaSemana(inscripcion.getActividad().getFecha()),
+					DateUtils.formatearFecha(inscripcion.getActividad().getFecha()),
 					DateUtils.obtenerHora(inscripcion.getActividad().getFecha()),
 					inscripcion.getActividad().getSala().getTipoSala(),
 					"🗑️"+ " Desapuntarse",
@@ -223,7 +223,7 @@ public class PanelMisActividades extends JPanel {
 		for (Actividad actividad : actividadesCreadas) {
 			Object[] row = {
 					actividad.getNombre(),
-					DateUtils.obtenerDiayDiaSemana(actividad.getFecha()),
+					DateUtils.formatearFecha(actividad.getFecha()),
 					DateUtils.obtenerHora(actividad.getFecha()),
 					actividad.getSala().getTipoSala(),
 					"✏️",
