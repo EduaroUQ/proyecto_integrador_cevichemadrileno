@@ -128,7 +128,8 @@ public class PanelActividades extends JPanel {
 		actividadesTable.getColumnModel().getColumn(5).setMinWidth(0);
 		actividadesTable.getColumnModel().getColumn(5).setMaxWidth(0);
 		actividadesTable.getColumnModel().getColumn(5).setWidth(0);
-
+		//Modificar ancho de la columna ver más
+		actividadesTable.getColumnModel().getColumn(4).setPreferredWidth(10);
 		actividadesScrollPane.setViewportView(actividadesTable);
 		revalidate();
 		repaint();

@@ -188,7 +188,7 @@ public class PanelMisActividades extends JPanel {
 					DateUtils.formatearFecha(inscripcion.getActividad().getFecha()),
 					DateUtils.obtenerHora(inscripcion.getActividad().getFecha()),
 					inscripcion.getActividad().getSala().getTipoSala(),
-					"🗑️"+ " Desapuntarse",
+					"🗑️",
 					inscripcion.getIdActividad()
 			};
 			modeloTabla.addRow(row);
@@ -200,6 +200,7 @@ public class PanelMisActividades extends JPanel {
 		actividadesInscritasTable.getColumnModel().getColumn(5).setMaxWidth(0);
 		actividadesInscritasTable.getColumnModel().getColumn(5).setWidth(0);
 
+		actividadesInscritasTable.getColumnModel().getColumn(4).setPreferredWidth(10);
 		actividadesInscritasScrollPane.setViewportView(actividadesInscritasTable);
 		revalidate();
 		repaint();
@@ -242,5 +243,15 @@ public class PanelMisActividades extends JPanel {
 		actividadesCreadasScrollPane.setViewportView(actividadesCreadasTable);
 		revalidate();
 		repaint();
+		
+		//Modificar tamaño de la columna 5 y 6
+		actividadesCreadasTable.getColumnModel().getColumn(4).setWidth(35);
+		actividadesCreadasTable.getColumnModel().getColumn(4).setMaxWidth(35);
+		actividadesCreadasTable.getColumnModel().getColumn(4).setMinWidth(35);
+		
+		actividadesCreadasTable.getColumnModel().getColumn(5).setWidth(35);
+		actividadesCreadasTable.getColumnModel().getColumn(5).setMaxWidth(35);
+		actividadesCreadasTable.getColumnModel().getColumn(5).setMinWidth(35);
+		
 	}
 }
