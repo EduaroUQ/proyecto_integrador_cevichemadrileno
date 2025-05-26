@@ -7,13 +7,11 @@ import com.cevichemadrileno.controlador.ControladorActividades;
 import com.cevichemadrileno.controlador.ControladorDashboard;
 import com.cevichemadrileno.modelo.Actividad;
 import com.cevichemadrileno.util.Constantes;
+import com.cevichemadrileno.util.DateUtils;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
-import static com.cevichemadrileno.vista.PanelMisActividades.obtenerDiaSemana;
-import static com.cevichemadrileno.vista.PanelMisActividades.obtenerHora;
 
 /**
  * Panel de actividades
@@ -115,8 +113,8 @@ public class PanelActividades extends JPanel {
 			if (actividad.getIdMonitor()!=Constantes.usuarioAutenticado.getId()) {
 				Object[] row = {
 						actividad.getNombre(),
-						obtenerDiaSemana(actividad.getFecha()),
-						obtenerHora(actividad.getFecha()),
+						DateUtils.obtenerDiayDiaSemana(actividad.getFecha()),
+						DateUtils.obtenerHora(actividad.getFecha()),
 						actividad.getSala().getTipoSala(),
 						"Ver más",
 						actividad.getId()
