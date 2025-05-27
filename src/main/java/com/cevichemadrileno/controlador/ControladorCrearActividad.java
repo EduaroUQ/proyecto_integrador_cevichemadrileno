@@ -81,6 +81,12 @@ public class ControladorCrearActividad implements ActionListener {
 				vista.getErrorLabel().setText("Escribe una descripcion de la actividad");
 				return;
 			}
+			Timestamp ahora = new Timestamp(System.currentTimeMillis());
+			if (fecha.before(ahora)) {
+				vista.getErrorLabel().setText("La fecha y hora debe ser una fecha futura");
+				return;
+			}
+
 
 			Actividad actividad = new Actividad();
 			actividad.setNombre(nombreActividad);
