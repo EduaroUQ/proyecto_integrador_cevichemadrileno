@@ -83,15 +83,28 @@ La aplicación debería iniciarse mostrando la ventana de inicio de sesión. A p
 
 
 ## Estructura del Proyecto 
->proyecto_integrador_cevichemadrileno/
->> img/ # Recursos gráficos o imágenes usadas en la aplicación
->> src/main/java # Código fuente del proyecto
->>> com.cevichemadrileno.controlador
->>> com.cevichemadrileno.main
->>> com.cevichemadrileno.modelo
->>> com.cevichemadrileno.util
->>> com.cevichemadrileno.vista
-
+```
+proyecto_integrador_cevichemadrileno
+│
+├── 📂 src
+│   ├── 📂 main
+│   │   ├── 📂 java
+│   │   │   └── 📦 com.ceviche_madrileno
+│   │   │       ├── 📁 controlador    → Conectar el modelo con la vista.
+│   │   │       ├── 📁 img            → Imágenes utilizadas por la aplicación.
+│   │   │       ├── 📁 util           → Librerías adicionales utilizadas por el proyecto.
+│   │   │       ├── 📁 main           → Punto de entrada principal de la aplicación.
+│   │   │       ├── 📁 modelo         → La parte del programa que guarda y gestiona los datos.
+│   │   │       ├── 📁 vista          → Interfaz gráfica de usuario desarrollada con Java Swing (Vista).
+│   │   └── 📂 resources              → Recursos como archivos de configuración, textos, etc.
+│
+├── 📂 test
+│   └── 📂 java                       → Pruebas unitarias del proyecto.
+│
+├── 📂 target                         → Archivos generados tras compilar el proyecto.
+│
+├── 📄 pom.xml                        → Archivo de configuración de Maven (gestión del proyecto y dependencias).
+```
 
 ## Ejemplo de uso 
 Una vez en Eclipse, darle al botón verde para arrancar el programa, esto debería dar la siguiente pantalla de inicio:
