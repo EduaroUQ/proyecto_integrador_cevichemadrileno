@@ -56,7 +56,7 @@ public class ControladorMisActividades implements ActionListener {
 
 	/**
 	 * Desinscribe al usuario de una actividad
-	 * @param idActividad
+	 * @param idActividad: id de la actividad
 	 */
 	public void desinscribirseDeActividad(Integer idActividad) {
 		accesoBD.desinscribirseDeActividad(idActividad, Constantes.usuarioAutenticado.getId());

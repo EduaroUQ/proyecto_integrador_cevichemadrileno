@@ -160,7 +160,7 @@ public class AccesoBD {
 
     /**
      * Obtiene todas las actividades de la base de datos
-     * @return ArrayList<Actividad>
+     * @return array: array de actividades
      */
     public ArrayList<Actividad> obtenerActividades() {
         String query = "SELECT a.id, a.id_monitor, a.nombre, a.descripcion, a.nroMaximoInscritos, a.fecha, s.codigoSala, s.tipoSala FROM actividad a, sala s where a.id_sala = s.id";
@@ -199,7 +199,7 @@ public class AccesoBD {
     /**
      * Obtiene las actividades inscritas por el usuario autenticado
      * @param idUsuario
-     * @return ArrayList<Inscripcion>
+     * @return array
      */
     public ArrayList<Inscripcion> obtenerActividadesInscritas(Integer idUsuario) {
         String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala as tipoSala  from INSCRIPCION i , SALA s, ACTIVIDAD a where i.id_actividad = a.id and s.id = a.id_sala and i.id_usuario = ?";
@@ -236,7 +236,7 @@ public class AccesoBD {
     /**
      * Obtiene las actividades creadas por el monitor autenticadoç
      * @param idUsuario
-     * @return ArrayList<Actividad>
+     * @return array
      */
     public ArrayList<Actividad> obtenerActividadesCreadas(Integer idUsuario) {
         String query = "select a.id as idActividad, a.nombre as nombreActividad, a.fecha as fechaActividad, s.tipoSala as tipoSala  from ACTIVIDAD a, SALA s where a.id_sala = s.id and a.id_monitor = ?";
