@@ -84,6 +84,11 @@ public class ControladorEditarActividad implements ActionListener {
 				vista.getErrorLabel().setText("Escribe una descripcion de la actividad");
 				return;
 			}
+			Timestamp ahora = new Timestamp(System.currentTimeMillis());
+			if (fecha.before(ahora)) {
+				vista.getErrorLabel().setText("La fecha y hora debe ser una fecha futura");
+				return;
+			}
 
 			// Actualizar atributos de la actividad
 			actividad.setNombre(nombreActividad);
@@ -128,13 +133,14 @@ public class ControladorEditarActividad implements ActionListener {
 	 * @param idActividad: id de la actividad a editar
 	 */
 	public void cargarDatosActividad(Integer idActividad) {
+		System.out.println("cargarDatosActividad");
 		actividad = accesoBD.obtenerActividadPorId(idActividad);
-		vista.getNombreTextField().setText(actividad.getNombre());
+        vista.getNombreTextField().setText(actividad.getNombre());
 		vista.getDescripcionTextArea().setText(actividad.getDescripcion());
 		vista.getNroMaximoInscritosCombo().setSelectedItem(actividad.getNroMaximoInscritos().toString());
 		vista.getLugarCombo().setSelectedItem(actividad.getSala().getCodigoSala());
-		vista.getDiaCombo().setSelectedItem(actividad.getFecha().getDate());
-		vista.getMesCombo().setSelectedItem(actividad.getFecha().getMonth() + 1);
+		vista.getDiaCombo().setSelectedItem(String.format("%02d", actividad.getFecha().getDate()));
+		vista.getMesCombo().setSelectedItem(String.format("%02d", actividad.getFecha().getMonth() + 1));
 		vista.getYearCombo().setSelectedItem(actividad.getFecha().getYear() + 1900);
 		vista.getHoraCombo().setSelectedItem(actividad.getFecha().getHours() + ":00");
 	}
